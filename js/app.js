@@ -1,3 +1,5 @@
+// firebase setup and config
+
 var config = {
     apiKey: "AIzaSyD-Rni68sV7NSl1a_nRI5QtDZ-GazqCcYg",
     authDomain: "workoutbuddies-a9eb5.firebaseapp.com",
@@ -8,4 +10,29 @@ var config = {
   };
 
   firebase.initializeApp(config);
+
+
+
+//  Landing page 
+
+// Default welcome with:
+
+  //  Login / logout
+
+  
+
+  // navigation that connects to:
+
+    // user profile
+
+    // map view
+
+    // workout??
+
+    // other?  possibly messages or connections??
+
+
+// google analytics??
+
+
 

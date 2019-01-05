@@ -5,26 +5,70 @@
     <meta charset="UTF-8">
     <title>Workout Buddies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS Frame works 
+         https://materializecss.com/getting-started.html
+          -- Materialize Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--  -->
+
+
+
 </head>
 
 <body>
+    <!-- firebase authentication div It can be anywhere but needs to keep the div id -->
+    <!-- The surrounding HTML is left untouched by FirebaseUI.
+             Your app may use that space for branding, controls and other customizations.-->
+    <div id="firebaseui-auth-container"></div>
+
+
+    <!--  some sort of nav, here is a placehodler -->
+    <nav>
+        <div class="nav-wrapper">
+            <div class="container">
+            <a href="#" class="brand-logo">Logo</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="map.html">MAP</a></li>
+                <li><a href="connect.html">CONNECT</a></li>
+                <li><a href="workout.html">WOROUT</a></li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+    <!--  END some sort of nav, here is a placehodler -->
+
+
+    <!--  some sort of body, here is a placehodler -->
     <div id="container">
-        <h3>Workout Buddies</h3>
-        <!-- The surrounding HTML is left untouched by FirebaseUI.
-         Your app may use that space for branding, controls and other customizations.-->
-        <h1>Workout Buddies</h1>
-        <div id="firebaseui-auth-container"></div>
+        <div class="row">
+            <div class="col s7 push-s5"><span class="flow-text">JUST a Basic example layout placholer This div is
+                    7-columns wide on pushed to the right by
+                    5-columns. https://materializecss.com/grid.html</span></div>
+            <div class="col s5 pull-s7"><span class="flow-text">JUST a Basic example layout placholer 5-columns wide
+                    pulled to the left by 7-columns.</span></div>
+        </div>
     </div>
-<!-- Firebase App is always required and must be first -->
-<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+    <!--  END some sort of body, here is a placehodler -->
 
-<!-- Add additional services that you want to use -->
-<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-messaging.js"></script>
 
-<script src="js/app.js"></script>
+
+
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+
+    <!-- Add additional services that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-messaging.js"></script>
+
+
+    <!-- Materialize Compiled and minified JavaScript  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- the js for this page  -->
+    <script src="js/app.js"></script>
 
 </body>
 
