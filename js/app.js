@@ -1,25 +1,39 @@
-// firebase setup and config
-
-var config = {
-    apiKey: "AIzaSyD-Rni68sV7NSl1a_nRI5QtDZ-GazqCcYg",
-    authDomain: "workoutbuddies-a9eb5.firebaseapp.com",
-    databaseURL: "https://workoutbuddies-a9eb5.firebaseio.com",
-    projectId: "workoutbuddies-a9eb5",
-    storageBucket: "workoutbuddies-a9eb5.appspot.com",
-    messagingSenderId: "25982813153"
-  };
-
-  firebase.initializeApp(config);
-
-
 
 //  Landing page 
 
 // Default welcome with:
 
   //  Login / logout
-
+  var mainApp = {};
+  (function(){
+  var mainContainer = document.getElementById("main_container");
   
+      var logtout =  function(){
+          firebase.auth().signOut().then(function(){
+              console.log('success');
+              window.location.replace("login.html");
+          },function(){})
+      }
+  
+  var init = function(){
+      firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            // User is signed in.
+            console.log("stay");
+            mainContainer.style.display = "";
+          } else {
+            // No user is signed in.
+            mainContainer.style.display = "none";
+            console.log("redirect");
+            window.location.replace("login.html");
+          }
+        });
+  }
+      
+  init();
+  
+  mainApp.logout = logtout;
+  })();
 
   // navigation that connects to:
 

@@ -22,13 +22,12 @@
     <nav>
         <div class="nav-wrapper">
             <div class="container">
-            <a href="#" class="brand-logo">Logo</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="map.html">MAP</a></li>
-                <li><a href="connect.html">CONNECT</a></li>
-                <li><a href="workout.html">WOROUT</a></li>
-                <li><button class="waves-effect waves-light btn pull-right" onclick="mainApp.logout();">logout</button></li>
-            </ul>
+                <a href="#" class="brand-logo">Logo</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="map.html">MAP</a></li>
+                    <li><a href="connect.html">CONNECT</a></li>
+                    <li><a href="workout.html">WOROUT</a></li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -38,7 +37,15 @@
     <!--  some sort of body, here is a placehodler -->
     <div id="container">
         <div class="row">
-            <p>placeholder</p>
+            <!-- firebase authentication div It can be anywhere but needs to keep the div id -->
+            <!-- The surrounding HTML is left untouched by FirebaseUI.
+             Your app may use that space for branding, controls and other customizations.-->
+            <!-- The surrounding HTML is left untouched by FirebaseUI.
+     Your app may use that space for branding, controls and other customizations.-->
+            <div id="firebaseui-auth-container"></div>
+            <div id="loader">Loading...</div>
+            <!--   END of Firebase Auth -->
+
         </div>
     </div>
     <!--  END some sort of body, here is a placehodler -->
