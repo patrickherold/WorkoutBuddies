@@ -6,9 +6,9 @@
   //  Login / logout
   var mainApp = {};
   (function(){
-  var mainContainer = document.getElementById("main_container");
+  var mainContainer = document.getElementById("mainContainer");
   
-      var logtout =  function(){
+      var logMeOut =  function(){
           firebase.auth().signOut().then(function(){
               console.log('success');
               window.location.replace("login.html");
@@ -20,10 +20,10 @@
           if (user) {
             // User is signed in.
             console.log("stay");
-            mainContainer.style.display = "";
+            mainContainer.style.display = "none";
           } else {
             // No user is signed in.
-            mainContainer.style.display = "none";
+            mainContainer.style.display = "block";
             console.log("redirect");
             window.location.replace("login.html");
           }
@@ -32,7 +32,7 @@
       
   init();
   
-  mainApp.logout = logtout;
+  mainApp.logout = logMeOut;
   })();
 
   // navigation that connects to:

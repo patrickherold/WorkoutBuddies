@@ -42,7 +42,7 @@ var uiConfig = {
     // Terms of service url.
     tosUrl: 'index.html',
     // Privacy policy url.
-    privacyPolicyUrl: 'index.html'
+    privacyPolicyUrl: 'login.html'
 };
 
 // The start method will wait until the DOM is loaded.
