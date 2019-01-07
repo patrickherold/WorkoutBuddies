@@ -24,6 +24,7 @@ var uiConfig = {
             // or whether we leave that to developer to handle.
             return firebase.database().ref('/users/').push({
                 name: firebase.auth().currentUser.displayName,
+                name: firebase.auth().currentUser.emailVerified,
                 profilePicUrl: firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png'
             }).catch(function(error) {
                 console.error('Error writing new message to Firebase Database', error);
