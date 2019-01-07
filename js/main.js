@@ -3,6 +3,23 @@
 
 // Default welcome with:
 
+
+  // navigation that connects to:
+
+    // user profile
+
+    // map view
+
+    // workout??
+
+    // other?  possibly messages or connections??
+
+
+// google analytics??
+
+
+// USER AUTH ETC
+
   //  Login / logout
   var mainApp = {};
   (function(){
@@ -19,7 +36,8 @@
       firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
             // User is signed in.
-            console.log("stay");
+            console.log(firebase.auth().currentUser.displayName);
+            $("#currentUser").append(firebase.auth().currentUser.displayName)
             mainContainer.style.display = "none";
           } else {
             // No user is signed in.
@@ -30,23 +48,14 @@
         });
   }
       
+
+
+
+  // start it up
   init();
   
   mainApp.logout = logMeOut;
   })();
-
-  // navigation that connects to:
-
-    // user profile
-
-    // map view
-
-    // workout??
-
-    // other?  possibly messages or connections??
-
-
-// google analytics??
 
 
 

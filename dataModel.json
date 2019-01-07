@@ -1,0 +1,77 @@
+{
+    "users": {
+      "user_id_1": {
+        "userName": "user one",
+        "profilePic": "some_url",
+        "zipCode": "30030",
+        "workoutPreferences": [
+            "selected from workout type array",
+            "Another type selected from workout type array"
+          ],
+        "workoutsCounter": 3,
+        "workouts": [
+            "workout_id_1",
+            "workout_id_2",
+            "workout_id_3"
+          ],
+        "workoutBuddyCounter" : 2,
+        "workoutBuddies": [
+          "user_id_1",
+          "user_id_2"
+        ],
+        "workoutRatingCounter" : 2,
+        "workoutRatings": [
+          "rating_id_1"
+        ]
+      },
+      "user_id_2": {
+        "userName": "Some Body",
+        "profilePic": "some_url_2",
+        "zipCode": "30319",
+        "workoutsCounter": 2,
+        "workouts": [
+            "workout_id_4",
+            "workout_id_2"
+          ],
+        "workoutRatingCounter" : 2,
+        "workoutRatings": [
+            "rating_id_2"
+        ]
+      }
+    },
+    "workouts": {
+      "workout_id_1": {
+        "leader": {
+          "id": "user_id_1",
+          "username": "user one",
+          "profile_pic": "some_url"
+        },
+        "title": "Fun run in Buckhead",
+        "workoutType": "Selected from array",
+        "workoutAddress": "123 Main St. Decatur, GA 30030",
+        "startDateTime": "Start Date Time", 
+        "endDateTime": "End Date Time",
+        "participantsCounter": 2,
+        "participants": [
+            "user_id_2",
+            "user_id_4"
+        ],
+        "comments": {
+          "comment_id_1": {
+            "comment": "Fun Run",
+            "author": {
+              "id": "user_id_1",
+              "username": "user one",
+              "profile_pic": "some_url"
+            }
+          },
+          "comment_id_2": "We ran too fast",
+          "author": {
+            "id": "user_id_2",
+            "username": "Some Body",
+            "profile_pic": "some_url_2"
+          }
+        }
+      }
+    }
+  }

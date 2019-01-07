@@ -22,7 +22,12 @@ var uiConfig = {
             // User successfully signed in.
             // Return type determines whether we continue the redirect automatically
             // or whether we leave that to developer to handle.
-            return true;
+            return firebase.database().ref('/users/').push({
+                name: firebase.auth().currentUser.displayName,
+                profilePicUrl: firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png'
+              }).catch(function(error) {
+                console.error('Error writing new message to Firebase Database', error);
+              });
         },
         uiShown: function () {
             // The widget is rendered.
@@ -42,7 +47,7 @@ var uiConfig = {
     // Terms of service url.
     tosUrl: 'index.html',
     // Privacy policy url.
-    privacyPolicyUrl: 'login.html'
+    privacyPolicyUrl: 'index.html'
 };
 
 // The start method will wait until the DOM is loaded.
