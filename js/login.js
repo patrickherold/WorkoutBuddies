@@ -25,9 +25,9 @@ var uiConfig = {
             return firebase.database().ref('/users/').push({
                 name: firebase.auth().currentUser.displayName,
                 profilePicUrl: firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png'
-              }).catch(function(error) {
+            }).catch(function(error) {
                 console.error('Error writing new message to Firebase Database', error);
-              });
+            });
         },
         uiShown: function () {
             // The widget is rendered.
