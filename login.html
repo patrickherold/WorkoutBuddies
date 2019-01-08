@@ -21,15 +21,21 @@
     <!--  some sort of nav, here is a placehodler -->
     <nav>
         <div class="nav-wrapper">
-            <div class="container">
-                <a href="#" class="brand-logo">Logo</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="map.html">MAP</a></li>
-                    <li><a href="connect.html">CONNECT</a></li>
-                    <li><a href="workout.html">WOROUT</a></li>
-                </ul>
-            </div>
+          <a href="#!" class="brand-logo">Logo</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="map.html">MAP</a></li>
+            <li><a href="connect.html">CONNECT</a></li>
+            <li><a href="workout.html">WOROUT</a></li>
+          </ul>
         </div>
+      </nav>
+    
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="map.html">MAP</a></li>
+        <li><a href="connect.html">CONNECT</a></li>
+        <li><a href="workout.html">WOROUT</a></li>
+      </ul>
     </nav>
     <!--  END some sort of nav, here is a placehodler -->
 
@@ -60,11 +66,15 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
 
     <!-- Materialize Compiled and minified JavaScript  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
- 
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+
     <!-- the js for this page  -->
     <script src="js/fireBase.js"></script>
+
     <script src="js/login.js"></script>
+ 
 
 </body>
 

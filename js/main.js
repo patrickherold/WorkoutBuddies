@@ -20,7 +20,10 @@
 
 // USER AUTH ETC
 
-  //  Login / logout
+      
+
+
+  // Check to see if Logged in / logout
   var mainApp = {};
   (function(){
   var mainContainer = document.getElementById("mainContainer");
@@ -46,16 +49,11 @@
             window.location.replace("login.html");
           }
         });
-  }
-      
+  };
+// start it up
+init();
 
+mainApp.logout = logMeOut;
+})();
 
-
-  // start it up
-  init();
   
-  mainApp.logout = logMeOut;
-  })();
-
-
-

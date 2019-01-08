@@ -1,20 +1,14 @@
-// FirebaseUI config.
-var uiConfig = {
-    signInSuccessUrl: 'index.html',
-    signInOptions: [
-      // Leave the lines as is for the providers you want to offer your users.
-            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-            //firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-            //firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-            //firebase.auth.GithubAuthProvider.PROVIDER_ID,
-            firebase.auth.EmailAuthProvider.PROVIDER_ID,
-            firebase.auth.PhoneAuthProvider.PROVIDER_ID
-    ],
-    // Terms of service url.
-    tosUrl: 'index.html'
-  };
+
+
+// firebase setup and config
+var config = {
+      apiKey: "AIzaSyD-Rni68sV7NSl1a_nRI5QtDZ-GazqCcYg",
+      authDomain: "workoutbuddies-a9eb5.firebaseapp.com",
+      databaseURL: "https://workoutbuddies-a9eb5.firebaseio.com",
+      projectId: "workoutbuddies-a9eb5",
+      storageBucket: "workoutbuddies-a9eb5.appspot.com",
+      messagingSenderId: "25982813153"
+    };
   
-  // Initialize the FirebaseUI Widget using Firebase.
-  var ui = new firebaseui.auth.AuthUI(firebase.auth());
-  // The start method will wait until the DOM is loaded.
-  ui.start('#firebaseui-auth-container', uiConfig);
+  firebase.initializeApp(config);
+  

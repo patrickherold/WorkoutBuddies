@@ -9,28 +9,37 @@
     <!-- CSS Frame works 
          https://materializecss.com/getting-started.html
           -- Materialize Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!--  -->
+        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!-- CSS Customization -->
+        <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 
 
 </head>
 
 <body>
-
     <!--  some sort of nav, here is a placehodler -->
     <nav>
-        <div class="nav-wrapper">
-            <div class="container">
-            <a href="#" class="brand-logo">Logo</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="map.html">MAP</a></li>
-                <li><a href="connect.html">CONNECT</a></li>
-                <li><a href="workout.html">WOROUT</a></li>
-                <li><button class="waves-effect waves-light btn pull-right" onclick="mainApp.logout();">logout</button></li>
-            </ul>
-            </div>
+        <div class="nav-wrapper container">
+          <a href="#!" class="brand-logo">Logo</a>
+           <!--  the data-target is what calls the sidenav to collapse -->
+          <a href="#" data-target="navCollapse" class="sidenav-trigger"><i class="material-icons">|||</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="map.html">MAP</a></li>
+            <li><a href="connect.html">CONNECT</a></li>
+            <li><a href="workout.html">WOROUT</a></li>
+             <!--  This button should only display on screens where someone is logged in.   -->
+            <li><button class="waves-effect waves-light btn pull-right" onclick="mainApp.logout();">logout</button></li>
+          </ul>
         </div>
+      </nav>
+    
+      <ul class="sidenav" id="navCollapse">
+        <li><a href="map.html">MAP</a></li>
+        <li><a href="connect.html">CONNECT</a></li>
+        <li><a href="workout.html">WOROUT</a></li>
+        <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="mainApp.logout();">logout</button></li>
+      </ul>
     </nav>
     <!--  END some sort of nav, here is a placehodler -->
     <div class="container">
@@ -62,13 +71,16 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
 
     <!-- Materialize Compiled and minified JavaScript  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="js/login.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
 
     <!-- the js for this page  -->
     <script src="js/fireBase.js"></script>
     <script src="js/main.js"></script>
 
+
 </body>
 
 </html>
+

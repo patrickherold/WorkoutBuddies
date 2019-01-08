@@ -1,3 +1,7 @@
 #mainContainer {
     display: none;
 }
+
+#mobileLogout {
+    margin: 30px;
+}
