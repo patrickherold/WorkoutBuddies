@@ -22,6 +22,9 @@
         "workoutRatingCounter" : 2, // this tracks their reviews or ratings of workouts they've done
         "workoutRatings": [
           "rating_id_1"
+        ],
+        "userLogins": [
+          "timestamp"
         ]
       },
       "user_id_2": {
