@@ -29,7 +29,7 @@
             <li><a href="connect.html">CONNECT</a></li>
             <li><a href="workout.html">WOROUT</a></li>
              <!--  This button should only display on screens where someone is logged in.   -->
-            <li><button class="waves-effect waves-light btn pull-right" onclick="mainApp.logout();">logout</button></li>
+            <li><button class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
           </ul>
         </div>
       </nav>
@@ -38,12 +38,13 @@
         <li><a href="map.html">MAP</a></li>
         <li><a href="connect.html">CONNECT</a></li>
         <li><a href="workout.html">WOROUT</a></li>
-        <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="mainApp.logout();">logout</button></li>
+        <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
       </ul>
     </nav>
     <!--  END some sort of nav, here is a placehodler -->
     <div class="container">
         <h4>Welcome <span id="currentUser"></span></h4>
+        <div id="accountDetails"></div>
     </div>
     <!--  some sort of body, here is a placehodler -->
     <div class="container" id="loginContainer" style="display: none;">

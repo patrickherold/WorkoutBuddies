@@ -13,64 +13,62 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 
-
-
-//  Landing page 
-
-// Default welcome with:
-
-
-// navigation that connects to:
-
-// user profile
-
-// map view
-
-// workout??
-
-// other?  possibly messages or connections??
-
-
-// google analytics??
-
-
-// USER AUTH ETC
-
-
-
-
 // Check to see if Logged in / logout
-var mainApp = {};
-(function () {
-    var loginContainer = document.getElementById("loginContainer");
+var loginContainer = document.getElementById("loginContainer");
 
-    var logMeOut = function () {
-        firebase.auth().signOut().then(function () {
-            console.log('success');
-            window.location.replace("login.html");
-        }, function () { })
-    }
+logMeOut = function () {
+    firebase.auth().signOut().then(function () {
+        console.log('success logout');
+        window.location.replace("login.html");
+    }, function () { })
+};
 
-    var init = function () {
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                // User is signed in.
-                console.log(firebase.auth().currentUser.displayName);
-                $("#currentUser").append(firebase.auth().currentUser.displayName)
-                loginContainer.style.display = "none";
-                return;
-            } else {
-                // No user is signed in.
-                loginContainer.style.display = "block";
-                console.log("redirect");
-                window.location.replace("login.html");
+initApp = function () {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            // User is signed in.
+            var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var photoURL = user.photoURL;
+            var uid = user.uid;
+            var phoneNumber = user.phoneNumber;
+            var providerData = user.providerData;
+            console.log(firebase.auth().currentUser.displayName);
+            $("#currentUser").append(firebase.auth().currentUser.displayName);
+
+            document.getElementById('accountDetails').textContent = JSON.stringify({
+                displayName: displayName,
+                email: email,
+                emailVerified: emailVerified,
+                phoneNumber: phoneNumber,
+                photoURL: photoURL,
+                uid: uid
+            }, null, '  ');
+
+            // write user data to firebase
+            function writeUserData(userId, username, email, profilePicture) {
+                firebase.database().ref('users/' + firebase.auth().currentUser.userId).set({
+                    username: firebase.auth().currentUser.displayName,
+                    email: firebase.auth().currentUser.email,
+                    profilePicture: firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png'
+                });
             }
-        });
-    };
 
-    // start it up
-    init();
+            loginContainer.style.display = "none";
+            return;
+        } else {
+            // No user is signed in.
+            loginContainer.style.display = "block";
+            console.log("redirect");
+            window.location.replace("login.html");
+        }
+    });
+};
+// start it up
+window.addEventListener('load', function () {
+    initApp()
+});
 
-    mainApp.logout = logMeOut;
-})();
+
 
