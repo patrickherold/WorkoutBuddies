@@ -46,14 +46,11 @@ initApp = function () {
                 uid: uid
             }, null, '  ');
 
-            // write user data to firebase
-            function writeUserData(userId, username, email, profilePicture) {
-                firebase.database().ref('users/' + firebase.auth().currentUser.userId).set({
-                    username: firebase.auth().currentUser.displayName,
-                    email: firebase.auth().currentUser.email,
-                    profilePicture: firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png'
-                });
-            }
+            firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
+                username: firebase.auth().currentUser.displayName,
+                email: firebase.auth().currentUser.email,
+                profilePicture: firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png'
+            });
 
             loginContainer.style.display = "none";
             return;
@@ -69,6 +66,5 @@ initApp = function () {
 window.addEventListener('load', function () {
     initApp()
 });
-
 
 
