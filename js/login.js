@@ -12,8 +12,6 @@ var config = {
 
 firebase.initializeApp(config);
 
-var database = firebase.database();
-
 // Firebase pre-built UI
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -23,19 +21,16 @@ var uiConfig = {
             // User successfully signed in.
             // Return type determines whether we continue the redirect automatically
             // or whether we leave that to developer to handle.
-            return function writeUserData(username, email, profilePicUrl) {
-                firebase.database().ref('users/').set({
-                    username: firebase.auth().currentUser.displayName,
-                    email: firebase.auth().currentUser.email,
-                    profilePicUrl: firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png'
-                })
-            };
-            function storeLoginSession(loginSession) {
-                firebase.database().ref('users/').set({
-                    loginSession: Date($.now())
-                })
-            };
-
+            var database = firebase.database();
+               
+                return firebase.auth().onAuthStateChanged(function (user) {
+                database.ref('users/').push({
+                username: firebase.auth().currentUser.displayName,
+                email: firebase.auth().currentUser.email,
+                profilePicUrl: firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png'
+                });
+            
+            })
         },
         uiShown: function () {
             // The widget is rendered.
