@@ -50,7 +50,6 @@ initApp = function () {
                 profilePicture: user.photoURL || '/images/profile_placeholder.png'
             });
 
-
             loginContainer.style.display = "none";
             return;
         } else {
