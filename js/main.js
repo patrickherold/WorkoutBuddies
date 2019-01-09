@@ -12,7 +12,6 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-
 // Check to see if Logged in / logout
 var loginContainer = document.getElementById("loginContainer");
 
@@ -32,24 +31,17 @@ initApp = function () {
             var emailVerified = user.emailVerified;
             var photoURL = user.photoURL;
             var uid = user.uid;
-            console.log(firebase.auth().currentUser.displayName);
-            $("#currentUser").append(firebase.auth().currentUser.displayName);
 
             // display json of 
             document.getElementById('accountDetails').textContent = JSON.stringify({
                 displayName: displayName,
                 email: email,
                 emailVerified: emailVerified,
-                phoneNumber: phoneNumber,
                 photoURL: photoURL,
                 uid: uid
             }, null, '  ');
-
-            firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
-                username: firebase.auth().currentUser.displayName,
-                email: firebase.auth().currentUser.email,
-                profilePicture: firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png'
-            });
+            console.log(firebase.auth().currentUser.displayName);
+            $("#currentUser").append(firebase.auth().currentUser.displayName);
 
             loginContainer.style.display = "none";
             return;
