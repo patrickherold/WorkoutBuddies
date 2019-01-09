@@ -32,11 +32,10 @@ initApp = function () {
             var emailVerified = user.emailVerified;
             var photoURL = user.photoURL;
             var uid = user.uid;
-            var phoneNumber = user.phoneNumber;
-            var providerData = user.providerData;
             console.log(firebase.auth().currentUser.displayName);
             $("#currentUser").append(firebase.auth().currentUser.displayName);
 
+            // display json of 
             document.getElementById('accountDetails').textContent = JSON.stringify({
                 displayName: displayName,
                 email: email,
