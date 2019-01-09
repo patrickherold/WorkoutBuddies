@@ -32,24 +32,24 @@ initApp = function () {
             var emailVerified = user.emailVerified;
             var photoURL = user.photoURL;
             var uid = user.uid;
-            console.log(firebase.auth().currentUser.displayName);
-            $("#currentUser").append(firebase.auth().currentUser.displayName);
+            console.log(user.displayName);
+            $("#currentUser").append(user.displayName);
 
             // display json of 
             document.getElementById('accountDetails').textContent = JSON.stringify({
                 displayName: displayName,
                 email: email,
                 emailVerified: emailVerified,
-                phoneNumber: phoneNumber,
                 photoURL: photoURL,
                 uid: uid
             }, null, '  ');
 
-            firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
-                username: firebase.auth().currentUser.displayName,
-                email: firebase.auth().currentUser.email,
-                profilePicture: firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png'
+            firebase.database().ref('users/' + user.uid).set({
+                username: user.displayName,
+                email: user.email,
+                profilePicture: user.photoURL || '/images/profile_placeholder.png'
             });
+
 
             loginContainer.style.display = "none";
             return;
