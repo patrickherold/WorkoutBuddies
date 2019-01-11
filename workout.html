@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" id="fav" href="https://img.icons8.com/cotton/2x/laurel-wreath.png" />
+    <title>Workout Buddies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS Frame works 
+         https://materializecss.com/getting-started.html
+          -- Materialize Compiled and minified CSS -->
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <!-- CSS Customization -->
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+    <!-- JQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Materalize Javascript CDN -->
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <!--  some sort of nav, here is a placehodler -->
+    <nav>
+        <div class="nav-wrapper container">
+            <a href="#!" class="brand-logo">Logo</a>
+            <a href="#" data-target="mobileNav" class="sidenav-trigger"><i class="material-icons">|||</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="map.html">MAP</a></li>
+                <li><a href="connect.html">CONNECT</a></li>
+                <li><a href="workout.html">WOROUT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobileNav">
+        <li><a href="map.html">MAP</a></li>
+        <li><a href="connect.html">CONNECT</a></li>
+        <li><a href="workout.html">WOROUT</a></li>
+    </ul>
+    </nav>
+    <!--  END some sort of nav, here is a placehodler -->
+
+    <div class="row workoutIconList">
+        <div class="col m3"></div>
+        <div class="col m2 center-align"><img class="workoutIcon" src="/images/dumbell.png" /></div>
+        <div class="col m2 center-align"><img class="workoutIcon" src="/images/smartwatch.png" /></div>
+        <div class="col m2 center-align"><img class="workoutIcon" src="/images/swimming-pool.png" /></div>
+        <div class="col m3"></div>
+    </div>
+
+    <div class="row">
+        <form class="col m12">
+
+            <div class="row">
+                <div class="col m3"></div>
+                <div class="input-field col m6">
+                    <input value="" id="disabled" type="text" class="validate">
+                    <label for="disabled">Give Your Workout An Interesting Name</label>
+                </div>
+                <div class="col m3"></div>
+            </div>
+            <div class="row">
+                <div class="col m3"></div>
+                <div class="input-field col m6">
+                    <input value="" id="disabled" type="text" class="validate">
+                    <label for="disabled">Give People A Quick Idea Of What To Expect</label>
+                </div>
+                <div class="col m3"></div>
+            </div>
+            <div class="row">
+                <div class="col m3"></div>
+                <div class="input-field col m6">
+                    <input value="" id="disabled" type="text" class="validate">
+                    <label for="disabled">Location</label>
+                </div>
+                <div class="col m3"></div>
+            </div>
+            <div class="row">
+                <div class="col m3"></div>
+
+                <div class="col m6">
+                    <label>Workout Category</label>
+
+                    <form action="#">
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" checked />
+                                <span>Running</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Walking</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Cycling</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Hiking</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Swimming</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>Cross-Training</span>
+                            </label>
+                        </p>
+                    </form>
+                </div>
+                <div class="col m3"></div>
+            </div>
+            <div class="row">
+                <div class="col m3"></div>
+
+                <div class="col m6">
+                    <label>Recommended Fitness Level</label>
+                    <br /><br />
+
+                    <form action="#">
+                        <span>
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" checked />
+                                <span>1</span>
+                            </label>
+                        </span>
+                        <span class="marginLeft20">
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>2</span>
+                            </label>
+                        </span>
+                        <span class="marginLeft20">
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>3</span>
+                            </label>
+                        </span>
+                        <span class="marginLeft20">
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>4</span>
+                            </label>
+                        </span>
+                        <span class="marginLeft20">
+                            <label>
+                                <input class="with-gap" name="group1" type="radio" />
+                                <span>5</span>
+                            </label>
+                        </span>
+                    </form>
+                </div>
+                <div class="col m3"></div>
+            </div>
+            <div class="row">
+                <div class="col m3"></div>
+                <div class="col m6">
+                        <hr />
+                </div>
+                <div class="col m3"></div>
+            </div>
+            
+            <div class="row">
+                <div class="col m3"></div>
+                <div class="col m3">
+                    <h6>Creator Information</h5>
+                </div>
+                <div class="col m6"></div>
+            </div>
+            <div class="row">
+                <div class="input-field col m3"></div>
+                <div class="input-field col m3">
+                    <input id="first_name" type="text" class="validate">
+                    <label for="first_name">First Name</label>
+                </div>
+                <div class="input-field col m3">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Last Name</label>
+                </div>
+                <div class="col m3"></div>
+            </div>
+            <div class="row">
+                <div class="col m3"></div>
+                <div class="input-field col m6">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                </div>
+                <div class="col m3"></div>
+            </div>
+            <div class="row">
+                <div class="col m3"></div>
+                <div class="col m6">
+                    Phone Number:
+                    <div class="input-field inline">
+                        <input id="email_inline" type="email" class="">
+                        <label for="email_inline"></label>
+                        <span class="helper-text" data-error="wrong" data-success="right">Optional</span>
+                    </div>
+                </div>
+                <div class="col m3"></div>
+            </div>
+
+        </form>
+    </div>
+
+    <script src="js/workout.js"></script>
+
+</body>

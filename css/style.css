@@ -5,3 +5,19 @@
 #mobileLogout {
     margin: 30px;
 }
+
+.workoutIcon {
+    height:100px;
+    width:100px;
+    padding:0px;
+    margin:80px 0px 50px 0px;
+}
+
+#fav {
+    height:20px;
+    width:20px;
+}
+
+.marginLeft20 {
+    margin-left:20px;
+}
