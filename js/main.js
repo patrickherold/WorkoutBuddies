@@ -10,8 +10,6 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
-
-
 // most things about a user need to happen inside of one of the state change listeners
 // this is how we can find out the user id 
 firebase.auth().onAuthStateChanged( user => {
@@ -33,7 +31,7 @@ firebase.auth().onAuthStateChanged( user => {
         // this spits out an arrary of the data from the database. (as opposed to the auth() which has much less info)
         // you could replace this section with jquery to populate page content or grab values for API calls. 
         document.getElementById('accountDetails').textContent = JSON.stringify({
-            displayName: snap.val().username,
+            displayName: snap.val().userName,
             email: snap.val().email,
             address: snap.val().address,
             city: snap.val().city,
