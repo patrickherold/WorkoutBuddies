@@ -1,5 +1,3 @@
-
-
 // firebase setup and config
 var config = {
     apiKey: "AIzaSyD-Rni68sV7NSl1a_nRI5QtDZ-GazqCcYg",
@@ -23,8 +21,7 @@ var uiConfig = {
             return true;
         },
         uiShown: function () {
-            // The widget is rendered.
-            // Hide the loader.
+            // Hide the login buttons.
             document.getElementById('loader').style.display = 'none';
         }
     },
@@ -34,8 +31,7 @@ var uiConfig = {
     signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.PhoneAuthProvider.PROVIDER_ID
+        firebase.auth.EmailAuthProvider.PROVIDER_ID
     ],
     // Terms of service url.
     tosUrl: 'index.html',

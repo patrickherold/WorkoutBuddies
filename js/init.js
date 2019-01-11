@@ -1,4 +1,3 @@
-
 //  this animates the mobile sidebar
 (function($){
   $(function(){
