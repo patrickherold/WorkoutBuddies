@@ -9,26 +9,36 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
-
-
+var user
 
 //  THIS IS NEEDED TO GET THE CURRENT USER. AND BECAUSE WE HAVE TO WAIT FOR A REPLY FROM THE DATABASE
 firebase.auth().onAuthStateChanged( user => {
-    if (user) { this.userId = user.uid };
+    if (user) { 
+        this.userId = user.uid 
 
-    var userSnap = firebase.database().ref('users/' + userId);
-    userSnap.on('value', function(snap) {
+        // create or update the user in the database using info from Auth.
+        firebase.database().ref('users/' + this.userId).update({
+            username: user.displayName,
+            email: user.email,
+            profilePicture: user.photoURL || '/images/profile_placeholder.png'
+        });
+    }
+    else {
+        console.log("no user yet")
+    }
+        var userSnap = firebase.database().ref('users/' + userId);
+        userSnap.on('value', function(snap) {
 
-    $("#address").val(snap.val().address);
-    $("label[for='address']").addClass("active");
-    $("#city").val(snap.val().city);
-    $("label[for='city']").addClass("active");
-    $("#state").val(snap.val().state);
-    $("label[for='state']").addClass("active");
-    $("#zipCode").val(snap.val().zipCode);
-    $("label[for='zipCode']").addClass("active");
-    $("#aboutMe").val(snap.val().aboutMe);
-    $("label[for='aboutMe']").addClass("active");
+        $("#address").val(snap.val().address);
+        $("label[for='address']").addClass("active");
+        $("#city").val(snap.val().city);
+        $("label[for='city']").addClass("active");
+        $("#state").val(snap.val().state);
+        $("label[for='state']").addClass("active");
+        $("#zipCode").val(snap.val().zipCode);
+        $("label[for='zipCode']").addClass("active");
+        $("#aboutMe").val(snap.val().aboutMe);
+        $("label[for='aboutMe']").addClass("active");
 
 })});
 

@@ -1,9 +1,9 @@
 {
   "users": { // this is the first of two collections. 
     "user_id_1": {
-      "userName": "user one",
-      "profilePic": "some_url",
-      "emailAddress": "patrick@herold.org",
+      "username": "user one",
+      "profilePicture": "some_url",
+      "email": "patrick@herold.org",
       "phoneNunber": "404-448-1110",
       "aboutMe": "text block",
       "address": { // we can use this to located workouts on a map. 

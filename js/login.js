@@ -21,7 +21,7 @@ var uiConfig = {
             return true;
         },
         uiShown: function () {
-            // Hide the login buttons.
+            // Hide the log.
             document.getElementById('loader').style.display = 'none';
         }
     },

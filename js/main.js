@@ -14,14 +14,15 @@ var database = firebase.database();
 // this is how we can find out the user id 
 firebase.auth().onAuthStateChanged( user => {
     if (user) { 
-        // this is updating fields to the database.
-        // this is needed here so that we can write the User Auth info to the database to create a collection for this users.
-        firebase.database().ref('users/' + user.uid).update({
+        this.userId = user.uid 
+
+        // create or update the user in the database using info from Auth.
+        firebase.database().ref('users/' + this.userId).update({
             username: user.displayName,
             email: user.email,
             profilePicture: user.photoURL || '/images/profile_placeholder.png'
         });
-
+        
         // this is setting up the database info for the current user
         // it needs to be inside of the OnStateChange listener so that we have access to the user id.
         var userSnap = firebase.database().ref('users/' + user.uid);
@@ -31,7 +32,7 @@ firebase.auth().onAuthStateChanged( user => {
         // this spits out an arrary of the data from the database. (as opposed to the auth() which has much less info)
         // you could replace this section with jquery to populate page content or grab values for API calls. 
         document.getElementById('accountDetails').textContent = JSON.stringify({
-            displayName: snap.val().userName,
+            displayName: snap.val().username,
             email: snap.val().email,
             address: snap.val().address,
             city: snap.val().city,
