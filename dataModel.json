@@ -3,23 +3,38 @@
     "user_id_1": {
       "userName": "user one",
       "profilePic": "some_url",
-      "zipCode": "30030",
-      "address": "123 Main St. Decatur, GA 30030", // we can use this to located workouts on a map. 
+      "emailAddress": "patrick@herold.org",
+      "phoneNunber": "404-448-1110",
+      "aboutMe": "text block",
+      "address": { // we can use this to located workouts on a map. 
+        "street": "123 Main St. Decatur, GA 30030", 
+        "city": "Decatur",
+        "state": "ga-us",
+        "zipCode": "30003",
       "workoutPreferences": [ // here we can store what a user has selected as thier workout preferences
         "selected from workout type array",
         "Another type selected from workout type array"
       ],
-      "workoutsCounter": 3, // the counters are located here so we can easily show how many of something
-      "workouts": [ //  the idea here is that we'll keep an array of workouts someone has particpated in
-        "workout_id_1",
-        "workout_id_2",
-        "workout_id_3"
-      ],
-      "workoutBuddyCounter": 2, // this is keeping track of their buddies. 
-      "workoutBuddies": [
-        "user_id_1",
-        "user_id_2"
-      ],
+      "workoutsCounter": 2, // the counters are located here so we can easily show how many of something
+      "workouts": { //  the idea here is that we'll keep an array of workouts someone has particpated in
+        "workOutID": {
+          "title": "Fun run in Buckhead",
+          "workoutType": "Selected from array", //  this will pull from the same workout preference array
+          "workoutAddress": "123 Main St. Decatur, GA 30030", // we can use this to located workouts on a map.     
+        },
+        "workOutID2": {
+          "title": "Swimming the hooch",
+          "workoutType": "open water swiming", //  this will pull from the same workout preference array
+          "workoutAddress": "123 Main St. Hooch, GA 30033", // we can use this to located workouts on a map.     
+        }
+      },
+      "workoutBuddyCounter": 1, // this is keeping track of their buddies. 
+      "workoutBuddy": {
+        "workOutBuddieID": "ID",
+        "userName": "user one",
+        "profilePic": "some_url",
+        "zipCode": "30030"
+      },
       "workoutRatingCounter": 2, // this tracks their reviews or ratings of workouts they've done
       "workoutRatings": [
         "rating_id_1"

@@ -9,43 +9,51 @@
     <!-- CSS Frame works 
          https://materializecss.com/getting-started.html
           -- Materialize Compiled and minified CSS -->
-        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    
+    <!-- ICONs -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--   profile page theme   -->
+    <link href="css/profileTheme.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    
     <!-- CSS Customization -->
-        <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-
-
-
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    
 </head>
 
 <body>
     <!--  some sort of nav, here is a placehodler -->
     <nav>
         <div class="nav-wrapper container">
-          <a href="#!" class="brand-logo">Logo</a>
-           <!--  the data-target is what calls the sidenav to collapse -->
-          <a href="#" data-target="navCollapse" class="sidenav-trigger"><i class="material-icons">|||</i></a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="map.html">MAP</a></li>
-            <li><a href="connect.html">CONNECT</a></li>
-            <li><a href="workout.html">WOROUT</a></li>
-             <!--  This button should only display on screens where someone is logged in.   -->
-            <li><button class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
-          </ul>
+            <a href="#!" class="brand-logo">Logo</a>
+            <!--  the data-target is what calls the sidenav to collapse -->
+            <a href="#" data-target="navCollapse" class="sidenav-trigger"><i class="material-icons">|||</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="map.html">MAP</a></li>
+                <li><a href="connect.html">CONNECT</a></li>
+                <li><a href="workout.html">WOROUT</a></li>
+                <li><a href="profile.html">EDIT PROFILE</a></li>
+                <!--  This button should only display on screens where someone is logged in.   -->
+                <li><button class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
+            </ul>
         </div>
-      </nav>
-    
-      <ul class="sidenav" id="navCollapse">
+    </nav>
+
+    <ul class="sidenav" id="navCollapse">
+        <li><a href="index.html">HOME</a></li>
         <li><a href="map.html">MAP</a></li>
         <li><a href="connect.html">CONNECT</a></li>
         <li><a href="workout.html">WOROUT</a></li>
+        <li><a href="profile.html">EDIT PROFILE</a></li>
+
         <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
-      </ul>
+    </ul>
     </nav>
     <!--  END some sort of nav, here is a placehodler -->
-    <div class="container">
-        <h4>Welcome <span id="currentUser"></span></h4>
-        <div id="accountDetails"></div>
-    </div>
+
+
     <!--  some sort of body, here is a placehodler -->
     <div class="container" id="loginContainer" style="display: none;">
         <div class="row">
@@ -54,6 +62,89 @@
         </div>
     </div>
     <!--  END some sort of body, here is a placehodler -->
+
+    <!-- START CONTENT -->
+    <section id="content">
+        <!--start container-->
+        <div class="container">
+            <div id="profile-page" class="section">
+                <!-- profile-page-wall -->
+                <div id="profile-page-wall" class="col s12">
+                    <!-- THIS IS WHERE WE Drop the Profile Form -->
+
+                    <form class="col s12">
+                        <div id="accountDetails"></div>
+                        <div class="row">
+                            <div class="row">
+                                <div class="input-field col s12 m12 l12">
+                                    <input id="address" type="text" required class="validate" pattern="^\S.+" title="Please enter a valid address">
+                                    <label for="address" class="active">Address</label>
+                                </div>
+                                <div class="input-field col s12 m12 l12">
+                                    <input id="city" type="text" required class="validate" title="Please enter a valid City/Town"
+                                        pattern="^\S.+">
+                                    <label for="city" class="active">City/Town</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12 m12 l6">
+                                    <label for="state" class="active">State</label>
+                                    <select id="state" class="browser-default" required title="Please select a state">
+                                        <option value="" disabled selected>Select a state</option>
+                                        <option value="ar-us">Arizona</option>
+                                        <option value="ny-us">New York</option>
+                                        <option value="ca-us">California</option>
+                                        <option value="ga-us">Georgia</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s12 m12 l6">
+                                    <input id="zipCode" type="text" required title="Please enter a valid post code(e.g., 12345)"
+                                        pattern="^\d{5}(-\d{4})?$" class="validate">
+                                    <label for="zipCode" class="active">Zip Code</label>
+                                </div>
+                            </div>
+
+
+                            <!--   MULTI SELECT DROP DOWN OF Workout Type Preferences -->
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <div class="input-field col s12" id="workoutPreferences">
+                                        <select multiple id="workoutPreferences">
+                                            <option value="" disabled selected>Choose your favorite work outs . . .</option>
+                                            <option value="swim">Deep water swiming</option>
+                                            <option value="darts">Dodge Darts</option>
+                                            <option value="walk">Mall Walking</option>
+                                            <option value="fight">Street Fighting</option>
+                                            <option value="fighting">Team Fighting (Gang)</option>
+                                        </select>
+                                        <label>Workout Favorites</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="aboutMe" class="materialize-textarea" length="120" style="height: 21.2px;"></textarea>
+                                    <label for="aboutMe" class="active">A little about me . . .</label>
+                                    <span class="character-counter" style="float: right; font-size: 12px; height: 1px;"></span></div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <button id="profileButton" class="btn cyan waves-effect waves-light right" type="submit" name="action">Submit
+                                            <i class="mdi-content-send right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+                <!--/ profile-page-wall -->
+            </div>
+        </div>
+        </div>
+        <!--end container-->
+    </section>
+    <!-- END CONTENT -->
+
 
     <!-- jQuery JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -67,20 +158,18 @@
     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-messaging.js"></script>
 
-
+    <!-- Just for login -->
     <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
 
     <!-- Materialize Compiled and minified JavaScript  -->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
+    <script src="js/moment.js"></script>
     <script src="js/init.js"></script>
 
     <!-- the js for this page  -->
-    <script src="js/main.js"></script>
-
+    <script src="js/profile.js"></script>
 
 </body>
 
 </html>
-

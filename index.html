@@ -9,11 +9,16 @@
     <!-- CSS Frame works 
          https://materializecss.com/getting-started.html
           -- Materialize Compiled and minified CSS -->
-        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+    <!-- ICONs -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--   profile page theme   -->
+    <link href="css/profileTheme.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
     <!-- CSS Customization -->
-        <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-
-
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
 </head>
 
@@ -21,31 +26,33 @@
     <!--  some sort of nav, here is a placehodler -->
     <nav>
         <div class="nav-wrapper container">
-          <a href="#!" class="brand-logo">Logo</a>
-           <!--  the data-target is what calls the sidenav to collapse -->
-          <a href="#" data-target="navCollapse" class="sidenav-trigger"><i class="material-icons">|||</i></a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="map.html">MAP</a></li>
-            <li><a href="connect.html">CONNECT</a></li>
-            <li><a href="workout.html">WOROUT</a></li>
-             <!--  This button should only display on screens where someone is logged in.   -->
-            <li><button class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
-          </ul>
+            <a href="#!" class="brand-logo">Logo</a>
+            <!--  the data-target is what calls the sidenav to collapse -->
+            <a href="#" data-target="navCollapse" class="sidenav-trigger"><i class="material-icons">|||</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="map.html">MAP</a></li>
+                <li><a href="connect.html">CONNECT</a></li>
+                <li><a href="workout.html">WOROUT</a></li>
+                <li><a href="profile.html">EDIT PROFILE</a></li>
+                <!--  This button should only display on screens where someone is logged in.   -->
+                <li><button class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
+            </ul>
         </div>
-      </nav>
-    
-      <ul class="sidenav" id="navCollapse">
+    </nav>
+
+    <ul class="sidenav" id="navCollapse">
+        <li><a href="index.html">HOME</a></li>
         <li><a href="map.html">MAP</a></li>
         <li><a href="connect.html">CONNECT</a></li>
         <li><a href="workout.html">WOROUT</a></li>
+        <li><a href="profile.html">EDIT PROFILE</a></li>
         <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
-      </ul>
+    </ul>
     </nav>
     <!--  END some sort of nav, here is a placehodler -->
-    <div class="container">
-        <h4>Welcome <span id="currentUser"></span></h4>
-        <div id="accountDetails"></div>
-    </div>
+
+
     <!--  some sort of body, here is a placehodler -->
     <div class="container" id="loginContainer" style="display: none;">
         <div class="row">
@@ -54,6 +61,17 @@
         </div>
     </div>
     <!--  END some sort of body, here is a placehodler -->
+
+    <!-- START CONTENT -->
+    <section id="content">
+        <div class="container">
+            <div class="col s12 m3 offset-m2">
+                <div id="accountDetails"></div>
+            </div>
+        </div>
+    </section>
+    <!-- END CONTENT -->
+
 
     <!-- jQuery JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -67,20 +85,18 @@
     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-messaging.js"></script>
 
-
+    <!-- Just for login -->
     <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
 
     <!-- Materialize Compiled and minified JavaScript  -->
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
+    <script src="js/moment.js"></script>
     <script src="js/init.js"></script>
 
     <!-- the js for this page  -->
     <script src="js/main.js"></script>
 
-
 </body>
 
 </html>
-

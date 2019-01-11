@@ -1,7 +1,34 @@
+.workOutBuddyprofilePic {
+    width: 20%;
+    float: right;
+}
+
 #mainContainer {
     display: none;
 }
 
 #mobileLogout {
     margin: 30px;
+}
+
+.collection-item {
+    min-height: 100px;
+}
+
+.workOutTitle,
+.workOutUserName {
+    font-size: 1.3em;
+}
+
+.calcWhen {
+    font-size: 1.1em;
+}
+
+.workOutType {
+
+}
+
+
+#profile-page-header .card-profile-image {
+    top: 40px;
 }
