@@ -73,6 +73,7 @@ if (navigator.geolocation) {
             var marker = new google.maps.Marker({
               position: pos,
               map: map,
+              animation: google.maps.Animation.DROP
             });
 
             var infowindow = new google.maps.InfoWindow({
@@ -99,13 +100,13 @@ if (navigator.geolocation) {
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
+          'Error: The Geolocation service failed.' :
+          'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
       }
 
 
-
+      // Entering an address in the search box
       function geocodeAddress(geocoder, resultsMap) {
         var address = document.getElementById('address').value;
         geocoder.geocode({'address': address}, function(results, status) {
