@@ -3,7 +3,7 @@
   <head>
 
       <script>src="http://maps.googleapis.com/maps/api/js?libraries=weather&sensor=false"</script>
-
+      <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
       <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
       <!-- CSS Customization -->
           <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -47,6 +47,16 @@
     <!--The div element for the map -->
     <div id="map"></div>
     <script>
+              // firebase setup and config
+var config = {
+    apiKey: "AIzaSyD-Rni68sV7NSl1a_nRI5QtDZ-GazqCcYg",
+    authDomain: "workoutbuddies-a9eb5.firebaseapp.com",
+    databaseURL: "https://workoutbuddies-a9eb5.firebaseio.com",
+    projectId: "workoutbuddies-a9eb5",
+    storageBucket: "workoutbuddies-a9eb5.appspot.com",
+    messagingSenderId: "25982813153"
+};
+firebase.initializeApp(config);
 // Initialize and add the map
 function initMap() {
   // The location of Uluru
@@ -73,7 +83,7 @@ if (navigator.geolocation) {
             var marker = new google.maps.Marker({
               position: pos,
               map: map,
-              animation: google.maps.Animation.DROP
+              animation: google.maps.Animation.DROP,
             });
 
             var infowindow = new google.maps.InfoWindow({
@@ -95,8 +105,12 @@ if (navigator.geolocation) {
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
-      }
 
+
+
+}
+  
+    
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
@@ -104,6 +118,7 @@ if (navigator.geolocation) {
           'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
       }
+    
 
 
       // Entering an address in the search box
@@ -132,6 +147,7 @@ if (navigator.geolocation) {
         });
       }
 
+      //icon: 'images/workout-icon.png'
     </script>
     <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads
@@ -143,3 +159,4 @@ if (navigator.geolocation) {
     </script>
   </body>
 </html>
+
