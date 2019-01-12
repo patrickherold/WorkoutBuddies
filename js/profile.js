@@ -22,25 +22,29 @@ firebase.auth().onAuthStateChanged( user => {
             email: user.email,
             profilePicture: user.photoURL || '/images/profile_placeholder.png'
         });
-    }
-    else {
-        console.log("no user yet")
-    }
+
+        // get values from database and add them to the form
         var userSnap = firebase.database().ref('users/' + userId);
         userSnap.on('value', function(snap) {
+            $("#username").val(snap.val().username);
+            $("label[for='username']").addClass("active");
+            $("#address").val(snap.val().address);
+            $("label[for='address']").addClass("active");
+            $("#city").val(snap.val().city);
+            $("label[for='city']").addClass("active");
+            $("#state").val(snap.val().state);
+            $("label[for='state']").addClass("active");
+            $("#zipCode").val(snap.val().zipCode);
+            $("label[for='zipCode']").addClass("active");
+            $("#aboutMe").val(snap.val().aboutMe);
+            $("label[for='aboutMe']").addClass("active");
+        });
+    }
+    else {
+        window.location.replace("login.html");
+    };
 
-        $("#address").val(snap.val().address);
-        $("label[for='address']").addClass("active");
-        $("#city").val(snap.val().city);
-        $("label[for='city']").addClass("active");
-        $("#state").val(snap.val().state);
-        $("label[for='state']").addClass("active");
-        $("#zipCode").val(snap.val().zipCode);
-        $("label[for='zipCode']").addClass("active");
-        $("#aboutMe").val(snap.val().aboutMe);
-        $("label[for='aboutMe']").addClass("active");
-
-})});
+});
 
 
 // submit and update values
@@ -48,6 +52,7 @@ firebase.auth().onAuthStateChanged( user => {
 $("#profileButton").on("click", function() {
     event.preventDefault();
 
+    username = $("#username").val();
     workoutPreferences = $("#workoutPreferences").val();
     aboutMe = $("#aboutMe").val();
     address = $("#address").val();
@@ -60,8 +65,23 @@ $("#profileButton").on("click", function() {
     console.log("Zip " + zipCode);
 
     var uid = firebase.auth().currentUser.uid;
+
+    // materialize methodd to work with the multi select method
+    var workoutPreferences = $("#workoutPreferences").M.getSelectedValues();
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelector('select');
+        elems.onchange = selectThem;
+        var instances = M.FormSelect.init(elems);
+        function selectThem() {
+            var selectedOne = instances.getSelectedValues();
+            console.log(selectedOne);
+        }
+    });
+
     // populate form values
     firebase.database().ref('users/' + uid).update({
+        username: username,
         aboutMe: aboutMe,
         address: address,
         city: city,
