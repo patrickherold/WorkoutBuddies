@@ -1,162 +1,85 @@
 <!DOCTYPE html>
 <html>
-  <head>
 
-      <script>src="http://maps.googleapis.com/maps/api/js?libraries=weather&sensor=false"</script>
-      <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-      <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-      <!-- CSS Customization -->
-          <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <style>
-       /* Set the size of the div element that contains the map */
+<head>
+
+  <script>src = "http://maps.googleapis.com/maps/api/js?libraries=weather&sensor=false"</script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <!-- CSS Customization -->
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <style>
+    /* Set the size of the div element that contains the map */
       #map {
         height: 400px;  /* The height is 400 pixels */
         width: 100%;  /* The width is the width of the web page */
        }
     </style>
-  </head>
-  <body>
-      <nav>
-          <div class="nav-wrapper container">
-            <a href="#!" class="brand-logo">Logo</a>
-             <!--  the data-target is what calls the sidenav to collapse -->
-            <a href="#" data-target="navCollapse" class="sidenav-trigger"><i class="material-icons">|||</i></a>
-            <ul class="right hide-on-med-and-down">
-              <li><a href="map.html">MAP</a></li>
-              <li><a href="connect.html">CONNECT</a></li>
-              <li><a href="workout.html">WORKOUT</a></li>
-               <!--  This button should only display on screens where someone is logged in.   -->
-              <li><button class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
-            </ul>
-          </div>
-        </nav>
-      
-        <ul class="sidenav" id="navCollapse">
-          <li><a href="map.html">MAP</a></li>
-          <li><a href="connect.html">CONNECT</a></li>
-          <li><a href="workout.html">WORKOUT</a></li>
-          <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
-        </ul>
-      </nav>
+</head>
 
-    <h3>Find Your Buddies</h3>
-    <div id="floating-panel">
-        <input id="address" type="textbox" value="Atlanta, GA">
-        <input id="submit" type="button" value="Submit Address">
-      </div>
-    <!--The div element for the map -->
-    <div id="map"></div>
-    <script>
-              // firebase setup and config
-var config = {
-    apiKey: "AIzaSyD-Rni68sV7NSl1a_nRI5QtDZ-GazqCcYg",
-    authDomain: "workoutbuddies-a9eb5.firebaseapp.com",
-    databaseURL: "https://workoutbuddies-a9eb5.firebaseio.com",
-    projectId: "workoutbuddies-a9eb5",
-    storageBucket: "workoutbuddies-a9eb5.appspot.com",
-    messagingSenderId: "25982813153"
-};
-firebase.initializeApp(config);
-// Initialize and add the map
-function initMap() {
-  // The location of Uluru
-  var uluru = {lat: 33.748997, lng: -84.387985};
-  // The map, centered at Uluru
-  var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 10, center: uluru});
-  // The marker, positioned at Uluru
-  //var marker = new google.maps.Marker({position: uluru, map: map});
+<body>
+  <nav>
+    <div class="nav-wrapper container">
+      <a href="#!" class="brand-logo">Logo</a>
+      <!--  the data-target is what calls the sidenav to collapse -->
+      <a href="#" data-target="navCollapse" class="sidenav-trigger"><i class="material-icons">|||</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="map.html">MAP</a></li>
+        <li><a href="connect.html">CONNECT</a></li>
+        <li><a href="workout.html">WORKOUT</a></li>
+        <!--  This button should only display on screens where someone is logged in.   -->
+        <li><button class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
+      </ul>
+    </div>
+  </nav>
 
-  var geocoder = new google.maps.Geocoder();
+  <ul class="sidenav" id="navCollapse">
+    <li><a href="map.html">MAP</a></li>
+    <li><a href="connect.html">CONNECT</a></li>
+    <li><a href="workout.html">WORKOUT</a></li>
+    <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
+  </ul>
+  </nav>
 
-        document.getElementById('submit').addEventListener('click', function() {
-          geocodeAddress(geocoder, map);
-});
-// HTML5 geolocation.
-if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            var marker = new google.maps.Marker({
-              position: pos,
-              map: map,
-              animation: google.maps.Animation.DROP,
-            });
-
-            var infowindow = new google.maps.InfoWindow({
-              content: "Current Location"
-            });
-
-            // When you click the marker, the description will pop up
-            marker.addListener('click', function() {
-            infowindow.open(map, marker);
-            });
-
-            // Centering the current location
-            map.setCenter(pos);
-
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-
-
-
-}
-  
-    
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-          'Error: The Geolocation service failed.' :
-          'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-      }
-    
-
-
-      // Entering an address in the search box
-      function geocodeAddress(geocoder, resultsMap) {
-        var address = document.getElementById('address').value;
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === 'OK') {
-            resultsMap.setCenter(results[0].geometry.location);
-            
-            var marker = new google.maps.Marker({
-              map: resultsMap,
-              position: results[0].geometry.location
-            });
-
-            var infowindow = new google.maps.InfoWindow({
-              content: address
-            });
-
-            marker.addListener('click', function() {
-            infowindow.open(map, marker);
-            });
-            
-          } else {
-            alert('Address was not successful for the following reason: ' + status);
-          }
-        });
-      }
-
-      //icon: 'images/workout-icon.png'
-    </script>
-    <!--Load the API from the specified URL
+  <h3>Find Your Buddies</h3>
+  <div id="floating-panel">
+    <input id="address" type="textbox" value="Atlanta, GA">
+    <input id="submit" type="button" value="Submit Address">
+  </div>
+  <!--The div element for the map -->
+  <div id="map"></div>
+  <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads
     * The key parameter will contain your own API key (which is not needed for this tutorial)
     * The callback parameter executes the initMap() function
     -->
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIRBLxN29i9cgbU7juppXCNU9CEJBaRV4&callback=initMap">
-    </script>
-  </body>
-</html>
+  <!-- the js for this page  -->
 
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDvqw37jwc7D4cX38k83m38NJ_SttI-wU&callback=initMap">
+  </script>
+  <script src="js/map.js"></script>
+
+  <!-- jQuery JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Firebase App is always required and must be first -->
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+
+  <!-- Add additional services that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-messaging.js"></script>
+
+  <!-- Just for login -->
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+
+  <!-- Materialize Compiled and minified JavaScript  -->
+  <script src="js/materialize.js"></script>
+  <script src="js/moment.js"></script>
+  <script src="js/init.js"></script>
+
+</body>
+
+</html>
