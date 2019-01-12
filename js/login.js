@@ -1,5 +1,3 @@
-
-
 // firebase setup and config
 var config = {
     apiKey: "AIzaSyD-Rni68sV7NSl1a_nRI5QtDZ-GazqCcYg",
@@ -23,19 +21,17 @@ var uiConfig = {
             return true;
         },
         uiShown: function () {
-            // The widget is rendered.
-            // Hide the loader.
+            // Hide the log.
             document.getElementById('loader').style.display = 'none';
         }
     },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
-    signInSuccessUrl: 'index.html',
+    signInSuccessUrl: 'profile.html',
     signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.PhoneAuthProvider.PROVIDER_ID
+        firebase.auth.EmailAuthProvider.PROVIDER_ID
     ],
     // Terms of service url.
     tosUrl: 'index.html',
