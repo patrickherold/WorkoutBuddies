@@ -11,21 +11,32 @@ var database = firebase.database();
 var user
 
 //  THIS IS NEEDED TO GET THE CURRENT USER. AND BECAUSE WE HAVE TO WAIT FOR A REPLY FROM THE DATABASE
-firebase.auth().onAuthStateChanged( user => {
+firebase.auth().onAuthStateChanged(user => {
     if (user) {
+
+        ref.set("hello")
+            .then(
+            function () {
+                return ref.once("value");
+            })
+            .then(
+            function (snapshot) {
+                var data = snapshot.val(); // data === "hello"
+            });
+
         var userId = firebase.auth().currentUser.uid;
-        var userSnap = firebase.database().ref('users/' + userId);
-        var address = userSnap.val().address;
-        var geoURL = "https://api.opencagedata.com/geocode/v1/json?key=000be1b151fb4863a869b6bc420760eb&pretty=1&q=" + address;
+        var address = database.ref('users/' + userId + "address").val();
+        var geoURL = "https://api.opencagedata.com/geocode/v1/json?key=000be1b151fb4863a869b6bc420760eb&pretty=1&q=atlanta,ga" + address;
         console.log("address" + userSnap.val().address);
-    
+
         var lat = "";
         var lon = "";
         //Ajax call to get the weather results using geoURL
         $.ajax({
             url: geoURL,
             method: "GET"
-        }).then(function(response) {
+        }).then(function (response) {
+
             lat = response.results.geometry.lat;
             lon = response.results.geometry.lat;
 
@@ -36,12 +47,12 @@ firebase.auth().onAuthStateChanged( user => {
             $.ajax({
                 url: weatherURL,
                 method: "GET"
-            }).then(function(response) {
+            }).then(function (response) {
                 console.log(response);
             });
-    
+
         });
-    
+
     }
     else {
         console.log("no user yet")
