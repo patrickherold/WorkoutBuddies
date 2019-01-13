@@ -51,22 +51,94 @@
     </ul>
     </nav>
     <!--  END some sort of nav, here is a placehodler -->
-
-
-    <!--  some sort of body, here is a placehodler -->
-    <div class="container" id="loginContainer" style="display: none;">
-        <div class="row">
-            <div id="firebaseui-auth-container"></div>
-            <div id="loader">Loading...</div>
-        </div>
-    </div>
-    <!--  END some sort of body, here is a placehodler -->
-
+        
     <!-- START CONTENT -->
     <section id="content">
         <div class="container">
-            <div class="col s12 m3 offset-m2">
-                <div id="accountDetails"></div>
+            <div id="profile-page" class="section">
+                <!--  some sort of body, here is a placehodler -->
+                <div id="loginContainer profile-page-header" style="display: none;">
+                    <div id="firebaseui-auth-container"></div>
+                    <div id="loader">Loading...</div>
+                </div>
+                <!--  END some sort of body, here is a placehodler -->
+                <div id="profile-page-content" class="row">
+                    <div id="profile-page-sidebar" class="col s12 m4 l4">
+                    <!-- Profile About  -->
+                    <div class="card cyan">
+                        <div class="card-content white-text">
+                        <span id="currentPersonUsername" class="card-title"></span>
+                        <img src="" id="currentPersonProfilePicture" class="responsive-img">
+                        <p id="currentPersonAboutMe"></p>
+                        </div>
+                    </div>
+                    <!-- Profile About  -->
+
+                    <!-- Profile Workout Stats  -->
+                    <div class="card red accent-2">
+                        <div class="card-content white-text center-align">
+                        <p class="card-title">
+                            <i class="material-icons">group_add</i> <div id="currentPersonWorkoutCounter"></div></p>
+                        <p>Workouts</p>
+                        </div>
+                    </div>
+                    <!-- Profile Workout Stats   -->
+                    <!-- Profile of Connected workouts  -->
+                    <ul id="profile-page-about-feed" class="collection z-depth-1">
+                        <li class="collection-item avatar" id="workoutId1" data-workoutId="1">
+                            <img src="https://image.flaticon.com/icons/png/128/118/118781.png" alt="" class="workoutIcon circle deep-orange accent-2">
+                            <span class="workoutTitle title">Project Title</span>
+                            <p id="workoutType">workoutType workoutType workoutType.
+                                <br>
+                                <span class="workoutAddress ultra-small">WorkoutAddress</span>
+                            </p>
+                        </li>
+                        <li class="collection-item avatar" id="workoutId2" data-workoutId="2">
+                            <img src="https://image.flaticon.com/icons/png/128/118/118781.png" alt="" class="workoutIcon circle deep-orange accent-2">
+                            <span class="workoutTitle title">Project Title</span>
+                            <p id="workoutType">workoutType workoutType workoutType.
+                                <br>
+                                <span class="workoutAddress ultra-small">WorkoutAddress</span>
+                            </p>
+                        </li>
+                        <li class="collection-item avatar" id="workoutId3" data-workoutId="3">
+                            <img src="https://image.flaticon.com/icons/png/128/118/118781.png" alt="" class="workoutIcon circle deep-orange accent-2">
+                            <span class="workoutTitle title">Project Title</span>
+                            <p id="workoutType">workoutType workoutType workoutType.
+                                <br>
+                                <span class="workoutAddress ultra-small">WorkoutAddress</span>
+                            </p>
+                        </li>
+                    </ul>
+                    <!-- Profile Connected workouts -->
+
+                    <!-- Map Card -->
+                    <div class="map-card">
+                        <div class="card">
+                            <div id="userMap" class="card-image waves-effect waves-block waves-light">
+                            </div>
+                            <div class="card-content">
+                                <a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">
+                                <i class="material-icons">pin_drop</i>
+                                </a>
+                                <h4 class="card-title grey-text text-darken-4"><a href="#" class="grey-text text-darken-4">Your Location</a>
+                                </h4>
+                                <p class="blog-post-content">Find workouts nearby.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Map Card -->
+                    </div>
+                    <div id="profile-page-wall" class="col s12 m8 l8">
+                        <div id="accountDetails"></div>
+                        <!-- Profile of Connected workouts  -->
+                        <ul id="userList" class="collection z-depth-1">
+                        </ul>
+                        <!-- Profile Connected workouts -->
+
+
+                    </div>
+                </div>
             </div>
         </div>
     </section>

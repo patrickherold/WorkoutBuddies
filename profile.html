@@ -26,7 +26,7 @@
     <!--  some sort of nav, here is a placehodler -->
     <nav>
         <div class="nav-wrapper container">
-            <a href="#!" class="brand-logo">Logo</a>
+            <a href="#!" class="brand-logo">LOGO</a>
             <!--  the data-target is what calls the sidenav to collapse -->
             <a href="#" data-target="navCollapse" class="sidenav-trigger"><i class="material-icons">|||</i></a>
             <ul class="right hide-on-med-and-down">
@@ -72,6 +72,20 @@
                 <form class="col s12 m12 l12 offset-s2">
                     <div id="accountDetails"></div>
                     <div class="row">
+                        <div class="col s8 m8 l8">
+                            <label for="profilePicture" class="active">Profile Icon</label>
+                            <select id="profilePictureSelect" class="browser-default" required title="Please select an icon">
+                                <option value="" disabled selected>Select a profile icon</option>
+                                <option value="images/icons/boxing.svg">Boxing</option>
+                                <option value="images/icons/arobics.svg">Arobics</option>
+                                <option value="images/icons/girlGym.svg">Gym Lady</option>
+                                <option value="images/icons/golf.svg">Golfer</option>
+                                <option value="images/icons/shooter.svg">Bialtelon</option>
+                            </select>
+                        </div>
+                        <div class="col s4 m4 l4">
+                            <img src="" id="profilePicture">
+                        </div>
                         <div class="input-field col s12 m12 l12">
                             <input id="username" type="text" required class="validate" pattern="^\S.+" title="Your Name">
                             <label for="username" class="active">Full Name</label>

@@ -19,13 +19,14 @@ firebase.auth().onAuthStateChanged( user => {
         // create or update the user in the database using info from Auth.
         firebase.database().ref('users/' + this.userId).update({
             username: user.displayName,
-            email: user.email,
-            profilePicture: user.photoURL || '/images/profile_placeholder.png'
+            email: user.email
         });
 
         // get values from database and add them to the form
         var userSnap = firebase.database().ref('users/' + userId);
         userSnap.on('value', function(snap) {
+            $("#profilePicture").attr('src', (snap.val().profilePicture));;
+            $("label[for='username']").addClass("active");
             $("#username").val(snap.val().username);
             $("label[for='username']").addClass("active");
             $("#address").val(snap.val().address);
@@ -61,23 +62,12 @@ $("#profileButton").on("click", function() {
     zipCode = $("#zipCode").val();
     dateNow = $.now();
     dateNow = moment(dateNow).format('MMMM Do, h:mm:ss a');
+    profilePicture = $("#profilePictureSelect").val();
 
     console.log("Zip " + zipCode);
 
     var uid = firebase.auth().currentUser.uid;
 
-    // materialize methodd to work with the multi select method
-    var workoutPreferences = $("#workoutPreferences").M.getSelectedValues();
-
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelector('select');
-        elems.onchange = selectThem;
-        var instances = M.FormSelect.init(elems);
-        function selectThem() {
-            var selectedOne = instances.getSelectedValues();
-            console.log(selectedOne);
-        }
-    });
 
     // populate form values
     firebase.database().ref('users/' + uid).update({
@@ -88,7 +78,7 @@ $("#profileButton").on("click", function() {
         state: state,
         zipCode: zipCode,
         aboutMe: aboutMe,
-        workoutPreferences: workoutPreferences
+        profilePicture: profilePicture
     });
     window.location.replace("index.html");
 });
