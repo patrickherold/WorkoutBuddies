@@ -53,10 +53,7 @@ firebase.auth().onAuthStateChanged( user => {
     }
 
 });
-<<<<<<< HEAD
 
 
 
 
-=======
->>>>>>> master

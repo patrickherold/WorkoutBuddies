@@ -13,67 +13,60 @@ var database = firebase.database();
 // most things about a user need to happen inside of one of the state change listeners
 // this is how we can find out the user id 
 firebase.auth().onAuthStateChanged(user => {
+
     if (user) {
         this.userId = user.uid;
 
         // Collapsible Dropdown
         $('.collapsible').collapsible();
 
-        // Variables for Create Workout Form
-        var workoutName = $("#workout-name").val().trim();
-        var activityDescription = $("#workout-name").val().trim();
-        var location = $("#workout-name").val().trim();
 
-        var firstName = $("#workout-name").val().trim();
-        var lastName = $("#workout-name").val().trim();
-        var email = $("#workout-name").val().trim();
-        var phone = $("#workout-name").val().trim();
+        // Create/Submit New Workout
 
-        $(".workoutCategory").on("click", function () {
+        // Write Created Workouts To Firebase=
+        // var workoutid = [];
+        // var workoutCounter = 0;
 
-            console.log($(this).val());
+        
 
-        })
+        $("#submitButton").on("click", function (e) {
+            e.preventDefault();
 
-        $(".recommendedFitnessLevel").on("click", function () {
+            // Variables for Create Workout Form
+            var workoutName = $("#workout-name").val().trim();
+            var activityDescription = $("#activity-description").val().trim();
+            var address = $("#address").val().trim();
+            var email = $("#email").val().trim();
+            var username = $("#username").val().trim();
+            var category = $(".workoutCategory").val().trim();
+            var recommendedFitnessLevel = $(".recommendedFitnessLevel").val().trim();
 
-            console.log($(this).val());
+        
+            var workoutIdCounter = database.workoutIdCounter.val();
+            console.log(workoutIdCounter);
 
-        })
+            // populate form values
+            firebase.database().ref('createdWorkoutCount/' + workoutCounter).update({
+                workoutCount: workoutCounter
+            })
 
-        database.ref('/Workouts/CreatedWorkouts').set({
+            console.log(workoutid);
 
-            workoutName: workoutName,
-            activityDescription: activityDescription,
-            location: location,
-            username: firstName + lastName,
-            email: email,
-            phone: phone
 
-        })
-
-        // this is setting up the database info for the current user
-        // it needs to be inside of the OnStateChange listener so that we have access to the user id.
-        var userSnap = firebase.database().ref('users/' + user.uid);
-
-        // this is creating a 
-        userSnap.on('value', function (snap) {
-            // this spits out an arrary of the data from the database. (as opposed to the auth() which has much less info)
-            // you could replace this section with jquery to populate page content or grab values for API calls. 
-            document.getElementById('accountDetails').textContent = JSON.stringify({
-                displayName: snap.val().username,
-                email: snap.val().email,
-                address: snap.val().address,
-                city: snap.val().city,
-                state: snap.val().state,
-                zipCode: snap.val().zipCode,
-                photoURL: snap.val().profilePicture,
-                aboutMe: snap.val().aboutMe,
-                uid: snap.val().userId
-            }, null, '  ')
+            // populate form values
+            firebase.database().ref('workouts/' + workoutid).update({
+                workoutName: workoutName,
+                activityDescription: activityDescription,
+                category: category,
+                recommendedFitnessLevel: recommendedFitnessLevel,
+                address: address,
+                email: email,
+                username: username
+            })
         });
-
     }
+
+
     // if there is not a user then we're looking at the not logged in page area.
     // Right now if redirects to the login screen
     // this could be removed and used to display not logged in content on the homepage

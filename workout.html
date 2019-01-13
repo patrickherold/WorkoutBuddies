@@ -75,7 +75,7 @@
             <div class="row">
                 <div class="col m3"></div>
                 <div class="input-field col m6">
-                    <input value="" id="workout-name" type="text" class="validate">
+                    <input id="workout-name" type="text" class="validate">
                     <label for="workout-name">Give Your Workout An Interesting Name</label>
                 </div>
                 <div class="col m3"></div>
@@ -83,7 +83,7 @@
             <div class="row">
                 <div class="col m3"></div>
                 <div class="input-field col m6">
-                    <input value="" id="activity-description" type="text" class="validate">
+                    <input id="activity-description" type="text" class="validate">
                     <label for="activity-description">Give People A Quick Idea Of What To Expect</label>
                 </div>
                 <div class="col m3"></div>
@@ -91,8 +91,8 @@
             <div class="row">
                 <div class="col m3"></div>
                 <div class="input-field col m6">
-                    <input value="" id="location" type="text" class="validate">
-                    <label for="location">Location</label>
+                    <input id="address" type="text" class="validate">
+                    <label for="address">Location Address</label>
                 </div>
                 <div class="col m3"></div>
             </div>
@@ -202,15 +202,11 @@
             </div>
             <div class="row">
                 <div class="input-field col m3"></div>
-                <div class="input-field col m3">
-                    <input id="first-name" type="text" class="validate">
-                    <label for="first-name">First Name</label>
+                <div class="input-field col m6">
+                    <input id="username" type="text" class="validate">
+                    <label for="username">Full Name</label>
                 </div>
-                <div class="input-field col m3">
-                    <input id="last-name" type="text" class="validate">
-                    <label for="last-name">Last Name</label>
-                </div>
-                <div class="col m3"></div>
+                <div class="input-field col m3"></div>
             </div>
             <div class="row">
                 <div class="col m3"></div>
@@ -220,23 +216,13 @@
                 </div>
                 <div class="col m3"></div>
             </div>
-            <div class="row">
-                <div class="col m3"></div>
-                <div class="col m6">
-                    Phone Number:
-                    <div class="input-field inline">
-                        <input id="phone" type="email" class="">
-                        <label for="phone"></label>
-                        <span class="helper-text" data-error="wrong" data-success="right">Optional</span>
-                    </div>
-                </div>
-                <div class="col m3"></div>
-            </div>
             
             <div class="row">
                 <div class="col m3"></div>
                 <div class="col m6">
-                    <input id="workout-submit" class="waves-effect waves-light btn" type="submit" value="Submit" />
+                    <button id="submitButton" class="btn cyan waves-effect waves-light right" type="submit" name="action">Submit
+                        <i class="mdi-content-send right"></i>
+                    </button>
                 </div>
                 <div class="col m3"></div>
             </div>
