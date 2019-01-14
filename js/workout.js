@@ -22,48 +22,46 @@ firebase.auth().onAuthStateChanged(user => {
         // Collapsible Dropdown
         $('.collapsible').collapsible();
 
-        // Variables for Create Workout Form
-        var workoutName = $("#workout-name").val().trim();
-        var activityDescription = $("#activity-description").val().trim();
-        var address = $("#address").val().trim();
-        var email = "";
-        var username = "";
-        var category = $(".workoutCategory").val().trim();
-        var recommendedFitnessLevel = $(".recommendedFitnessLevel").val().trim();
-        console.log(workoutName);
-
-
-        var userSnap = firebase.database().ref('users/' + userId);
-            userSnap.on('value', function(snap) {
-            email = snap.val().email;
-            username = snap.val().username;
-        });
-
-
         // Create/Submit New Workout
         // Write Created Workouts To Firebase
         $("#submitButton").on("click", function (e) {
 
             e.preventDefault();
-                            
-            // push a new workout to the workout collection
-            firebase.database().ref('workouts/').push({
-                workoutName: workoutName,
-                activityDescription: activityDescription,
-                category: category,
-                recommendedFitnessLevel: recommendedFitnessLevel,
-                address: address,
-                email: email,
-                username: username
+
+            // Variables for Create Workout Form
+            var workoutName = $("#workout-name").val().trim();
+            var activityDescription = $("#activity-description").val().trim();
+            var address = $("#address").val().trim();
+            var category = $(".workoutCategory").val().trim();
+            var recommendedFitnessLevel = $(".recommendedFitnessLevel").val().trim();
+            console.log(workoutName);
+
+
+            var userSnap = firebase.database().ref('users/' + userId);
+            userSnap.on('value', function (snap) {
+                email = snap.val().email;
+                username = snap.val().username;
+
+                firebase.database().ref('workouts/').push({
+                    workoutName: workoutName,
+                    activityDescription: activityDescription,
+                    category: category,
+                    recommendedFitnessLevel: recommendedFitnessLevel,
+                    address: address,
+                    email: email,
+                    username: username
+                });
             });
+            // push a new workout to the workout collection
+
         });
     }
-
 
     // if there is not a user then we're looking at the not logged in page area.
     // Right now if redirects to the login screen
     // this could be removed and used to display not logged in content on the homepage
     // perhaps some reason why to create an account, etc. 
+
     else {
         window.location.replace("login.html");
     }
