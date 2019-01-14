@@ -22,14 +22,9 @@ firebase.auth().onAuthStateChanged(user => {
 
 
         // Create/Submit New Workout
-
-        // Write Created Workouts To Firebase=
-        // var workoutid = [];
-        // var workoutCounter = 0;
-
-        
-
+        // Write Created Workouts To Firebase
         $("#submitButton").on("click", function (e) {
+
             e.preventDefault();
 
             // Variables for Create Workout Form
@@ -41,28 +36,38 @@ firebase.auth().onAuthStateChanged(user => {
             var category = $(".workoutCategory").val().trim();
             var recommendedFitnessLevel = $(".recommendedFitnessLevel").val().trim();
 
-        
-            var workoutIdCounter = database.workoutIdCounter.val();
-            console.log(workoutIdCounter);
-
-            // populate form values
-            firebase.database().ref('createdWorkoutCount/' + workoutCounter).update({
-                workoutCount: workoutCounter
-            })
-
-            console.log(workoutid);
 
 
             // populate form values
-            firebase.database().ref('workouts/' + workoutid).update({
+            firebase.database().ref('createdWorkouts/' + workoutId).update({
                 workoutName: workoutName,
                 activityDescription: activityDescription,
                 category: category,
                 recommendedFitnessLevel: recommendedFitnessLevel,
                 address: address,
                 email: email,
-                username: username
+                username: username,
+                // workoutId: workoutId
             })
+        });
+
+
+        var workoutSnap = firebase.database().ref('createdWorkouts/' + workoutId);
+
+        // this is creating a 
+        workoutSnap.on('value', function (snap) {
+
+            console.log(snap);
+
+            // this spits out an arrary of the data from the database. (as opposed to the auth() which has much less info)
+            // you could replace this section with jquery to populate page content or grab values for API calls. 
+            document.getElementById('accountDetails').textContent = JSON.stringify({
+                workoutName: snap.val().username,
+                activityDescription: snap.val().email,
+                category: snap.val().address,
+                recommendedFitnessLevel: snap.val().city,
+                address: snap.val().state
+            }, null, '  ')
         });
     }
 
@@ -74,5 +79,4 @@ firebase.auth().onAuthStateChanged(user => {
     else {
         window.location.replace("login.html");
     }
-
 });
