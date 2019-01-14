@@ -12,28 +12,34 @@
         "state": "ga-us",
         "zipCode": "30003",
       "workoutPreferences": [ // here we can store what a user has selected as thier workout preferences
-        "selected from workout type array",
-        "Another type selected from workout type array"
+        "runing",
+        "walking"
       ],
-      "workoutsCounter": 2, // the counters are located here so we can easily show how many of something
+      "workoutCounter": 2, // the counters are located here so we can easily show how many of something
       "workouts": { //  the idea here is that we'll keep an array of workouts someone has particpated in
         "workOutID": {
+          "workoutId": "1",
           "title": "Fun run in Buckhead",
+          "workoutIcon": "url of workout type icon",
           "workoutType": "Selected from array", //  this will pull from the same workout preference array
           "workoutAddress": "123 Main St. Decatur, GA 30030", // we can use this to located workouts on a map.     
         },
         "workOutID2": {
+          "workoutId": "2",
           "title": "Swimming the hooch",
+          "workoutIcon": "url of workout type icon",
           "workoutType": "open water swiming", //  this will pull from the same workout preference array
           "workoutAddress": "123 Main St. Hooch, GA 30033", // we can use this to located workouts on a map.     
         }
       },
       "workoutBuddyCounter": 1, // this is keeping track of their buddies. 
-      "workoutBuddy": {
-        "workOutBuddieID": "ID",
-        "userName": "user one",
-        "profilePic": "some_url",
-        "zipCode": "30030"
+      "workoutBuddies": {
+        "workoutBuddyID": {
+          "buddyName": "",
+          "buddyPic": "",
+          "buddyZip": "",
+          "buddyAbout": ""
+        }
       },
       "workoutRatingCounter": 2, // this tracks their reviews or ratings of workouts they've done
       "workoutRatings": [
@@ -41,6 +47,7 @@
       ],
       "comments": { // attaching commments to works and to people lets us show reviews for either workout or people
         "comment_id_1": {
+          "workoutId": "1",
           "comment": "Select from array",
           "overallRating": "3",
           "skill": "4",
@@ -53,6 +60,7 @@
           }
         },
         "comment_id_2": "We ran too fast",
+        "workoutId": "2",
         "overallRating": "3",
         "skill": "4",
         "reliability": "3",

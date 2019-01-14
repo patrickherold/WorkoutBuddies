@@ -10,6 +10,9 @@ var config = {
 
 firebase.initializeApp(config);
 
+var database = firebase.database();
+
+
 // Firebase pre-built UI
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -18,6 +21,12 @@ var uiConfig = {
         signInSuccessWithAuthResult: function (authResult, redirectUrl) {
             // User successfully signed in.
             // Return type determines whether we continue the redirect automatically
+
+            firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
+                username: firebase.auth().currentUser.displayName,
+                email: firebase.auth().currentUser.email,
+                profilePicture: firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png'
+            });
             return true;
         },
         uiShown: function () {

@@ -1,6 +1,10 @@
-.workOutBuddyprofilePic {
-    width: 20%;
+#profilePicture {
+    max-width: 80px;
     float: right;
+}
+
+#currentPersonProfilePicture {
+    max-width: 80%;
 }
 
 #mainContainer {
@@ -26,6 +30,23 @@
 .marginLeft20 {
     margin-left:20px;
 }
+
+#profile-page-header .card-profile-image {
+    top: 40px;
+}
+
+span.connectUser {
+    background: green;
+    padding: 5px;
+    border: darkgreen;
+    color: white;
+    cursor: pointer;
+}
+
+span.connectUser:hover {
+    background: darkgreen;
+    box-shadow: 3px 5px 3px #888888;
+    cursor: pointer;
 
 #createWorkoutHero {
     height:450px;

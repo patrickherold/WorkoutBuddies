@@ -157,4 +157,9 @@ firebase.auth().onAuthStateChanged( user => {
         window.location.replace("login.html");
     }
 
+<<<<<<< HEAD
 });
+=======
+});
+
+>>>>>>> 25dc06fde230fb4d07aaacb41b8c46303abb24da
