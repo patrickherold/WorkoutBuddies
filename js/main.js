@@ -76,10 +76,11 @@ firebase.auth().onAuthStateChanged( user => {
                 $("#personAboutMe").text(personAboutMe);
                 $("#personWorkoutCounter").text(personWorkoutCounter);
     
-                var userListLi = "<li id='userID" + userId + "' class='collection-item avatar'><img src='" + profilePicture + "' class='profilePicture circle deep-orange accent-2 responsive-img'><span class='title'>" + personUsername + "</span><br><span class='userZipCode ultra-small'>" + personZipCode + "</span><br><button id='" + userId + "' class='connectUser' data-userId='" + userId + "disconnect' data-buddyname='" + personUsername + "' data-buddyPic='" + profilePicture + "' data-buddyZip='" + personZipCode + "' data-buddyAbout='" + personAboutMe + "'>CONNECT</button><button id='" + userId + "connect' class='disconnectUser' data-userId='" + userId + "' data-buddyname='" + personUsername + "'>DISCONNECT</button></p></li>";
+                var userListLi = "<li id='userID" + userId + "' class='collection-item avatar'><img src='" + profilePicture + "' class='profilePicture circle deep-orange accent-2 responsive-img'><span class='title'>" + personUsername + "</span><br><span class='userZipCode ultra-small'>" + personZipCode + "</span><br><button id='" + userId + "connectUser' class='connectUser' data-userId='" + userId + "connect' data-buddyname='" + personUsername + "' data-buddyPic='" + profilePicture + "' data-buddyZip='" + personZipCode + "' data-buddyAbout='" + personAboutMe + "'>CONNECT</button><button id='" + userId + "disconnectUser' class='disconnectUser' data-userId='" + userId + "' data-buddyname='" + personUsername + "'>DISCONNECT</button></p></li>";
     
                 $("#userList").append(userListLi);
                 $("#userID" + user.uid).hide();
+
     
           });
             
@@ -120,8 +121,10 @@ firebase.auth().onAuthStateChanged( user => {
                     });
                 });
 
-                $("#userID" + $(this).attr('data-userId') + "connect").css("background-color", "#7FFF00");
-                $("button#" + $(this).attr('data-userId') + "connect").hide();
+                $("#userID" + buddyId + "connectUser").css("background-color", "#7FFF00");
+                $("button#" + buddyId + "connectUser").hide();
+                $("button#" + buddyId + "disconnectUser").show();
+
     
                 alert("You and " + buddyName + " are now connected.")
                 return
@@ -132,10 +135,8 @@ firebase.auth().onAuthStateChanged( user => {
                 var buddyName = $(this).attr('data-buddyname');
     
                 $("#userID" + $(this).attr('data-userId') + "disconnect").css("background-color", "#fffff");
-                $("button#" + $(this).attr('data-userId') + "disconnect").hide();
-
-                $("button#" + $(this).attr('data-userId')).attr('class', 'connectUser');
-    
+                $("button#" + buddyId + "disconnectUser").hide();
+  
                 // update the user to include the clicked user as a workout buddy
                 firebase.database().ref('users/' + user.uid + '/workoutBuddies/' + $(this).attr('data-userId')).remove();
     
