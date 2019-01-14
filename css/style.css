@@ -42,14 +42,23 @@ span.connectUser {
     cursor: pointer;
 }
 
-span.connectUser:hover {
-    background: darkgreen;
-    box-shadow: 3px 5px 3px #888888;
-    cursor: pointer;
+.btn {
+    margin-right: 5px;
+}
 
-#createWorkoutHero {
-    height:450px;
-    width:100%;
-    margin:0px 0px 50px 0px;
-    padding:0px;
+.collection .collection-item.avatar .title {
+    font-size: 1.4em;
+}
+
+.collection .collection-item {
+    padding-bottom: 20px;
+    border-radius: 0px;
+}
+
+.aboutMe {
+    border: 1px solid #eee;
+    background: #fff;
+    box-shadow: 3px 4px 6px rgba(0,0,0,0.4);
+    padding: 3px;
+    font-weight: bolder;
 }
