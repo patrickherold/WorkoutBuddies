@@ -53,21 +53,20 @@ firebase.auth().onAuthStateChanged( user => {
 $("#profileButton").on("click", function() {
     event.preventDefault();
 
-    username = $("#username").val();
-    workoutPreferences = $("#workoutPreferences").val();
-    aboutMe = $("#aboutMe").val();
-    address = $("#address").val();
-    city = $("#city").val();
-    state = $("#state").val();
-    zipCode = $("#zipCode").val();
-    dateNow = $.now();
-    dateNow = moment(dateNow).format('MMMM Do, h:mm:ss a');
-    profilePicture = $("#profilePictureSelect").val();
-
-    console.log("Zip " + zipCode);
+    var username = $("#username").val();
+    var aboutMe = $("#aboutMe").val();
+    var address = $("#address").val();
+    var city = $("#city").val();
+    var state = $("#state").val();
+    var zipCode = $("#zipCode").val();
+    var dateNow = $.now();
+    var dateNow = moment(dateNow).format('MMMM Do, h:mm:ss a');
+    var profilePicture = $("#profilePictureSelect").val();
+    var workoutPreferences = $("select#workoutPreferences").val();
 
     var uid = firebase.auth().currentUser.uid;
 
+    console.log(workoutPreferences);
 
     // populate form values
     firebase.database().ref('users/' + uid).update({
@@ -78,7 +77,8 @@ $("#profileButton").on("click", function() {
         state: state,
         zipCode: zipCode,
         aboutMe: aboutMe,
-        profilePicture: profilePicture
+        profilePicture: profilePicture,
+        workoutPreferences: workoutPreferences
     });
-    window.location.replace("index.html");
+    // window.location.replace("index.html");
 });
