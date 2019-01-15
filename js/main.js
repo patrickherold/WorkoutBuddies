@@ -38,6 +38,8 @@ firebase.auth().onAuthStateChanged( user => {
 
         });
 
+        // USER REQUEST    USER REQUEST    USER REQUEST    USER REQUEST    USER REQUEST    USER REQUEST    USER REQUEST    USER REQUEST   
+
         var requestList = firebase.database().ref("users/" + user.uid + "/workoutRequests").orderByKey();
         requestList.once("value")
           .then(function(requestSnapshot) {
@@ -140,7 +142,7 @@ firebase.auth().onAuthStateChanged( user => {
         });
 
         
-        //  get a snapshot of all the users
+        //  LIST OF USERS   LIST OF USERS   LIST OF USERS   LIST OF USERS   LIST OF USERS   LIST OF USERS   LIST OF USERS 
         var userList = firebase.database().ref("users").orderByKey();
         userList.once("value")
           .then(function(snapshot) {
@@ -266,6 +268,171 @@ firebase.auth().onAuthStateChanged( user => {
 
         });
         
+        // WORKOUTS AREA  WORKOUTS AREA  WORKOUTS AREA  WORKOUTS AREA  WORKOUTS AREA  WORKOUTS AREA  WORKOUTS AREA
+
+        //  get a snapshot of all the users
+        var workoutList = firebase.database().ref("workouts").orderByKey();
+        workoutList.once("value")
+          .then(function(snapshot) {
+            // for each user in the list do the stuff below
+            snapshot.forEach(function(childData) {
+                // setup the user of the user for the user list
+                workoutId = childData.key;
+
+                // setup the variables for the user; this will be used to create the user button listing
+                // this is not the current person, but the button person
+                var workoutName = childData.val().workoutName;
+                var workoutCreator = childData.val().username;
+                var workoutRecommendedFitnessLevel = childData.val().recommendedFitnessLevel;
+                var workoutEmail = childData.val().email;
+                var workoutCategory = childData.val().category;
+                var workoutAddress = childData.val().address;
+                var workoutActivityDescription = childData.val().activityDescription;
+                var workoutDays = "Mon, Tue, Wed"
+               
+                var workoutList = $('<li/>', {
+                    "id": workoutId,
+                    "class": "collection-item avatar"
+                });
+
+                var spanTitle = $('<div/>', {
+                    "class": "title",
+                    text: workoutName
+                });
+
+                var spanDays = $('<div/>', {
+                    "class": "workoutDays",
+                    text: workoutDays
+                });
+
+                var spanZip = $('<div/>', {
+                    "class": "zipCode small",
+                    text: workoutAddress
+                });
+                var spanEmail = $("<div/><a href='mailto:" + workoutEmail + " '", {
+                    "class": "zipCode small",
+                    text: workoutEmail
+                });
+                
+                var buddyIcon = $('<img class="profilePicture circle deep-orange accent-2 responsive-img right-align" />', {
+                    "src": workoutCategory
+                });
+
+                var joinButton = $('<button/>', {
+                    text: "JOIN",
+                    "id": workoutId,
+                    "class": "joinWorkout waves-effect waves-light btn",
+                    "data-status": "status",
+                    "data-workoutid": user.Id,
+                    "data-workoutname": workoutName,
+                    "data-workoutaddress": workoutAddress,
+                    "data-workoutcategory": workoutCategory,
+                    "data-workoutemail": workoutEmail,
+                    "data-workoutcreator": workoutCreator,
+                    "data-workoutdays": "Mon, Tue, Wed"
+                });
+
+                $(workoutList).append(joinButton);
+                $(workoutList).append(buddyIcon);            
+                $(workoutList).append(spanTitle);
+                $(workoutList).append(spanDays);            
+                $(workoutList).append(spanZip);      
+                $(workoutList).append(spanEmail);      
+                $("#availableWorkouts").append(workoutList);
+
+                $("li#" + userId).css("display", "none");
+
+            });
+            //  this end the for each of the users, but keeps us in the 
+
+
+            // if you click on the connect button
+            $(".joinWorkout").on("click", function() {
+                event.preventDefault();
+                var workoutId = $(this).attr('id');
+                var workoutName = $(this).attr('data-workoutname');
+                var workoutCreator = $(this).attr('data-workoutcreator');
+                var workoutEmail = $(this).attr('data-workoutEmail');
+                var workoutCategory = $(this).attr('data-workoutcategory');
+                var workoutAddress = $(this).attr('data-workoutaddress');
+                var workoutDays = "Mon, Tue, Wed"
+
+                // update the current user to include the clicked user as a workout buddy
+                firebase.database().ref('users/' + userId + '/workouts/' + workoutId).update({
+                    workoutName: workoutName,
+                    workoutCreator: workoutCreator,
+                    workoutEmail: workoutEmail,
+                    workoutCategory: workoutCategory,
+                    workoutAddress: workoutAddress,
+                    workoutDays: workoutDays,
+                    status: "joined"
+                });
+
+                // change the buttons to show what happened.
+                $("li#" + workoutId).css("display", "none");
+
+                alert("You have joined: " + workoutName);
+
+            });
+
+        });
+        
+
+
+        var myWorkoutList = firebase.database().ref("users/" + user.uid + "/workouts").orderByKey();
+        myWorkoutList.once("value")
+          .then(function(workoutsSnapshot) {
+            // for each user in the list do the stuff below
+            workoutsSnapshot.forEach(function(workoutSnap) {
+
+                // setup the user of the user for the user list
+                workoutId = workoutSnap.key;
+                console.log("This is the workout ID: " + workoutId);
+
+                // display pending workout buddy requests
+                // setup the variables for the user; this will be used to create the user button listing
+                // this is not the current person, but the button person
+                var workoutName = workoutSnap.val().workoutName;
+                var workoutCreator = workoutSnap.val().workoutCreator;
+                var workoutEmail = workoutSnap.val().workoutEmail;
+                var workoutAddress = workoutSnap.val().workoutAddress;
+                var workoutDays = workoutSnap.val().workoutDays;
+
+                var workoutLi = $('<li/>', {
+                    "class": "collection-item avatar"
+                });
+
+                var workoutName = $('<div/>', {
+                    "class": "title",
+                    text: workoutName
+                });
+
+                var workoutDays = $('<div/>', {
+                    "class": "workoutDays",
+                    text: workoutDays
+                });
+
+                var workoutAddress = $('<div/>', {
+                    "class": "zipCode small",
+                    text: workoutAddress
+                });
+                var spanEmail = $("<div/><a href='mailto:" + workoutEmail + " '", {
+                    "class": "zipCode small",
+                    text: workoutEmail
+                });
+
+                $(workoutLi).append(workoutName);
+                $(workoutLi).append(workoutDays);
+                $(workoutLi).append(workoutAddress);
+
+                // add the buttons to the list of users
+                $("#myWorkouts").append(workoutLi);
+
+            });
+        });
+
+
+
     }
     // if there is not a user then we're looking at the not logged in page area.
     // Right now if redirects to the login screen

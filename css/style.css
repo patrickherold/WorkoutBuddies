@@ -68,6 +68,8 @@ span.connectUser {
     width: 70%;
 }
 }
+
+#availableWorkouts .btn,
 #buddyRequests .btn,
 #connectedUserList .btn {
     float: right;

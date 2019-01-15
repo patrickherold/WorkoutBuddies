@@ -74,41 +74,9 @@
                     </div>
                     <!-- Profile About  -->
 
-                    <!-- Profile Workout Stats  -->
-                    <div class="card red accent-2">
-                        <div class="card-content white-text center-align">
-                        <p class="card-title">
-                            <i class="material-icons">group_add</i> <div id="currentPersonWorkoutCounter"></div></p>
-                        <p>Workouts</p>
-                        </div>
-                    </div>
-                    <!-- Profile Workout Stats   -->
                     <!-- Profile of Connected workouts  -->
-                    <ul id="profile-page-about-feed" class="collection z-depth-1">
-                        <li class="collection-item avatar" id="workoutId1" data-workoutId="1">
-                            <img src="https://image.flaticon.com/icons/png/128/118/118781.png" alt="" class="workoutIcon circle deep-orange accent-2">
-                            <span class="workoutTitle title">Workout Title</span>
-                            <p id="workoutType">workoutType workoutType.
-                                <br>
-                                <span class="workoutAddress ultra-small">WorkoutAddress</span>
-                            </p>
-                        </li>
-                        <li class="collection-item avatar" id="workoutId2" data-workoutId="2">
-                            <img src="https://image.flaticon.com/icons/png/128/118/118781.png" alt="" class="workoutIcon circle deep-orange accent-2">
-                            <span class="workoutTitle title">Workout Title</span>
-                            <p id="workoutType">workoutType workoutType.
-                                <br>
-                                <span class="workoutAddress ultra-small">WorkoutAddress</span>
-                            </p>
-                        </li>
-                        <li class="collection-item avatar" id="workoutId3" data-workoutId="3">
-                            <img src="https://image.flaticon.com/icons/png/128/118/118781.png" alt="" class="workoutIcon circle deep-orange accent-2">
-                            <span class="workoutTitle title">Workout Title</span>
-                            <p id="workoutType">workoutType workoutType.
-                                <br>
-                                <span class="workoutAddress ultra-small">WorkoutAddress</span>
-                            </p>
-                        </li>
+                    <ul id="myWorkouts" class="collection z-depth-1">
+
                     </ul>
                     <!-- Profile Connected workouts -->
 
@@ -130,9 +98,13 @@
                     <!-- Map Card -->
                     </div>
                     <div id="profile-page-wall" class="col s12 m8 l8">
+                        <!-- Pending Requests  -->
                         <h4>Pending Workout Requests</h4>
                         <ul id="buddyRequests" class="collection z-depth-1"></ul>
                         <!-- Profile of Connected workouts  -->
+                        <h4>Available Workouts</h4>
+                        <ul id="availableWorkouts" class="collection z-depth-1"></ul>
+
                         <h4>Workout Buddy Options</h4>
                         <ul id="connectedUserList" class="collection z-depth-1"></ul>
                         <!-- Profile Connected workouts -->
