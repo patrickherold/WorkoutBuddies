@@ -19,28 +19,33 @@ firebase.auth().onAuthStateChanged( user => {
         // create or update the user in the database using info from Auth.
         firebase.database().ref('users/' + this.userId).update({
             username: user.displayName,
-            email: user.email,
-            profilePicture: user.photoURL || '/images/profile_placeholder.png'
+            email: user.email
+        });
+
+        // get values from database and add them to the form
+        var userSnap = firebase.database().ref('users/' + userId);
+        userSnap.on('value', function(snap) {
+            $("#profilePicture").attr('src', (snap.val().profilePicture));;
+            $("label[for='username']").addClass("active");
+            $("#username").val(snap.val().username);
+            $("label[for='username']").addClass("active");
+            $("#address").val(snap.val().address);
+            $("label[for='address']").addClass("active");
+            $("#city").val(snap.val().city);
+            $("label[for='city']").addClass("active");
+            $("#state").val(snap.val().state);
+            $("label[for='state']").addClass("active");
+            $("#zipCode").val(snap.val().zipCode);
+            $("label[for='zipCode']").addClass("active");
+            $("#aboutMe").val(snap.val().aboutMe);
+            $("label[for='aboutMe']").addClass("active");
         });
     }
     else {
-        console.log("no user yet")
-    }
-        var userSnap = firebase.database().ref('users/' + userId);
-        userSnap.on('value', function(snap) {
+        window.location.replace("login.html");
+    };
 
-        $("#address").val(snap.val().address);
-        $("label[for='address']").addClass("active");
-        $("#city").val(snap.val().city);
-        $("label[for='city']").addClass("active");
-        $("#state").val(snap.val().state);
-        $("label[for='state']").addClass("active");
-        $("#zipCode").val(snap.val().zipCode);
-        $("label[for='zipCode']").addClass("active");
-        $("#aboutMe").val(snap.val().aboutMe);
-        $("label[for='aboutMe']").addClass("active");
-
-})});
+});
 
 
 // submit and update values
@@ -48,27 +53,32 @@ firebase.auth().onAuthStateChanged( user => {
 $("#profileButton").on("click", function() {
     event.preventDefault();
 
-    workoutPreferences = $("#workoutPreferences").val();
-    aboutMe = $("#aboutMe").val();
-    address = $("#address").val();
-    city = $("#city").val();
-    state = $("#state").val();
-    zipCode = $("#zipCode").val();
-    dateNow = $.now();
-    dateNow = moment(dateNow).format('MMMM Do, h:mm:ss a');
-
-    console.log("Zip " + zipCode);
+    var username = $("#username").val();
+    var aboutMe = $("#aboutMe").val();
+    var address = $("#address").val();
+    var city = $("#city").val();
+    var state = $("#state").val();
+    var zipCode = $("#zipCode").val();
+    var dateNow = $.now();
+    var dateNow = moment(dateNow).format('MMMM Do, h:mm:ss a');
+    var profilePicture = $("#profilePictureSelect").val();
+    var workoutPreferences = $("select#workoutPreferences").val();
 
     var uid = firebase.auth().currentUser.uid;
+
+    console.log(workoutPreferences);
+
     // populate form values
     firebase.database().ref('users/' + uid).update({
+        username: username,
         aboutMe: aboutMe,
         address: address,
         city: city,
         state: state,
         zipCode: zipCode,
         aboutMe: aboutMe,
+        profilePicture: profilePicture,
         workoutPreferences: workoutPreferences
     });
-    window.location.replace("index.html");
+    // window.location.replace("index.html");
 });
