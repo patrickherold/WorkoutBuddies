@@ -55,23 +55,43 @@ firebase.auth().onAuthStateChanged( user => {
                 var requestAboutMe = requestSnap.val().requestAboutMe;
                 var requestPicture = requestSnap.val().requestPicture;
                 var requestZipCode = requestSnap.val().requestZipCode;
+                
+                var requestsLi = $('<li/>', {
+                    "id": requestId,
+                    "class": "collection-item avatar",
+                    "data-status": status
+                });
 
-                console.log("This is inside the snap: " + requestUsername);
-                // create a connect/disconnect button for each user
-                var requestsLi = "<li id='"
-                + requestId 
-                + "' class='collection-item avatar'><img src='" 
-                + requestPicture
-                + "' class='requestPicture circle deep-orange accent-2 responsive-img'><span class='title'>" 
-                + requestUsername + "</span><br><span class='zipCode ultra-small'>" 
-                + requestZipCode + "</span><br><button id='" 
-                + requestId + "approveRequest' class='approveRequest waves-effect waves-light btn' data-buddyid='" 
-                + requestId + "' data-buddyname='" 
-                + requestUsername + "' data-buddypic='" 
-                + requestPicture + "' data-buddyzip='" 
-                + requestZipCode + "' data-buddyabout='" 
-                + requestAboutMe + "'>APPROVE</button>";
-                                
+                var spanTitle = $('<div/>', {
+                    "class": "title",
+                    text: requestUsername
+                });
+
+                var spanZip = $('<div/>', {
+                    "class": "zipCode ultra-small",
+                    text: requestZipCode
+                });
+
+                var buddyIcon = $('<img class="profilePicture circle deep-orange accent-2 responsive-img right-align" />', {
+                    "src": requestPicture
+                });
+
+                var connectButton = $('<button/>', {
+                    text: "CONNECT",
+                    "id": userId,
+                    "class": "approveRequest waves-effect waves-light btn",
+                    "data-status": "status",
+                    "data-buddyid": requestId,
+                    "data-buddyname": requestUsername,
+                    "data-buddypic": requestPicture,
+                    "data-buddyzip": requestZipCode,
+                    "data-buddyabout": requestAboutMe
+                });
+
+                $(requestsLi).append(connectButton);
+                $(requestsLi).append(buddyIcon);            
+                $(requestsLi).append(spanTitle);
+                $(requestsLi).append(spanZip);
                 // add the buttons to the list of users
                 $("#buddyRequests").append(requestsLi);
 
@@ -79,28 +99,44 @@ firebase.auth().onAuthStateChanged( user => {
 
             // if you click on the connect button
             $(".approveRequest").on("click", function() {
+                event.preventDefault();
                 var approveBuddyName = $(this).attr('data-buddyname');
                 var approveBuddyPic = $(this).attr('data-buddypic');
                 var approveBuddyAbout = $(this).attr('data-buddyabout');
                 var approveBuddyZip = $(this).attr('data-buddyzip');
                 var approveBuddyId = $(this).attr('data-buddyid');
-                
-                console.log(approveBuddyId);
+                var requestingUserId = $(this).attr('id');
+
+                // remove the pending request
+                // firebase.database().ref('users/' + userId + '/workoutRequests').child(approveBuddyId).remove();
+                console.log("users/" + userId + "/workoutRequests/" + approveBuddyId);
+                var removeRequest = firebase.database().ref('users/' + userId + '/workoutRequests');
+                removeRequest.on('value', function(rSnap) {
+                    // update the requested Buddy to include a buddy request from the current user
+                    rSnap.approveBuddyId.remove();
+                });
 
                 // update the current user to include the clicked user as a workout buddy
-                firebase.database().ref('users/' + userId + '/workoutBuddies/' + approveBuddyId).update ({
+                firebase.database().ref('users/' + requestingUserId + '/workoutBuddies/' + approveBuddyId).update ({
                     buddyName: approveBuddyName,
                     buddyPic: approveBuddyPic,
                     buddyZip: approveBuddyAbout,
-                    buddyAbout: approveBuddyZip
+                    buddyAbout: approveBuddyZip,
+                    status: "connected"
                 });
-            
-                // update the current user to include the clicked user as a workout buddy
-                firebase.database().ref('users/' + userId + '/workoutRequests/' + approveBuddyId).remove();
-                location.reload();
+
+                // now we change the status of the requesting person for this buddy to connected
+                var thisSnap = firebase.database().ref('users/' + buddyId);
+                thisSnap.on('value', function(requestSnap) {
+                    // update the requested Buddy to include a buddy request from the current user
+                    firebase.database().ref('users/' + approveBuddyId + "/workoutBuddies/" + userId).update({
+                        status: "connected"
+                    });
+                });
+                // change the buttons to show what happened.
+                $("li#" + approveBuddyId).css("display", "none");
+
             });
-
-
         });
 
         
@@ -113,46 +149,62 @@ firebase.auth().onAuthStateChanged( user => {
                 // setup the user of the user for the user list
                 buddyId = childData.key;
 
-                console.log("this is the User Id of the person clicking: " + buddyId);
-                console.log("this is the id of the person request: " + userId);
-    
                 // setup the variables for the user; this will be used to create the user button listing
                 // this is not the current person, but the button person
                 var personUsername = childData.val().username;
                 var personAboutMe = childData.val().aboutMe;
                 var profilePicture = childData.val().profilePicture;
                 var personZipCode = childData.val().zipCode;
+                var status = childData.val().status;
     
-                // create a connect/disconnect button for each user
-                var connectedUserListLi = "<li id='userID" 
-                + userId 
-                + "' class='collection-item avatar'><img src='" 
-                + profilePicture 
-                + "' class='profilePicture circle deep-orange accent-2 responsive-img'><span class='title'>" 
-                + personUsername + "</span><br><span class='zipCode ultra-small'>" 
-                + personZipCode + "</span><br><button id='" 
-                + userId + "connectUser' class='connectUser waves-effect waves-light btn' data-buddyid='" 
-                + buddyId + "' data-buddyname='" 
-                + personUsername + "' data-buddypic='" 
-                + profilePicture + "' data-buddyzip='" 
-                + personZipCode + "' data-buddyabout='" 
-                + personAboutMe + "'>CONNECT</button><button id='" 
-                + userId + "' class='disconnectUser waves-effect waves-light btn' data-buddyid='" 
-                + buddyId + "' data-buddyname='"
-                + personUsername + "' data-buddyzip='" 
-                + personZipCode + "' data-buddyabout='" 
-                + personAboutMe + "'>DISCONNECT</button></p></li>";
+               
+                var connectedUserListLi = $('<li/>', {
+                    "id": buddyId,
+                    "class": "collection-item avatar",
+                    "data-status": status
+                });
 
-                // add the buttons to the list of users
+                var spanTitle = $('<div/>', {
+                    "class": "title",
+                    text: personUsername
+                });
+
+                var spanZip = $('<div/>', {
+                    "class": "zipCode ultra-small",
+                    text: personZipCode
+                });
+
+                var buddyIcon = $('<img class="profilePicture circle deep-orange accent-2 responsive-img right-align" />', {
+                    "src": profilePicture
+                });
+
+                var connectButton = $('<button/>', {
+                    text: "CONNECT",
+                    "id": userId,
+                    "class": "connectUser waves-effect waves-light btn",
+                    "data-status": "status",
+                    "data-buddyid": buddyId,
+                    "data-buddyname": personUsername,
+                    "data-buddypic": profilePicture,
+                    "data-buddyzip": personZipCode,
+                    "data-buddyabout": personAboutMe
+                });
+
+                $(connectedUserListLi).append(connectButton);
+                $(connectedUserListLi).append(buddyIcon);            
+                $(connectedUserListLi).append(spanTitle);
+                $(connectedUserListLi).append(spanZip);      
                 $("#connectedUserList").append(connectedUserListLi);
-                // don't display the current user in the list of other users
-                $("#userID" + user.uid).hide();
+
+                $("li#" + userId).css("display", "none");
+
             });
             //  this end the for each of the users, but keeps us in the 
 
 
             // if you click on the connect button
             $(".connectUser").on("click", function() {
+                event.preventDefault();
                 var buddyName = $(this).attr('data-buddyname');
                 var buddyPic = $(this).attr('data-buddyPic');
                 var buddyAbout = $(this).attr('data-buddyAbout');
@@ -164,7 +216,8 @@ firebase.auth().onAuthStateChanged( user => {
                     buddyName: buddyName,
                     buddyPic: buddyPic,
                     buddyZip: buddyAbout,
-                    buddyAbout: buddyZip
+                    buddyAbout: buddyZip,
+                    status: "pending"
                 });
 
                 // now we need to add a workout request to the person that was clicked on
@@ -183,20 +236,21 @@ firebase.auth().onAuthStateChanged( user => {
                         requestPicture: requestPicture,
                         requestZipCode: requestZipCode,
                         requestAboutMe: requestAboutMe,
-                        requestId: userId
+                        requestId: userId,
+                        status: "pending"
                     });
                 });
 
                 // change the buttons to show what happened.
-                $("button#" + buddyId + "connectUser").css("display", "none");
-                $("button#" + buddyId + "disconnectUser").css("display", "block");
+                $("li#" + buddyId).css("display", "none");
 
-                alert("You and " + buddyName + " are now connected.")
-                location.reload();
+                alert("A buddy request was sent to: " + buddyName);
+
             });
 
             
             $(".disconnectUser").on("click", function() {
+                event.preventDefault();
                 var buddyName = $(this).attr('data-buddyname');
                 var buddyId = $(this).attr('data-userId');
 
@@ -207,8 +261,7 @@ firebase.auth().onAuthStateChanged( user => {
                 firebase.database().ref('users/' + user.uid + '/workoutBuddies/' + $(this).attr('data-userId')).remove();
 
 
-                alert("You and " + buddyName + " are disconnected.")
-                location.reload();
+                alert("You and " + buddyName + " are disconnected.");
             });
 
         });

@@ -68,3 +68,7 @@ span.connectUser {
     width: 70%;
 }
 }
+#buddyRequests .btn,
+#connectedUserList .btn {
+    float: right;
+}
