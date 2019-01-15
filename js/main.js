@@ -260,7 +260,7 @@ firebase.auth().onAuthStateChanged( user => {
                 $("button#" + buddyId + "connectUser").css("display", "block");
 
                 // update the user to include the clicked user as a workout buddy
-                firebase.database().ref('users/' + user.uid + '/workoutBuddies/' + $(this).attr('data-userId')).remove();
+                //firebase.database().ref('users/' + user.uid + '/workoutBuddies/' + $(this).attr('data-userId')).remove();
 
 
                 alert("You and " + buddyName + " are disconnected.");
@@ -387,7 +387,6 @@ firebase.auth().onAuthStateChanged( user => {
 
                 // setup the user of the user for the user list
                 workoutId = workoutSnap.key;
-                console.log("This is the workout ID: " + workoutId);
 
                 // display pending workout buddy requests
                 // setup the variables for the user; this will be used to create the user button listing
@@ -431,8 +430,44 @@ firebase.auth().onAuthStateChanged( user => {
             });
         });
 
+        //  WEATHER   WEATHER   WEATHER   WEATHER   WEATHER   WEATHER   WEATHER   WEATHER   WEATHER 
+        
+        
+        var weatherSnap = firebase.database().ref('users/' + userId);
+        weatherSnap.on('value', function(weatherSnap) {
+            var address = weatherSnap.val().address;
 
+            var geoURL = "https://api.opencagedata.com/geocode/v1/json?key=000be1b151fb4863a869b6bc420760eb&pretty=1&q=" + address;
+            console.log("address: " + weatherSnap.val().address);
+            //Ajax call to get the weather results using geoURL
+            $.ajax({
+                url: geoURL,
+                method: "GET"
+            }).then(function(response) {
+                console.log("open cage response: " + response)
 
+                var lat = "";
+                var lon = "";
+    
+                lat = response.results[0].geometry.lat;
+                lon = response.results[0].geometry.lat;
+
+                var weatherURL = "https://cors-anywhere.herokuapp.com/" + "https://api.darksky.net/forecast/7d164bcd822a2ece7033b1a27d4a6e4e/" + lat + "," + lon;
+                console.log(lat);
+                console.log(lon);
+                //ajax call to use the response
+                
+                $.ajax({
+                    url: weatherURL,
+                    method: "GET"
+                }).then(function(response) {
+                    $("p.currentWeather").text(response.currently.summary);
+                    $("p.currentForecast0").text(response.daily.data[0].summary);
+                    $("p.currentForecast1").text(response.daily.data[1].summary);
+                });
+        
+            });
+        });
     }
     // if there is not a user then we're looking at the not logged in page area.
     // Right now if redirects to the login screen

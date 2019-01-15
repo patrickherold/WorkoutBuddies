@@ -74,3 +74,9 @@ span.connectUser {
 #connectedUserList .btn {
     float: right;
 }
+
+.currentWeather, 
+.currentForecast0,
+.currentForecast1 {
+    font-weight: 900;
+}
