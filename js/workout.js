@@ -60,14 +60,16 @@ firebase.auth().onAuthStateChanged(user => {
                 email: email,
                 username: username
             });
+            // push a new workout to the workout collection
+
         });
     }
-
 
     // if there is not a user then we're looking at the not logged in page area.
     // Right now if redirects to the login screen
     // this could be removed and used to display not logged in content on the homepage
     // perhaps some reason why to create an account, etc. 
+
     else {
         window.location.replace("login.html");
     }
