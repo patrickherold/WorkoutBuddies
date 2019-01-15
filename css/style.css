@@ -62,3 +62,9 @@ span.connectUser {
     padding: 3px;
     font-weight: bolder;
 }
+
+@media only screen and (min-width: 993px) {
+.container {
+    width: 70%;
+}
+}
