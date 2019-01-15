@@ -77,7 +77,7 @@ firebase.auth().onAuthStateChanged( user => {
                 });
 
                 var connectButton = $('<button/>', {
-                    text: "CONNECT",
+                    text: "CONFIRM",
                     "id": userId,
                     "class": "approveRequest waves-effect waves-light btn",
                     "data-status": "status",
