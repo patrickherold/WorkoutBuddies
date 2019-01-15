@@ -19,20 +19,6 @@ firebase.auth().onAuthStateChanged(user => {
     if (user) {
         this.userId = user.uid;
 
-        // Collapsible Dropdown
-        $('.collapsible').collapsible();
-
-        // Variables for Create Workout Form
-        var workoutName = $("#workout-name").val().trim();
-        var activityDescription = $("#activity-description").val().trim();
-        var address = $("#address").val().trim();
-        var email = "";
-        var username = "";
-        var category = $(".workoutCategory").val().trim();
-        var recommendedFitnessLevel = $(".recommendedFitnessLevel").val().trim();
-        console.log(workoutName);
-
-
         var userSnap = firebase.database().ref('users/' + userId);
             userSnap.on('value', function(snap) {
             email = snap.val().email;
@@ -43,9 +29,27 @@ firebase.auth().onAuthStateChanged(user => {
         // Create/Submit New Workout
         // Write Created Workouts To Firebase
         $("#submitButton").on("click", function (e) {
-
             e.preventDefault();
-                            
+                           
+            // Variables for Create Workout Form
+            var workoutName = $("#workout-name").val();
+            var activityDescription = $("#activity-description").val();
+            var address = $("#address").val();
+            var email = "";
+            var username = "";
+            var category = $(".workoutCategory").val();
+            var recommendedFitnessLevel = $(".recommendedFitnessLevel").val();
+
+
+            console.log(workoutName);
+            console.log(activityDescription);
+            console.log(address);
+            console.log(email);
+            console.log(username);
+            console.log(category);
+            console.log(recommendedFitnessLevel);
+            
+
             // push a new workout to the workout collection
             firebase.database().ref('workouts/').push({
                 workoutName: workoutName,
