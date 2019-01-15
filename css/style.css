@@ -1,3 +1,4 @@
+
 .workOutBuddyprofilePic {
     width: 20%;
     float: right;
@@ -27,9 +28,13 @@
     margin-left:20px;
 }
 
-#createWorkoutHero {
+.hero {
     height:450px;
     width:100%;
     margin:0px 0px 50px 0px;
     padding:0px;
+}
+
+.marginBottom50 {
+    margin-bottom:50px;
 }
