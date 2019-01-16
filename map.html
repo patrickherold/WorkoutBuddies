@@ -2,62 +2,66 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <title>Workout Buddies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <script>src = "http://maps.googleapis.com/maps/api/js?libraries=weather&sensor=false"</script>
-  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-  <!-- CSS Customization -->
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-  <style>
-    /* Set the size of the div element that contains the map */
-      #map {
-        height: 400px;  /* The height is 400 pixels */
-        width: 100%;  /* The width is the width of the web page */
-       }
-    </style>
+    <!-- CSS Frame works 
+         https://materializecss.com/getting-started.html
+          -- Materialize Compiled and minified CSS -->
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+    <!-- ICONs -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--   profile page theme   -->
+    <link href="css/profileTheme.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+    <!-- CSS Customization -->
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
 </head>
 
 <body>
-  <nav>
-    <div class="nav-wrapper container">
-      <a href="#!" class="brand-logo">Logo</a>
-      <!--  the data-target is what calls the sidenav to collapse -->
-      <a href="#" data-target="navCollapse" class="sidenav-trigger"><i class="material-icons">|||</i></a>
-      <ul class="right hide-on-med-and-down">
+    <!--  some sort of nav, here is a placehodler -->
+    <nav>
+        <div class="nav-wrapper container">
+            <a href="#!" class="brand-logo">Logo</a>
+            <!--  the data-target is what calls the sidenav to collapse -->
+            <a href="#" data-target="navCollapse" class="sidenav-trigger"><i class="material-icons">|||</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="map.html">MAP</a></li>
+                <li><a href="connect.html">CONNECT</a></li>
+                <li><a href="workout.html">WOROUT</a></li>
+                <li><a href="profile.html">EDIT PROFILE</a></li>
+                <!--  This button should only display on screens where someone is logged in.   -->
+                <li><button class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="navCollapse">
+        <li><a href="index.html">HOME</a></li>
         <li><a href="map.html">MAP</a></li>
         <li><a href="connect.html">CONNECT</a></li>
-        <li><a href="workout.html">WORKOUT</a></li>
-        <!--  This button should only display on screens where someone is logged in.   -->
-        <li><button class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
-      </ul>
-    </div>
-  </nav>
+        <li><a href="workout.html">WOROUT</a></li>
+        <li><a href="profile.html">EDIT PROFILE</a></li>
+        <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
+    </ul>
+    </nav>
+    <!--  END some sort of nav, here is a placehodler -->
 
-  <ul class="sidenav" id="navCollapse">
-    <li><a href="map.html">MAP</a></li>
-    <li><a href="connect.html">CONNECT</a></li>
-    <li><a href="workout.html">WORKOUT</a></li>
-    <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
-  </ul>
-  </nav>
-
-  <h3>Find Your Buddies</h3>
-  <div id="floating-panel">
-    <input id="address" type="textbox" value="Atlanta, GA">
-    <input id="submit" type="button" value="Submit Address">
-  </div>
-  <!--The div element for the map -->
-  <div id="map"></div>
-  <!--Load the API from the specified URL
-    * The async attribute allows the browser to render the page while the API loads
-    * The key parameter will contain your own API key (which is not needed for this tutorial)
-    * The callback parameter executes the initMap() function
-    -->
-  <!-- the js for this page  -->
-
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDvqw37jwc7D4cX38k83m38NJ_SttI-wU&callback=initMap">
-  </script>
-  <script src="js/map.js"></script>
+    <!-- START CONTENT -->
+    <section id="content">
+      <div class="container">
+          <div class="col s12 m3 offset-m2">
+              <div id="availableWorkouts"></div>
+          </div>
+          <div id="map"></div>
+      </div>
+    </section>
+    <!-- END CONTENT -->
 
   <!-- jQuery JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -71,15 +75,15 @@
   <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-messaging.js"></script>
 
-  <!-- Just for login -->
-  <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
 
   <!-- Materialize Compiled and minified JavaScript  -->
   <script src="js/materialize.js"></script>
   <script src="js/moment.js"></script>
   <script src="js/init.js"></script>
+  <script src="js/map.js"></script>
 
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDvqw37jwc7D4cX38k83m38NJ_SttI-wU&callback=initMap"></script>
+  
 </body>
 
 </html>

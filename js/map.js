@@ -9,110 +9,57 @@ var config = {
 };
 firebase.initializeApp(config);
 
-function initMap(user) 
-    var uid = user.uid;
-    console.log(uid)
-    var userSnap = firebase.database().ref('users/' + userId);
-        userSnap.on('value', function(snap) {
+// The location of Uluru
+var uluru = { lat: 33.748997, lng: -84.387985 };
+// The map, centered at Uluru
+var map;
 
-        $("#address").val(snap.val().address);
-
-        });
-    // The location of Uluru
-    var uluru = { lat: 33.748997, lng: -84.387985 };
-    // The map, centered at Uluru
-    var map = new google.maps.Map(
-        document.getElementById('map'), { zoom: 10, center: uluru });
-    // The marker, positioned at Uluru
-    //var marker = new google.maps.Marker({position: uluru, map: map});
-
-    var geocoder = new google.maps.Geocoder();
-    
-    document.getElementById('submit').addEventListener('click', function () {
-        geocodeAddress(user, geocoder, map);
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+    center: uluru,
+    zoom: 8
     });
 
-    // HTML5 geolocation.
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var long = Number(position.coords.longitude);
-            var lati = Number(position.coords.latitude)
-            var pos = {
-                lat: lati,
-                lng: long
-            };
+    var workoutList = firebase.database().ref("workouts").orderByKey();
+    workoutList.once("value").then(function(snapshot) {
+        // for each user in the list do the stuff below
+        snapshot.forEach(function(childData) {
+            // setup the user of the user for the user list
+            workoutId = childData.key;
+            var workoutAddress = childData.val().address;
 
-            var marker = new google.maps.Marker({
-                position: pos,
-                map: map,
-                animation: google.maps.Animation.DROP,
-            });
+            console.log("workoutAddress line 30 : " + workoutAddress);
 
-            var infowindow = new google.maps.InfoWindow({
-                content: "This is your current location"
-            });
+            var geocoder = new google.maps.Geocoder();
 
-            // When you click the marker, the description will pop up
-            marker.addListener('click', function () {
-                infowindow.open(map, marker);
-            });
+            geocodeAddress(geocoder, map);
 
-            // Centering the current location
-            map.setCenter(pos);
+            function geocodeAddress(geocoder, resultsMap) {
+                geocoder.geocode({ 'address': workoutAddress }, function (results, status) {
+                    if (status === 'OK') {
+                        resultsMap.setCenter(results[0].geometry.location);
+                        console.log("in geocode: " + resultsMap);
+                        var marker = new google.maps.Marker({
+                            map: resultsMap,
+                            position: results[0].geometry.location
+                        });
 
-        }, function () {
-            handleLocationError(true, infoWindow, map.getCenter());
+                        var infowindow = new google.maps.InfoWindow({
+                            content: workoutAddress
+                        });
+
+                        marker.addListener('click', function () {
+                            infowindow.open(map, marker);
+                        });
+
+                    } 
+                    else {
+                        alert('Address was not successful for the following reason: ' + status);
+                    };
+                });
+            }
+
+
         });
-    } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
-    }
-
+    });
 };
-
-waitForCurrentUser();
-
-async function waitForCurrentUser() {
-    await firebase.auth().onAuthStateChanged(user => {
-        initMap(user)
-    });
-  };
-
-
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-        'Error: The Geolocation service failed.' :
-        'Error: Your browser doesn\'t support geolocation.');
-    infoWindow.open(map);
-    }
-
-// Entering an address in the search box
-function geocodeAddress(user, geocoder, resultsMap) {
-    var address = document.getElementById('address').value;
-    geocoder.geocode({ 'address': address }, function (results, status) {
-        if (status === 'OK') {
-            resultsMap.setCenter(results[0].geometry.location);
-
-            var marker = new google.maps.Marker({
-                map: resultsMap,
-                position: results[0].geometry.location
-            });
-
-            var infowindow = new google.maps.InfoWindow({
-                content: address
-            });
-
-            marker.addListener('click', function () {
-                infowindow.open(map, marker);
-            });
-
-        } 
-        else {
-            alert('Address was not successful for the following reason: ' + status);
-        };
-    });
-}
-
-
-console.log("hi max")
