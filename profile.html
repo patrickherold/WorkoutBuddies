@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" id="fav" href="https://img.icons8.com/cotton/2x/laurel-wreath.png" />
     <title>Workout Buddies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,16 +11,18 @@
          https://materializecss.com/getting-started.html
           -- Materialize Compiled and minified CSS -->
     <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    
+
     <!-- ICONs -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!--   profile page theme   -->
     <link href="css/profileTheme.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    
+
     <!-- CSS Customization -->
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    
+
+    <!-- Google Fonts -->
+
 </head>
 
 <body>
@@ -52,6 +55,14 @@
     </ul>
     </nav>
     <!--  END some sort of nav, here is a placehodler -->
+
+    <!-- Hero Image -->
+
+    <div class="row">
+        <div class="">
+            <img class="hero" src="images/editProfile.png" />
+        </div>
+    </div>
 
 
     <!--  some sort of body, here is a placehodler -->
@@ -96,14 +107,16 @@
                             <input id="address" type="text" required class="validate" pattern="^\S.+" title="Please enter a valid address">
                             <label for="address" class="active">Address</label>
                         </div>
+                        <div class="col m2"></div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s12 m6 l6">
+                        <div class="col m2"></div>
+                        <div class="input-field col m4">
                             <input id="city" type="text" required class="validate" title="Please enter a valid City/Town"
                                 pattern="^\S.+">
                             <label for="city" class="active">City/Town</label>
                         </div>
-                        <div class="col s12 m6 l6">
+                        <div class="col m4">
                             <label for="state" class="active">State</label>
                             <select id="state" class="browser-default" required title="Please select a state">
                                 <option value="" disabled selected>Select a state</option>
@@ -113,9 +126,11 @@
                                 <option value="ga-us">Georgia</option>
                             </select>
                         </div>
+                        <div class="col m2"></div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s12 m4 l4">
+                        <div class="col m2"></div>
+                        <div class="input-field col m4">
                             <input id="zipCode" type="text" required title="Please enter a valid post code(e.g., 12345)"
                                 pattern="^\d{5}(-\d{4})?$" class="validate">
                             <label for="zipCode" class="active">Zip Code</label>
@@ -131,23 +146,32 @@
                             </select>
                             <label>Workout Favorites</label>
                         </div>
+                        <div class="col m2"></div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s12">
+                        <div class="col m2"></div>
+                        <div class="input-field col m8">
                             <textarea id="aboutMe" class="materialize-textarea" length="120" style="height: 21.2px;"></textarea>
                             <label for="aboutMe" class="active">A little about me . . .</label>
-                            <span class="character-counter" style="float: right; font-size: 12px; height: 1px;"></span></div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <button id="profileButton" class="btn cyan waves-effect waves-light right" type="submit" name="action">Submit
-                                    <i class="mdi-content-send right"></i>
-                                </button>
-                            </div>
+                            <span class="character-counter" style="float: right; font-size: 12px; height: 1px;"></span>
+                        </div>
+                        <div class="col m2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col m2"></div>
+                        <div class="input-field col m8">
+                            <button id="profileButton" class="btn cyan waves-effect waves-light right" type="submit"
+                                name="action">Submit
+                                <i class="mdi-content-send right"></i>
+                            </button>
                         </div>
                     </div>
-                </form>
-                <!--/ profile-page-wall -->
+                    <div class="col m2"></div>
             </div>
+
+            </form>
+            <!--/ profile-page-wall -->
+        </div>
         </div>
         </div>
         <!--end container-->
