@@ -17,7 +17,9 @@ function initMap() {
     // center: uluru,
     zoom: 4
     });
-
+    
+    infoWindow = new google.maps.InfoWindow;
+    
     // user's current location if they allow
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -25,10 +27,13 @@ function initMap() {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
+          infoWindow.setPosition(pos);
+          infoWindow.setContent('Current Location');
+          infoWindow.open(map);
           map.setZoom(9);
           map.setCenter(pos);
         }, function() {
-          handleLocationError(true, map.getCenter());
+          handleLocationError(true, infoWindow, map.getCenter());
         });
     }
     // if they block it will go to their profile location
@@ -59,10 +64,13 @@ function initMap() {
                     if (status === 'OK') {
                         resultsMap.setCenter(results[0].geometry.location);
                         map.setZoom(9);
+                        infoWindow.setPosition(results[0].geometry.location);
+                        infoWindow.setContent('Profile Location');
+                        infoWindow.open(map);
                     }
                 })
             };
-                });
+                })
             }
             else {
                 window.location.replace("login.html");
