@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Workout Buddies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS Frame works 
+         https://materializecss.com/getting-started.html
+          -- Materialize Compiled and minified CSS -->
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+    <!-- ICONs -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--   profile page theme   -->
+    <link href="css/profileTheme.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+    <!-- CSS Customization -->
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+</head>
+
+<body>
+    <!--  some sort of nav, here is a placehodler -->
+    <nav>
+        <div class="nav-wrapper container">
+            <a href="#!" class="brand-logo">Logo</a>
+            <!--  the data-target is what calls the sidenav to collapse -->
+            <a href="#" data-target="navCollapse" class="sidenav-trigger"><i class="material-icons">|||</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="map.html">MAP</a></li>
+                <li><a href="connect.html">CONNECT</a></li>
+                <li><a href="workout.html">WOROUT</a></li>
+                <li><a href="profile.html">EDIT PROFILE</a></li>
+                <!--  This button should only display on screens where someone is logged in.   -->
+                <li><button class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="navCollapse">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="map.html">MAP</a></li>
+        <li><a href="connect.html">CONNECT</a></li>
+        <li><a href="workout.html">WOROUT</a></li>
+        <li><a href="profile.html">EDIT PROFILE</a></li>
+        <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
+    </ul>
+    </nav>
+    <!--  END some sort of nav, here is a placehodler -->
+
+    <div id="createWorkout" class="container">
+        <div class="row">
+            <form class="createWorkout">
+                <div class="input-field col12">
+                    <label for="workout-name">Give Your Workout An Interesting Name</label>
+                    <input id="workout-name" type="text" class="validate">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col12">
+                    <label for="activity-description">Give People A Quick Idea Of What To Expect</label>
+                    <input id="activity-description" type="text" class="validate">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col12">
+                    <label for="address">Location Address</label>
+                    <input id="address" type="text" class="validate">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m6">
+                    <label>Workout Category</label>
+                    <form action="#">
+                        <p>
+                            <label>
+                                <input class="with-gap workoutCategory" value="running" name="group1" type="radio" checked />
+                                <span>Running</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap workoutCategory" value="walking" name="group1" type="radio" />
+                                <span>Walking</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap workoutCategory" value="cycling" name="group1" type="radio" />
+                                <span>Cycling</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap workoutCategory" value="hiking" name="group1" type="radio" />
+                                <span>Hiking</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap workoutCategory" value="swimming" name="group1" type="radio" />
+                                <span>Swimming</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap workoutCategory" value="cross-training" name="group1" type="radio" />
+                                <span>Cross-Training</span>
+                            </label>
+                        </p>
+                    </form>
+                </div>
+                <div class="col m6">
+                    <label>Recommended Fitness Level</label>
+                    <form action="#">
+                        <span>
+                            <label>
+                                <input class="with-gap recommendedFitnessLevel" value="1" name="group1" type="radio" checked />
+                                <span>1</span>
+                            </label>
+                        </span>
+                        <span class="marginLeft20">
+                            <label>
+                                <input class="with-gap recommendedFitnessLevel" value="2" name="group1" type="radio" />
+                                <span>2</span>
+                            </label>
+                        </span>
+                        <span class="marginLeft20">
+                            <label>
+                                <input class="with-gap recommendedFitnessLevel" value="3" name="group1" type="radio" />
+                                <span>3</span>
+                            </label>
+                        </span>
+                        <span class="marginLeft20">
+                            <label>
+                                <input class="with-gap recommendedFitnessLevel" value="4" name="group1" type="radio" />
+                                <span>4</span>
+                            </label>
+                        </span>
+                        <span class="marginLeft20">
+                            <label>
+                                <input class="with-gap recommendedFitnessLevel" value="5" name="group1" type="radio" />
+                                <span>5</span>
+                            </label>
+                        </span>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m6">
+                    <button id="submitButton" class="btn cyan waves-effect waves-light right" type="submit" name="action">Submit
+                        <i class="mdi-content-send right"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- jQuery JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+
+    <!-- Add additional services that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-messaging.js"></script>
+
+
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+
+    <!-- Materialize Compiled and minified JavaScript  -->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+
+    <script src="js/workout.js"></script>
+
+</body>

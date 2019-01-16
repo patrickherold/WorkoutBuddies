@@ -1,6 +1,15 @@
-.workOutBuddyprofilePic {
-    width: 20%;
+
+#createWorkout.container {
+    margin-top: 50px;
+}
+
+#profilePicture {
+    max-width: 80px;
     float: right;
+}
+
+#currentPersonProfilePicture {
+    max-width: 80%;
 }
 
 #mainContainer {
@@ -11,17 +20,19 @@
     margin: 30px;
 }
 
-.collection-item {
-    min-height: 100px;
+.workoutIcon {
+    height:100px;
+    width:100px;
+    padding:0px;
 }
 
-.workOutTitle,
-.workOutUserName {
-    font-size: 1.3em;
+#fav {
+    height:20px;
+    width:20px;
 }
 
-.calcWhen {
-    font-size: 1.1em;
+.marginLeft20 {
+    margin-left:20px;
 }
 
 #map {
@@ -29,6 +40,37 @@
     width: 100%;  /* The width is the width of the web page */
    }
 
-#profile-page-header .card-profile-image {
-    top: 40px;
+.collection .collection-item.avatar .title {
+    font-size: 1.4em;
+}
+
+.collection .collection-item {
+    padding-bottom: 20px;
+    border-radius: 0px;
+}
+
+.aboutMe {
+    border: 1px solid #eee;
+    background: #fff;
+    box-shadow: 3px 4px 6px rgba(0,0,0,0.4);
+    padding: 3px;
+    font-weight: bolder;
+}
+
+@media only screen and (min-width: 993px) {
+.container {
+    width: 70%;
+}
+}
+
+#availableWorkouts .btn,
+#buddyRequests .btn,
+#connectedUserList .btn {
+    float: right;
+}
+
+.currentWeather, 
+.currentForecast0,
+.currentForecast1 {
+    font-weight: 900;
 }
