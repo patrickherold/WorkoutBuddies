@@ -80,5 +80,5 @@ $("#profileButton").on("click", function() {
         profilePicture: profilePicture,
         workoutPreferences: workoutPreferences
     });
-    // window.location.replace("index.html");
+    window.location.replace("index.html");
 });
