@@ -31,6 +31,10 @@ function initMap() {
             var workoutDescription = childData.val().activityDescription;
             var workoutCategory = childData.val().category;
             var workoutLevel = childData.val().recommendedFitnessLevel;
+            var workoutDay1 = childData.val().scheduledDayOne;
+            var workoutDay2 = childData.val().scheduledDayTwo;
+            var workoutTime1 = childData.val().dayOneTime;
+            var workoutTime2 = childData.val().dayTwoTime;
 
             console.log("workoutAddress line 30 : " + workoutAddress);
 
@@ -48,7 +52,10 @@ function initMap() {
                             position: results[0].geometry.location
                         });
 
-                        var contentString = "<b>Name: </b>" + workoutName + "<br><b>Description: </b>" + workoutDescription + "<br><b>Category: </b>" + workoutCategory + "<br><b>Level: </b>" + workoutLevel + "<br><b>Address: </b>" + workoutAddress
+                        var contentString = "<b>Name: </b>" + workoutName + "<br><b>Description: </b>" + 
+                        workoutDescription + "<br><b>Category: </b>" + workoutDay1 + " " + workoutTime1 + " " + 
+                        workoutDay2 + " " + workoutTime2 + "<br><b>Category: </b>" + workoutCategory + 
+                        "<br><b>Level: </b>" + workoutLevel + "<br><b>Address: </b>" + workoutAddress
 
                         var infowindow = new google.maps.InfoWindow({
                             content: contentString
