@@ -482,6 +482,7 @@ firebase.auth().onAuthStateChanged( user => {
                 console.log(response);
                 var lat = response.results[0].geometry.lat;
                 var lon = response.results[0].geometry.lng;
+                // print out the location from the geocoder ajax 
                 $("p.currentWeatherLocation").text(response.results[0].formatted);
                 var weatherURL = "https://cors-anywhere.herokuapp.com/" + "https://api.darksky.net/forecast/7d164bcd822a2ece7033b1a27d4a6e4e/" + lat + "," + lon;
                 console.log(lat);
@@ -491,6 +492,7 @@ firebase.auth().onAuthStateChanged( user => {
                     url: weatherURL,
                     method: "GET"
                 }).then(function(response) {
+                    // print out the conditions and forecast from the weather ajax
                     $("p.currentWeather").text(response.currently.summary);
                     $("p.currentForecast0").text(response.daily.data[0].summary);
                     $("p.currentForecast1").text(response.daily.data[1].summary);
