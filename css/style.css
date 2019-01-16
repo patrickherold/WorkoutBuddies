@@ -68,6 +68,7 @@
     float: right;
 }
 
+.currentWeatherLocation,
 .currentWeather, 
 .currentForecast0,
 .currentForecast1 {
@@ -87,3 +88,4 @@ button.endBuddy {
 .circle {
     border-radius: 10%;
 }
+

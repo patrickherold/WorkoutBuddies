@@ -469,15 +469,20 @@ firebase.auth().onAuthStateChanged( user => {
         var weatherSnap = firebase.database().ref('users/' + userId);
         weatherSnap.on('value', function(weatherSnap) {
             var address = weatherSnap.val().address;
-            var geoURL = "https://api.opencagedata.com/geocode/v1/json?key=000be1b151fb4863a869b6bc420760eb&pretty=1&q=" + address;
-            console.log("address: " + weatherSnap.val().address);
+            var city = weatherSnap.val().city;
+            var state = weatherSnap.val().state;
+            var zipCode = weatherSnap.val().zipCode;
+            var geoURL = "https://api.opencagedata.com/geocode/v1/json?key=000be1b151fb4863a869b6bc420760eb&pretty=1&q=" + address + "," + city + "," + state + "," + zipCode;
+            console.log("address: " + geoURL);
             //Ajax call to get the weather results using geoURL
             $.ajax({
                 url: geoURL,
                 method: "GET"
-            }).then(function(response) {    
+            }).then(function(response) {
+                console.log(response);
                 var lat = response.results[0].geometry.lat;
-                var lon = response.results[0].geometry.lat;
+                var lon = response.results[0].geometry.lng;
+                $("p.currentWeatherLocation").text(response.results[0].formatted);
                 var weatherURL = "https://cors-anywhere.herokuapp.com/" + "https://api.darksky.net/forecast/7d164bcd822a2ece7033b1a27d4a6e4e/" + lat + "," + lon;
                 console.log(lat);
                 console.log(lon);
