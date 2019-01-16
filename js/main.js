@@ -94,7 +94,6 @@ firebase.auth().onAuthStateChanged( user => {
                 $(requestsLi).append(spanZip);
                 // add the buttons to the list of users
                 $("#buddyRequests").append(requestsLi);
-
             });
 
             // if you click on the connect button
@@ -132,9 +131,7 @@ firebase.auth().onAuthStateChanged( user => {
 
                 // change the buttons to show what happened.
                 $("li#" + approveBuddyId).css("display", "none");
-
                 window.location.replace("index.html");
-
             });
         });
 
@@ -156,8 +153,7 @@ firebase.auth().onAuthStateChanged( user => {
                 var profilePicture = childData.val().profilePicture;
                 var personZipCode = childData.val().zipCode;
                 var status = childData.val().status;
-    
-               
+
                 var connectedUserListLi = $('<li/>', {
                     "id": buddyId,
                     "class": "collection-item avatar",
@@ -199,7 +195,6 @@ firebase.auth().onAuthStateChanged( user => {
             });
             //  this end the for each of the users, but keeps us in the 
 
-
             // if you click on the connect button
             $(".connectUser").on("click", function() {
                 event.preventDefault();
@@ -238,12 +233,10 @@ firebase.auth().onAuthStateChanged( user => {
                         status: "pending"
                     });
                 });
-
                 // change the buttons to show what happened.
                 $("li#" + buddyId).css("display", "none");
+                window.location.replace("index.html");
             });
-
-
         });
 
 
@@ -256,7 +249,6 @@ firebase.auth().onAuthStateChanged( user => {
         .then(function(myBuddiesSnapshot) {
             // for each user in the list do the stuff below
             myBuddiesSnapshot.forEach(function(myBuddySnap) {
-
                 buddyId = myBuddySnap.key;
 
                 // setup the variables for the user; this will be used to create the user button listing
@@ -266,7 +258,6 @@ firebase.auth().onAuthStateChanged( user => {
                 var buddyPicture = myBuddySnap.val().buddyPic;
                 var buddyZipCode = myBuddySnap.val().buddyZip;
                 var status = myBuddySnap.val().status;
-    
                
                 var buddyListLi = $('<li/>', {
                     "id": buddyId,
@@ -387,7 +378,6 @@ firebase.auth().onAuthStateChanged( user => {
             });
             //  this end the for each of the users, but keeps us in the 
 
-
             // if you click on the connect button
             $(".joinWorkout").on("click", function() {
                 event.preventDefault();
@@ -414,10 +404,7 @@ firebase.auth().onAuthStateChanged( user => {
                 $("li#" + workoutId).css("display", "none");
                 window.location.replace("index.html");
             });
-
         });
-        
-
 
         var myWorkoutList = firebase.database().ref("users/" + user.uid + "/workouts").orderByKey();
         myWorkoutList.once("value")
@@ -466,7 +453,6 @@ firebase.auth().onAuthStateChanged( user => {
 
                 // add the buttons to the list of users
                 $("#myWorkouts").append(workoutLi);
-
             });
 
             $(".endWorkout").on("click", function() {
@@ -475,7 +461,6 @@ firebase.auth().onAuthStateChanged( user => {
                 firebase.database().ref().child('users/' + userId + '/workouts/' + thisId).remove();
                 window.location.replace("index.html");
             });
-
         });
 
 //  WEATHER   WEATHER   WEATHER   WEATHER   WEATHER   WEATHER   WEATHER   WEATHER   WEATHER 
@@ -484,26 +469,19 @@ firebase.auth().onAuthStateChanged( user => {
         var weatherSnap = firebase.database().ref('users/' + userId);
         weatherSnap.on('value', function(weatherSnap) {
             var address = weatherSnap.val().address;
-
             var geoURL = "https://api.opencagedata.com/geocode/v1/json?key=000be1b151fb4863a869b6bc420760eb&pretty=1&q=" + address;
             console.log("address: " + weatherSnap.val().address);
             //Ajax call to get the weather results using geoURL
             $.ajax({
                 url: geoURL,
                 method: "GET"
-            }).then(function(response) {
-
-                var lat = "";
-                var lon = "";
-    
-                lat = response.results[0].geometry.lat;
-                lon = response.results[0].geometry.lat;
-
+            }).then(function(response) {    
+                var lat = response.results[0].geometry.lat;
+                var lon = response.results[0].geometry.lat;
                 var weatherURL = "https://cors-anywhere.herokuapp.com/" + "https://api.darksky.net/forecast/7d164bcd822a2ece7033b1a27d4a6e4e/" + lat + "," + lon;
                 console.log(lat);
                 console.log(lon);
                 //ajax call to use the response
-                
                 $.ajax({
                     url: weatherURL,
                     method: "GET"
@@ -512,7 +490,6 @@ firebase.auth().onAuthStateChanged( user => {
                     $("p.currentForecast0").text(response.daily.data[0].summary);
                     $("p.currentForecast1").text(response.daily.data[1].summary);
                 });
-        
             });
         });
     }
@@ -523,5 +500,4 @@ firebase.auth().onAuthStateChanged( user => {
     else {
         window.location.replace("login.html");
     }
-
 });
