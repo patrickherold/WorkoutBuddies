@@ -17,7 +17,7 @@ var map;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
     center: uluru,
-    zoom: 8
+    zoom: 9
     });
 
     var workoutList = firebase.database().ref("workouts").orderByKey();
@@ -27,6 +27,10 @@ function initMap() {
             // setup the user of the user for the user list
             workoutId = childData.key;
             var workoutAddress = childData.val().address;
+            var workoutName = childData.val().workoutName;
+            var workoutDescription = childData.val().activityDescription;
+            var workoutCategory = childData.val().category;
+            var workoutLevel = childData.val().recommendedFitnessLevel;
 
             console.log("workoutAddress line 30 : " + workoutAddress);
 
@@ -44,8 +48,10 @@ function initMap() {
                             position: results[0].geometry.location
                         });
 
+                        var contentString = "<b>Name: </b>" + workoutName + "<br><b>Description: </b>" + workoutDescription + "<br><b>Category: </b>" + workoutCategory + "<br><b>Level: </b>" + workoutLevel + "<br><b>Address: </b>" + workoutAddress
+
                         var infowindow = new google.maps.InfoWindow({
-                            content: workoutAddress
+                            content: contentString
                         });
 
                         marker.addListener('click', function () {
