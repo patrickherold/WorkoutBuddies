@@ -61,7 +61,7 @@ $("#profileButton").on("click", function() {
     var zipCode = $("#zipCode").val();
     var dateNow = $.now();
     var dateNow = moment(dateNow).format('MMMM Do, h:mm:ss a');
-    var profilePicture = $("#profilePictureSelect").val() || '../images/profile_placeholder.png';
+    var profilePicture = $("#profilePictureSelect").val() || 'images/profile_placeholder.png';
     var workoutPreferences = $("select#workoutPreferences").val();
 
     var uid = firebase.auth().currentUser.uid;
