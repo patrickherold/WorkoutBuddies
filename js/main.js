@@ -74,9 +74,7 @@ firebase.auth().onAuthStateChanged( user => {
                     text: requestZipCode
                 });
 
-                var buddyIcon = $('<img class="profilePicture circle deep-orange accent-2 responsive-img right-align" />', {
-                    "src": requestPicture
-                });
+                var buddyIcon = ("<img src='" + requestPicture + "' class='profilePicture circle deep-orange accent-2 responsive-img right-align' />");
 
                 var connectButton = $('<button/>', {
                     text: "CONFIRM",
@@ -176,9 +174,7 @@ firebase.auth().onAuthStateChanged( user => {
                     text: personZipCode
                 });
 
-                var buddyIcon = $('<img class="profilePicture circle deep-orange accent-2 responsive-img right-align" />', {
-                    "src": profilePicture
-                });
+                var buddyIcon = ("<img src='" + profilePicture + "' class='profilePicture circle deep-orange accent-2 responsive-img right-align' />");
 
                 var connectButton = $('<button/>', {
                     text: "CONNECT",
@@ -288,9 +284,7 @@ firebase.auth().onAuthStateChanged( user => {
                     text: buddyZipCode
                 });
 
-                var buddyIcon = $('<img class="profilePicture circle deep-orange accent-2 responsive-img right-align" />', {
-                    "src": buddyPicture
-                });
+                var buddyIcon = ("<img src='" + buddyPicture + "' class='profilePicture circle deep-orange accent-2 responsive-img right-align' />");
 
                 var buddyButton = $('<button/>', {
                     text: "DISCONNECT",
@@ -366,9 +360,7 @@ firebase.auth().onAuthStateChanged( user => {
                     text: workoutEmail
                 });
                 
-                var buddyIcon = $('<img class="profilePicture circle deep-orange accent-2 responsive-img right-align" />', {
-                    "src": workoutCategory
-                });
+                var buddyIcon = ("<img src='" + workoutCategory + "' class='profilePicture circle deep-orange accent-2 responsive-img right-align' />");
 
                 var joinButton = $('<button/>', {
                     text: "JOIN",
