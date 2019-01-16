@@ -35,21 +35,10 @@
     margin-left:20px;
 }
 
-#profile-page-header .card-profile-image {
-    top: 40px;
-}
-
-span.connectUser {
-    background: green;
-    padding: 5px;
-    border: darkgreen;
-    color: white;
-    cursor: pointer;
-}
-
-.btn {
-    margin-right: 5px;
-}
+#map {
+    height: 400px;  /* The height is 400 pixels */
+    width: 100%;  /* The width is the width of the web page */
+   }
 
 .collection .collection-item.avatar .title {
     font-size: 1.4em;

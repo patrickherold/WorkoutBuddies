@@ -45,8 +45,7 @@
         <li><a href="index.html">HOME</a></li>
         <li><a href="map.html">MAP</a></li>
         <li><a href="connect.html">CONNECT</a></li>
-        <li><a href="workout.html">WOROUT</a></li>
-        <li><a href="profile.html">EDIT PROFILE</a></li>
+        <li><a href="workout.html">WORKOUT</a></li>
         <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
     </ul>
     </nav>
@@ -129,11 +128,13 @@
                     </div>
                 </div>
             </div>
+            <div id="map"></div>
         </div>
     </section>
     <!-- END CONTENT -->
 
-
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDvqw37jwc7D4cX38k83m38NJ_SttI-wU&callback=initMap">
+    </script>
     <!-- jQuery JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
