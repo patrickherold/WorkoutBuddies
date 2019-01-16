@@ -59,7 +59,6 @@ function initMap() {
                     if (status === 'OK') {
                         resultsMap.setCenter(results[0].geometry.location);
                         map.setZoom(9);
-                        console.log(profileLocation);
                     }
                 })
             };
