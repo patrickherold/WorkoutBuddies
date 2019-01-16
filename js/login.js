@@ -22,7 +22,7 @@ var uiConfig = {
             // User successfully signed in.
             // Return type determines whether we continue the redirect automatically
 
-            firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
+            firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
                 username: firebase.auth().currentUser.displayName,
                 email: firebase.auth().currentUser.email,
                 profilePicture: firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png'

@@ -25,7 +25,7 @@ firebase.auth().onAuthStateChanged( user => {
         // get values from database and add them to the form
         var userSnap = firebase.database().ref('users/' + userId);
         userSnap.on('value', function(snap) {
-            $("#profilePicture").attr('src', (snap.val().profilePicture));;
+            $("#profilePicture").attr('src', (snap.val().profilePicture));
             $("label[for='username']").addClass("active");
             $("#username").val(snap.val().username);
             $("label[for='username']").addClass("active");
@@ -61,7 +61,7 @@ $("#profileButton").on("click", function() {
     var zipCode = $("#zipCode").val();
     var dateNow = $.now();
     var dateNow = moment(dateNow).format('MMMM Do, h:mm:ss a');
-    var profilePicture = $("#profilePictureSelect").val();
+    var profilePicture = $("#profilePictureSelect").val() || '../images/profile_placeholder.png';
     var workoutPreferences = $("select#workoutPreferences").val();
 
     var uid = firebase.auth().currentUser.uid;

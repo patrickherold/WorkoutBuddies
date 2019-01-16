@@ -38,7 +38,7 @@ firebase.auth().onAuthStateChanged( user => {
 
         });
 
-        // USER REQUEST    USER REQUEST    USER REQUEST    USER REQUEST    USER REQUEST    USER REQUEST    USER REQUEST    USER REQUEST   
+// USER REQUEST    USER REQUEST    USER REQUEST    USER REQUEST    USER REQUEST    USER REQUEST    USER REQUEST    USER REQUEST   
 
         var requestList = firebase.database().ref("users/" + user.uid + "/workoutRequests").orderByKey();
         requestList.once("value")
@@ -110,13 +110,9 @@ firebase.auth().onAuthStateChanged( user => {
                 var requestingUserId = $(this).attr('id');
 
                 // remove the pending request
-                // firebase.database().ref('users/' + userId + '/workoutRequests').child(approveBuddyId).remove();
                 console.log("users/" + userId + "/workoutRequests/" + approveBuddyId);
-                var removeRequest = firebase.database().ref('users/' + userId + '/workoutRequests');
-                removeRequest.on('value', function(rSnap) {
-                    // update the requested Buddy to include a buddy request from the current user
-                    rSnap.approveBuddyId.remove();
-                });
+                
+                firebase.database().ref().child('users/' + userId + '/workoutRequests/' + approveBuddyId).remove();
 
                 // update the current user to include the clicked user as a workout buddy
                 firebase.database().ref('users/' + requestingUserId + '/workoutBuddies/' + approveBuddyId).update ({
@@ -135,14 +131,18 @@ firebase.auth().onAuthStateChanged( user => {
                         status: "connected"
                     });
                 });
+
                 // change the buttons to show what happened.
                 $("li#" + approveBuddyId).css("display", "none");
+
+                window.location.replace("index.html");
 
             });
         });
 
         
-        //  LIST OF USERS   LIST OF USERS   LIST OF USERS   LIST OF USERS   LIST OF USERS   LIST OF USERS   LIST OF USERS 
+//  LIST OF USERS   LIST OF USERS   LIST OF USERS   LIST OF USERS   LIST OF USERS   LIST OF USERS   LIST OF USERS 
+
         var userList = firebase.database().ref("users").orderByKey();
         userList.once("value")
           .then(function(snapshot) {
@@ -245,30 +245,82 @@ firebase.auth().onAuthStateChanged( user => {
 
                 // change the buttons to show what happened.
                 $("li#" + buddyId).css("display", "none");
-
-                alert("A buddy request was sent to: " + buddyName);
-
             });
 
-            
-            $(".disconnectUser").on("click", function() {
-                event.preventDefault();
-                var buddyName = $(this).attr('data-buddyname');
-                var buddyId = $(this).attr('data-userId');
 
-                $("button#" + buddyId + "disconnectUser").css("display", "none");
-                $("button#" + buddyId + "connectUser").css("display", "block");
-
-                // update the user to include the clicked user as a workout buddy
-                //firebase.database().ref('users/' + user.uid + '/workoutBuddies/' + $(this).attr('data-userId')).remove();
+        });
 
 
-                alert("You and " + buddyName + " are disconnected.");
+// BUDDY LIST   BUDDY LIST     BUDDY LIST     BUDDY LIST     BUDDY LIST     BUDDY LIST     BUDDY LIST     BUDDY LIST     BUDDY LIST  
+
+
+
+        var myBuddyList = firebase.database().ref("users/" + user.uid + "/workoutBuddies").orderByKey();
+        myBuddyList.once("value")
+        .then(function(myBuddiesSnapshot) {
+            // for each user in the list do the stuff below
+            myBuddiesSnapshot.forEach(function(myBuddySnap) {
+
+                buddyId = myBuddySnap.key;
+
+                // setup the variables for the user; this will be used to create the user button listing
+                // this is not the current person, but the button person
+                var buddyUsername = myBuddySnap.val().buddyName;
+                var buddyAboutMe = myBuddySnap.val().buddyAbout;
+                var buddyPicture = myBuddySnap.val().buddyPic;
+                var buddyZipCode = myBuddySnap.val().buddyZip;
+                var status = myBuddySnap.val().status;
+    
+               
+                var buddyListLi = $('<li/>', {
+                    "id": buddyId,
+                    "class": "collection-item avatar",
+                    "data-status": status
+                });
+
+                var spanTitle = $('<div/>', {
+                    "class": "title",
+                    text: buddyUsername
+                });
+
+                var spanZip = $('<div/>', {
+                    "class": "zipCode ultra-small",
+                    text: buddyZipCode
+                });
+
+                var buddyIcon = $('<img class="profilePicture circle deep-orange accent-2 responsive-img right-align" />', {
+                    "src": buddyPicture
+                });
+
+                var buddyButton = $('<button/>', {
+                    text: "DISCONNECT",
+                    "id": buddyId,
+                    "class": "endBuddy waves-effect waves-light btn",
+                    "data-status": "status",
+                    "data-buddyid": userId,
+                    "data-buddyname": buddyUsername,
+                    "data-buddypic": buddyPicture,
+                    "data-buddyzip": buddyZipCode,
+                    "data-buddyabout": buddyAboutMe
+                });
+
+                $(buddyListLi).append(buddyIcon);            
+                $(buddyListLi).append(spanTitle);
+                $(buddyListLi).append(spanZip);      
+                $(buddyListLi).append(buddyButton);
+                $("#myBuddies").append(buddyListLi);
+            });
+
+            $(".endBuddy").on("click", function() {
+                thisId = $(this).attr('id');
+                console.log("This ID: " + thisId);
+                firebase.database().ref().child('users/' + userId + '/workoutBuddies/' + thisId).remove();
+                window.location.replace("index.html");
             });
 
         });
         
-        // WORKOUTS AREA  WORKOUTS AREA  WORKOUTS AREA  WORKOUTS AREA  WORKOUTS AREA  WORKOUTS AREA  WORKOUTS AREA
+// WORKOUTS AREA  WORKOUTS AREA  WORKOUTS AREA  WORKOUTS AREA  WORKOUTS AREA  WORKOUTS AREA  WORKOUTS AREA
 
         //  get a snapshot of all the users
         var workoutList = firebase.database().ref("workouts").orderByKey();
@@ -340,8 +392,6 @@ firebase.auth().onAuthStateChanged( user => {
                 $(workoutList).append(spanEmail);      
                 $("#availableWorkouts").append(workoutList);
 
-                $("li#" + userId).css("display", "none");
-
             });
             //  this end the for each of the users, but keeps us in the 
 
@@ -370,9 +420,7 @@ firebase.auth().onAuthStateChanged( user => {
 
                 // change the buttons to show what happened.
                 $("li#" + workoutId).css("display", "none");
-
-                alert("You have joined: " + workoutName);
-
+                window.location.replace("index.html");
             });
 
         });
@@ -387,7 +435,7 @@ firebase.auth().onAuthStateChanged( user => {
 
                 // setup the user of the user for the user list
                 workoutId = workoutSnap.key;
-
+                console.log("My workouts ID: "  + workoutId);
                 // display pending workout buddy requests
                 // setup the variables for the user; this will be used to create the user button listing
                 // this is not the current person, but the button person
@@ -398,39 +446,47 @@ firebase.auth().onAuthStateChanged( user => {
                 var workoutDays = workoutSnap.val().workoutDays;
 
                 var workoutLi = $('<li/>', {
-                    "class": "collection-item avatar"
+                    "class": "collection-item"
                 });
 
-                var workoutName = $('<div/>', {
+                var workoutName = $('<h5/>', {
                     "class": "title",
                     text: workoutName
                 });
 
-                var workoutDays = $('<div/>', {
-                    "class": "workoutDays",
-                    text: workoutDays
-                });
+                var workoutDays = ("<div><h6><b>Schedule: </b></h6>" + workoutDays + "</div>");
 
-                var workoutAddress = $('<div/>', {
-                    "class": "zipCode small",
-                    text: workoutAddress
-                });
-                var spanEmail = $("<div/><a href='mailto:" + workoutEmail + " '", {
-                    "class": "zipCode small",
-                    text: workoutEmail
+                var workoutAddress = ("<div><h6><b>Get Diretions: </b></h6><a href='https://maps.google.com/?q=" + workoutAddress + "' target='_blank'>" + workoutAddress + "</a></div>");
+
+                var workoutEmail = ("<hr><div><h6><b>Email Leader: </b></h6><a href='mailto:" + workoutEmail + "'>" + workoutEmail + "</a></div>");
+
+                var endButton = $('<button/>', {
+                    text: "QUIT",
+                    "id": workoutId,
+                    "class": "endWorkout waves-effect waves-light btn"
                 });
 
                 $(workoutLi).append(workoutName);
                 $(workoutLi).append(workoutDays);
                 $(workoutLi).append(workoutAddress);
+                $(workoutLi).append(workoutEmail)
+                $(workoutLi).append(endButton)
 
                 // add the buttons to the list of users
                 $("#myWorkouts").append(workoutLi);
 
             });
+
+            $(".endWorkout").on("click", function() {
+                thisId = $(this).attr('id');
+                console.log("This ID: " + thisId);
+                firebase.database().ref().child('users/' + userId + '/workouts/' + thisId).remove();
+                window.location.replace("index.html");
+            });
+
         });
 
-        //  WEATHER   WEATHER   WEATHER   WEATHER   WEATHER   WEATHER   WEATHER   WEATHER   WEATHER 
+//  WEATHER   WEATHER   WEATHER   WEATHER   WEATHER   WEATHER   WEATHER   WEATHER   WEATHER 
         
         
         var weatherSnap = firebase.database().ref('users/' + userId);
@@ -444,7 +500,6 @@ firebase.auth().onAuthStateChanged( user => {
                 url: geoURL,
                 method: "GET"
             }).then(function(response) {
-                console.log("open cage response: " + response)
 
                 var lat = "";
                 var lon = "";
