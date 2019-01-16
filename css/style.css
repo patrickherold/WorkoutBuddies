@@ -1,3 +1,8 @@
+
+#createWorkout.container {
+    margin-top: 50px;
+}
+
 #profilePicture {
     max-width: 80px;
     float: right;
