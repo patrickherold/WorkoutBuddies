@@ -2,47 +2,54 @@
 <html>
 
 <head>
+    
     <meta charset="UTF-8">
+    <link rel="icon" id="fav" href="https://img.icons8.com/cotton/2x/laurel-wreath.png" />
     <title>Workout Buddies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSS Frame works 
          https://materializecss.com/getting-started.html
           -- Materialize Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!--  -->
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
 
+    <!-- ICONs -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--   profile page theme   -->
+    <link href="css/profileTheme.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+    <!-- CSS Customization -->
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
 </head>
 
 <body>
-
     <!--  some sort of nav, here is a placehodler -->
     <nav>
         <div class="nav-wrapper container">
-          <a href="#!" class="brand-logo">Logo</a>
-          <a href="#" data-target="mobileNav" class="sidenav-trigger"><i class="material-icons">|||</i></a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="map.html">MAP</a></li>
-            <li><a href="connect.html">CONNECT</a></li>
-            <li><a href="workout.html">WOROUT</a></li>
-          </ul>
+            <a href="#!" class="brand-logo">Logo</a>
+            <!--  the data-target is what calls the sidenav to collapse -->
+            <a href="#" data-target="navCollapse" class="sidenav-trigger"><i class="material-icons">|||</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html">HOME</a></li>
+            </ul>
         </div>
-      </nav>
-    
-      <ul class="sidenav" id="mobileNav">
-        <li><a href="map.html">MAP</a></li>
-        <li><a href="connect.html">CONNECT</a></li>
-        <li><a href="workout.html">WOROUT</a></li>
-      </ul>
+    </nav>
+
+    <ul class="sidenav" id="navCollapse">
+        <li><a href="index.html">HOME</a></li>
+    </ul>
     </nav>
     <!--  END some sort of nav, here is a placehodler -->
 
 
     <!--  some sort of body, here is a placehodler -->
     <div class="container" id="mainContainer" style="display: block;">
+            <div class="row"><br><br></div>
             <div class="row">
+                <h4 class="center">Login to get started</h4>
                 <div id="firebaseui-auth-container"></div>
                 <div id="loader">Loading...</div>
             </div>
