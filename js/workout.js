@@ -80,7 +80,18 @@ firebase.auth().onAuthStateChanged(user => {
                 dayTwoTime = $("#time-two").val("");
             });
 
+            // Set message so user knows they are going to be sent back to their profile page
+
+            // $("#redirectMsg").text("Hold tight while we get you back to your profile...").css("font-size", "18px");
+
             // Clear Create Workout Form
+
+            function redirect(){
+                window.location.replace("index.html");
+            }
+
+            setTimeout(redirect, 5000);
+            
             
         });
     }
