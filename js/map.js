@@ -9,16 +9,67 @@ var config = {
 };
 firebase.initializeApp(config);
 
-// The location of Uluru
-var uluru = { lat: 33.748997, lng: -84.387985 };
-// The map, centered at Uluru
+// The map
 var map;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-    center: uluru,
-    zoom: 9
+    // center: uluru,
+    zoom: 4
     });
+
+    // user's current location if they allow
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          map.setZoom(9);
+          map.setCenter(pos);
+        }, function() {
+          handleLocationError(true, map.getCenter());
+        });
+    }
+    // if they block it will go to their profile location
+    else {
+        handleLocationError(false, map.getCenter());
+      }
+
+      function handleLocationError() {
+        firebase.auth().onAuthStateChanged( user => {
+            if (user) { 
+        
+                // get the user ID from the auth system to start pulling user from database
+                userId = user.uid 
+        
+                // this is getting the database info for the current user
+                var userSnap = firebase.database().ref('users/' + user.uid);
+                userSnap.on('value', function(snap) {
+        
+                    // setup the variable of the address concatenated
+                    var profileLocation = snap.val().address + " " + snap.val().city + ", " + snap.val().state;
+                    
+                    // geocode the address
+                    var geocoder = new google.maps.Geocoder();
+                    geocodeAddress(geocoder, map);
+                    
+                    function geocodeAddress(geocoder, resultsMap) {
+                    geocoder.geocode({ 'address': profileLocation }, function (results, status) {
+                    if (status === 'OK') {
+                        resultsMap.setCenter(results[0].geometry.location);
+                        map.setZoom(9);
+                        console.log(profileLocation);
+                    }
+                })
+            };
+                });
+            }
+            else {
+                window.location.replace("login.html");
+            }
+        })
+    };
 
     var workoutList = firebase.database().ref("workouts").orderByKey();
     workoutList.once("value").then(function(snapshot) {
@@ -35,6 +86,8 @@ function initMap() {
             var workoutDay2 = childData.val().scheduledDayTwo;
             var workoutTime1 = childData.val().dayOneTime;
             var workoutTime2 = childData.val().dayTwoTime;
+            var workoutCreator = childData.val().username;
+            var creatorEmail = childData.val().email;
 
             console.log("workoutAddress line 30 : " + workoutAddress);
 
@@ -52,49 +105,63 @@ function initMap() {
                             position: results[0].geometry.location
                         });
 
-                        var contentString = "<b>Name: </b>" + workoutName + "<br><b>Description: </b>" + 
-                        workoutDescription + "<br><b>Day/Time: </b>" + workoutDay1 + " " + workoutTime1 + " " + 
-                        workoutDay2 + " " + workoutTime2 + "<br><b>Category: </b>" + workoutCategory + 
-                        "<br><b>Level: </b>" + workoutLevel + "<br><b>Address: </b>" + workoutAddress
+                        // var contentString = "<b>Name: </b>" + workoutName + "<br><b>Description: </b>" + 
+                        // workoutDescription + "<br><b>Day/Time: </b>" + workoutDay1 + " " + workoutTime1 + " " + 
+                        // workoutDay2 + " " + workoutTime2 + "<br><b>Category: </b>" + workoutCategory + 
+                        // "<br><b>Level: </b>" + workoutLevel + "<br><b>Address: </b>" + workoutAddress
 
-                        if (workoutDay1 === undefined && workoutTime1 === undefined) {
+                        var contentString;
+
+                        if (workoutDay1 === "" && workoutTime1 === "" && 
+                        workoutDay2 === "" && workoutTime2 === "") {
                             contentString = "<b>Name: </b>" + workoutName + "<br><b>Description: </b>" + 
-                            workoutDescription + "<br><b>Day/Time: </b>" + 
-                            workoutDay2 + " " + workoutTime2 + "<br><b>Category: </b>" + workoutCategory + 
-                            "<br><b>Level: </b>" + workoutLevel + "<br><b>Address: </b>" + workoutAddress
-                        }
-                        else if (workoutDay2 === undefined && workoutTime2 === undefined) {
-                            contentString = "<b>Name: </b>" + workoutName + "<br><b>Description: </b>" + 
-                            workoutDescription + "<br><b>Day/Time: </b>" + workoutDay1 + " " + workoutTime1 + 
+                            workoutDescription + 
                             "<br><b>Category: </b>" + workoutCategory + 
-                            "<br><b>Level: </b>" + workoutLevel + "<br><b>Address: </b>" + workoutAddress
+                            "<br><b>Level: </b>" + workoutLevel + "<br><b>Location: </b>" + workoutAddress +
+                            "<br><b>Creator: </b>" + workoutCreator + " <a href=mailto:" + 
+                            creatorEmail + "><i class='fas fa-envelope'></i></a>"
                         }
-                        else if (workoutDay1 === undefined && workoutTime1 === undefined && 
-                            workoutDay2 === undefined && workoutTime2 === undefined) {
-                                contentString = "<b>Name: </b>" + workoutName + "<br><b>Description: </b>" + 
-                                workoutDescription + 
-                                "<br><b>Category: </b>" + workoutCategory + 
-                                "<br><b>Level: </b>" + workoutLevel + "<br><b>Address: </b>" + workoutAddress
-                            }
+                        else if (workoutDay1 === "" && workoutTime1 === "") {
+                            contentString = "<b>Name: </b>" + workoutName + "<br><b>Description: </b>" + 
+                            workoutDescription + "<br><b>Day/Time: </b>" + workoutDay2 + " at " + workoutTime2 + 
+                            "<br><b>Category: </b>" + workoutCategory + 
+                            "<br><b>Level: </b>" + workoutLevel + "<br><b>Location: </b>" + workoutAddress + 
+                            "<br><b>Creator: </b>" + workoutCreator + " <a href=mailto:" + 
+                            creatorEmail + "><i class='fas fa-envelope'></i></a>"
+                        }
+                        else if (workoutDay2 === "" && workoutTime2 === "") {
+                            contentString = "<b>Name: </b>" + workoutName + "<br><b>Description: </b>" + 
+                            workoutDescription + "<br><b>Day/Time: </b>" + workoutDay1 + " at " + workoutTime1 + 
+                            "<br><b>Category: </b>" + workoutCategory + 
+                            "<br><b>Level: </b>" + workoutLevel + "<br><b>Location: </b>" + workoutAddress +
+                            "<br><b>Creator: </b>" + workoutCreator + " <a href=mailto:" + 
+                            creatorEmail + "><i class='fas fa-envelope'></i></a>"
+                        }
                         else { 
                             contentString = "<b>Name: </b>" + workoutName + "<br><b>Description: </b>" + 
-                            workoutDescription + "<br><b>Day/Time: </b>" + workoutDay1 + " at " + workoutTime1 + " and " + 
+                            workoutDescription + "<br><b>Day/Time: </b>" + workoutDay1 + " at " + workoutTime1 + 
+                            " and " + 
                             workoutDay2 + " at " + workoutTime2 + "<br><b>Category: </b>" + workoutCategory + 
-                            "<br><b>Level: </b>" + workoutLevel + "<br><b>Address: </b>" + workoutAddress
+                            "<br><b>Level: </b>" + workoutLevel + "<br><b>Location: </b>" + workoutAddress +
+                            "<br><b>Creator: </b>" + workoutCreator + " <a href=mailto:" + 
+                            creatorEmail + "><i class='fas fa-envelope'></i></a>"
                         }
 
                         var infowindow = new google.maps.InfoWindow({
                             content: contentString
                         });
 
-                        marker.addListener('click', function () {
+                        marker.addListener('mouseover', function () {
                             infowindow.open(map, marker);
                         });
 
+                        marker.addListener('mouseout', function() {
+                            infowindow.close();
+                        });
                     } 
-                    else {
-                        alert('Address was not successful for the following reason: ' + status);
-                    };
+                    // else {
+                    //     alert('Address was not successful for the following reason: ' + status);
+                    // };
                 });
             }
 
