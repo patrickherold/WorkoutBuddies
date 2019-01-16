@@ -53,9 +53,35 @@ function initMap() {
                         });
 
                         var contentString = "<b>Name: </b>" + workoutName + "<br><b>Description: </b>" + 
-                        workoutDescription + "<br><b>Category: </b>" + workoutDay1 + " " + workoutTime1 + " " + 
+                        workoutDescription + "<br><b>Day/Time: </b>" + workoutDay1 + " " + workoutTime1 + " " + 
                         workoutDay2 + " " + workoutTime2 + "<br><b>Category: </b>" + workoutCategory + 
                         "<br><b>Level: </b>" + workoutLevel + "<br><b>Address: </b>" + workoutAddress
+
+                        if (workoutDay1 === undefined && workoutTime1 === undefined) {
+                            contentString = "<b>Name: </b>" + workoutName + "<br><b>Description: </b>" + 
+                            workoutDescription + "<br><b>Day/Time: </b>" + 
+                            workoutDay2 + " " + workoutTime2 + "<br><b>Category: </b>" + workoutCategory + 
+                            "<br><b>Level: </b>" + workoutLevel + "<br><b>Address: </b>" + workoutAddress
+                        }
+                        else if (workoutDay2 === undefined && workoutTime2 === undefined) {
+                            contentString = "<b>Name: </b>" + workoutName + "<br><b>Description: </b>" + 
+                            workoutDescription + "<br><b>Day/Time: </b>" + workoutDay1 + " " + workoutTime1 + 
+                            "<br><b>Category: </b>" + workoutCategory + 
+                            "<br><b>Level: </b>" + workoutLevel + "<br><b>Address: </b>" + workoutAddress
+                        }
+                        else if (workoutDay1 === undefined && workoutTime1 === undefined && 
+                            workoutDay2 === undefined && workoutTime2 === undefined) {
+                                contentString = "<b>Name: </b>" + workoutName + "<br><b>Description: </b>" + 
+                                workoutDescription + 
+                                "<br><b>Category: </b>" + workoutCategory + 
+                                "<br><b>Level: </b>" + workoutLevel + "<br><b>Address: </b>" + workoutAddress
+                            }
+                        else { 
+                            contentString = "<b>Name: </b>" + workoutName + "<br><b>Description: </b>" + 
+                            workoutDescription + "<br><b>Day/Time: </b>" + workoutDay1 + " at " + workoutTime1 + " and " + 
+                            workoutDay2 + " at " + workoutTime2 + "<br><b>Category: </b>" + workoutCategory + 
+                            "<br><b>Level: </b>" + workoutLevel + "<br><b>Address: </b>" + workoutAddress
+                        }
 
                         var infowindow = new google.maps.InfoWindow({
                             content: contentString
