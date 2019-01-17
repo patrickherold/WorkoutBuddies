@@ -32,8 +32,7 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="map.html">MAP</a></li>
-                <li><a href="connect.html">CONNECT</a></li>
-                <li><a href="workout.html">WOROUT</a></li>
+                <li><a href="workout.html">WORKOUT</a></li>
                 <li><a href="profile.html">EDIT PROFILE</a></li>
                 <!--  This button should only display on screens where someone is logged in.   -->
                 <li><button class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
@@ -44,34 +43,82 @@
     <ul class="sidenav" id="navCollapse">
         <li><a href="index.html">HOME</a></li>
         <li><a href="map.html">MAP</a></li>
-        <li><a href="connect.html">CONNECT</a></li>
-        <li><a href="workout.html">WOROUT</a></li>
+        <li><a href="workout.html">WORKOUT</a></li>
         <li><a href="profile.html">EDIT PROFILE</a></li>
         <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
     </ul>
     </nav>
     <!--  END some sort of nav, here is a placehodler -->
-
-
-    <!--  some sort of body, here is a placehodler -->
-    <div class="container" id="loginContainer" style="display: none;">
-        <div class="row">
-            <div id="firebaseui-auth-container"></div>
-            <div id="loader">Loading...</div>
-        </div>
-    </div>
-    <!--  END some sort of body, here is a placehodler -->
-
+        
     <!-- START CONTENT -->
     <section id="content">
         <div class="container">
-            <div class="col s12 m3 offset-m2">
-                <div id="accountDetails"></div>
+            <div id="profile-page" class="section">
+                <!--  some sort of body, here is a placehodler -->
+                <div id="loginContainer profile-page-header" style="display: none;">
+                    <div id="firebaseui-auth-container"></div>
+                    <div id="loader">Loading...</div>
+                </div>
+                <!--  END some sort of body, here is a placehodler -->
+                <div id="profile-page-content" class="row">
+                    <div id="profile-page-sidebar" class="col s12 m4 l4">
+                    <!-- Profile About  -->
+                    <div class="card cyan">
+                        <div class="card-content white-text">
+                        <span id="currentPersonUsername" class="card-title"></span>
+                        <img src="" id="currentPersonProfilePicture" class="responsive-img">
+                        <p id="currentPersonAboutMe"></p>
+                        </div>
+                    </div>
+                    <!-- Profile About  -->
+
+                    <!-- My Buddy List -->
+                    <h5>My Workout Buddies</h5>
+                    <ul id="myBuddies" class="collection z-depth-1">
+                    </ul>
+                    <!-- My Buddy List -->
+                    
+                    <!-- Profile of Connected workouts  -->
+                    <h5>My Joined Workouts</h5>
+                    <ul id="myWorkouts" class="collection z-depth-1">
+                    </ul>
+                    <!-- Profile Connected workouts -->
+                    <hr>
+                    <!-- Weather Card -->
+                    <h5>My Weather</h5>
+                    <div class="card">
+                        <div id="userWeather" class="card-image waves-effect waves-block waves-light">
+                        </div>
+                        <div class="card-content">
+                            <p class="currentWeatherLocation"></p>
+                            <p>Current</p>
+                            <p class="currentWeather"></p>
+                            <p>Tomorrow's</p>
+                            <p class="currentForecast0"></p>
+                            <p>Extended</p>
+                            <p class="currentForecast1"></p>
+                        </div>
+                    </div>
+                    <!-- Weather Card -->
+                    
+                    </div>
+                    <div id="profile-page-wall" class="col s12 m8 l8">
+                        <!-- Pending Requests  -->
+                        <h4>Pending Workout Requests</h4>
+                        <ul id="buddyRequests" class="collection z-depth-1"></ul>
+                        <!-- Profile of Connected workouts  -->
+                        <h4>Available Workouts</h4>
+                        <ul id="availableWorkouts" class="collection z-depth-1"></ul>
+
+                        <h4>Workout Buddy Options</h4>
+                        <ul id="connectedUserList" class="collection z-depth-1"></ul>
+                        <!-- Profile Connected workouts -->
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     <!-- END CONTENT -->
-
 
     <!-- jQuery JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
