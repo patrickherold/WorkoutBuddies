@@ -12,14 +12,19 @@ You will need a code editor. Ex. Visual Studio Code
 # Deployment
 These instructions will guide you to deploy this project on a live system
 # Built With
-Materialize
+* Materialize
+* Javascript
+* jQuery
+* Google Maps API
+* Open Cage Weather API
+* Firebase
 # Contributing
 Please read our guidelines for details on our code of conduct, and the process for submitting pull requests to us.
 # Authors
-Patrick Herold
-Russell Harben
-Shain Dholakiya
-Reese Fairbanks
+* Patrick Herold
+* Russell Harben
+* Shain Dholakiya
+* Reese Fairbanks
 # License
 
 # Acknowledgments
