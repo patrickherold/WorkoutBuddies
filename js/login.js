@@ -10,6 +10,9 @@ var config = {
 
 firebase.initializeApp(config);
 
+var database = firebase.database();
+
+
 // Firebase pre-built UI
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -18,6 +21,13 @@ var uiConfig = {
         signInSuccessWithAuthResult: function (authResult, redirectUrl) {
             // User successfully signed in.
             // Return type determines whether we continue the redirect automatically
+
+            var userSnap = firebase.database().ref('users/' + firebase.auth().currentUser.uid);
+            userSnap.update({
+                username: firebase.auth().currentUser.displayName,
+                email: firebase.auth().currentUser.email,
+                profilePicture: firebase.auth().currentUser.photoURL
+            });
             return true;
         },
         uiShown: function () {
@@ -27,7 +37,7 @@ var uiConfig = {
     },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
-    signInSuccessUrl: 'profile.html',
+    signInSuccessUrl: "profile.html",
     signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
