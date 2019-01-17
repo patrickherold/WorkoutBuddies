@@ -37,7 +37,29 @@ firebase.auth().onAuthStateChanged( user => {
             $("#aboutMe").val(snap.val().aboutMe);
             $("label[for='aboutMe']").addClass("active");
 
-            currentPersonProfilePicture = snap.val().profilePicture;
+            if (firebase.auth().currentUser.photoURL) {
+                currentPersonProfilePicture = firebase.auth().currentUser.photoURL;
+            }
+            else if (snap.val().profilePicture) {
+                currentPersonProfilePicture = snap.val().profilePicture;
+            }
+            else {
+                currentPersonProfilePicture = "images/icons/fitness.svg";
+            }
+
+            if (snap.val().workoutPreferences) {
+                currentPersonSorkoutPreferences = snap.val().workoutPreferences;
+            }
+            else {
+                currentPersonWorkoutPreferences = "Mall Walking";
+            }
+            $("#profilePictureSelect").val(currentPersonProfilePicture);
+
+            $("#workoutPreferences").val(currentPersonSorkoutPreferences);
+
+            
+
+
         });
 
         // submit and update values
@@ -60,9 +82,12 @@ firebase.auth().onAuthStateChanged( user => {
             if (currentPersonProfilePicture.includes("http")) {
                 var profilePicture = currentPersonProfilePicture;
             } 
-            else {
+            else if ($("select#profilePictureSelect").val()) {
                 var profilePicture = $("select#profilePictureSelect").val();
-            };
+            }
+            else {
+                var profilePicture = "images/icons/fitness.svg";
+            }
 
 
             console.log("Profile Picture: " + profilePicture);
@@ -81,7 +106,7 @@ firebase.auth().onAuthStateChanged( user => {
                 profilePicture: profilePicture,
                 workoutPreferences: workoutPreferences
             });
-            window.location.replace("index.html");
+            // window.location.replace("index.html");
         });
     }
     else {
