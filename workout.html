@@ -35,8 +35,7 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="map.html">MAP</a></li>
-                <li><a href="connect.html">CONNECT</a></li>
-                <li><a href="workout.html">WOROUT</a></li>
+                <li><a href="workout.html">WORKOUT</a></li>
                 <li><a href="profile.html">EDIT PROFILE</a></li>
                 <!--  This button should only display on screens where someone is logged in.   -->
                 <li><button class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
@@ -47,8 +46,7 @@
     <ul class="sidenav" id="navCollapse">
         <li><a href="index.html">HOME</a></li>
         <li><a href="map.html">MAP</a></li>
-        <li><a href="connect.html">CONNECT</a></li>
-        <li><a href="workout.html">WOROUT</a></li>
+        <li><a href="workout.html">WORKOUT</a></li>
         <li><a href="profile.html">EDIT PROFILE</a></li>
         <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
     </ul>
@@ -189,18 +187,18 @@
             </div>
         </div>
         <div class="row">
-            <div class="col m6"></div>
             <div class="col m6">
-                <button id="submitButton" class="btn cyan waves-effect waves-light right" onclick="M.toast({html: 'Workout Created'})" type="submit" name="action">Submit
+                <span id="redirectMsg"></span>
+            </div>
+            <div class="col m6">
+                <button id="submitButton" class="btn cyan waves-effect waves-light right" onclick="M.toast({html: 'Workout created!  Hang tight for one second while we get you back to your profile.'})" type="submit" name="action">Submit
                     <i class="mdi-content-send right"></i>
                 </button>
             </div>
             </form>
         </div>
         <div class="row">
-            <div class="col m6">
-                
-            </div>
+            <div class="col m6"></div>
             <div class="col m6"></div>
         </div>
     </div>
