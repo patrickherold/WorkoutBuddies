@@ -15,7 +15,7 @@ var map;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
     // center: uluru,
-    zoom: 4
+    zoom: 3
     });
     
     infoWindow = new google.maps.InfoWindow;
@@ -96,7 +96,7 @@ function initMap() {
             var workoutCreator = childData.val().username;
             var creatorEmail = childData.val().email;
 
-            console.log("workoutAddress line 30 : " + workoutAddress);
+            // console.log("workoutAddress line 30 : " + workoutAddress);
 
             var geocoder = new google.maps.Geocoder();
 
@@ -160,11 +160,11 @@ function initMap() {
 
                         marker.addListener('mouseover', function () {
                             infowindow.open(map, marker);
-                        });
-
-                        marker.addListener('mouseout', function() {
+                            
+                        marker.addListener('click', function() {
                             infowindow.close();
                         });
+                    });
                     } 
                     // else {
                     //     alert('Address was not successful for the following reason: ' + status);
