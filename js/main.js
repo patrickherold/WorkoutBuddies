@@ -143,9 +143,19 @@ firebase.auth().onAuthStateChanged( user => {
           .then(function(snapshot) {
             // for each user in the list do the stuff below
             snapshot.forEach(function(childData) {
-                // setup the user of the user for the user list
+                // setup the userID of the buddy for the user list
                 buddyId = childData.key;
 
+                // buddyData = childData.val().workoutBuddies;
+                // if (buddyData) {
+                //     buddyData.once("value").then(function(buddySnapshot) {
+                //         // for each user in the list do the stuff below
+                //         buddySnapshot.forEach(function(buddyData) {
+                //         console.log("child workout buddies: " + buddyData);
+                //     });
+                // });
+
+                    
                 // setup the variables for the user; this will be used to create the user button listing
                 // this is not the current person, but the button person
                 var personUsername = childData.val().username;
@@ -359,8 +369,6 @@ firebase.auth().onAuthStateChanged( user => {
 
                 
                 
-                var buddyIcon = ("<img src='" + workoutCategory + "' class='profilePicture circle deep-orange accent-2 responsive-img right-align' />");
-
                 var joinButton = $('<button/>', {
                     text: "JOIN",
                     "id": workoutId,
