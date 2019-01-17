@@ -476,7 +476,6 @@ firebase.auth().onAuthStateChanged( user => {
                     $("p.currentForecast0").text(response.daily.data[0].summary);
                     $("p.currentForecast1").text(response.daily.data[1].summary);
                 });
-        
             });
         });
     }
