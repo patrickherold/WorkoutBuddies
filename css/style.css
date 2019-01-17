@@ -79,23 +79,6 @@ textarea#aboutMe {
     font-weight: 900;
 }
 
-<<<<<<< HEAD
 a {
     color: black;
 }
-=======
-button.endWorkout,
-button.endBuddy {
-    font-size: .7em;
-    padding: 2px;
-    height: 15px;
-    line-height: 1em;
-    float: right;
-}
-
-
-.circle {
-    border-radius: 10%;
-}
-
->>>>>>> master
