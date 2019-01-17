@@ -55,10 +55,7 @@ firebase.auth().onAuthStateChanged( user => {
             }
             $("#profilePictureSelect").val(currentPersonProfilePicture);
 
-            $("#workoutPreferences").val(currentPersonSorkoutPreferences);
-
-            
-
+            $("select#workoutPreferences").val(currentPersonSorkoutPreferences);
 
         });
 
