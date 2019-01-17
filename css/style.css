@@ -76,7 +76,8 @@
 }
 
 button.endWorkout,
-button.endBuddy {
+button.endBuddy,
+button.editWorkoutButton {
     font-size: .7em;
     padding: 2px;
     height: 15px;
@@ -88,4 +89,3 @@ button.endBuddy {
 .circle {
     border-radius: 10%;
 }
-
