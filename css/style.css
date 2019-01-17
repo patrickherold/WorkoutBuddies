@@ -1,4 +1,3 @@
-
 #createWorkout.container {
     margin-top: 50px;
 }
@@ -9,7 +8,7 @@
 }
 
 #currentPersonProfilePicture {
-    max-width: 80%;
+    max-width: 95%;
 }
 
 #mainContainer {
@@ -57,6 +56,10 @@
     font-weight: bolder;
 }
 
+textarea#aboutMe {
+    min-height: 8rem;
+}
+
 @media only screen and (min-width: 993px) {
 .container {
     width: 70%;
@@ -69,12 +72,30 @@
     float: right;
 }
 
+.currentWeatherLocation,
 .currentWeather, 
 .currentForecast0,
 .currentForecast1 {
     font-weight: 900;
 }
 
+<<<<<<< HEAD
 a {
     color: black;
 }
+=======
+button.endWorkout,
+button.endBuddy {
+    font-size: .7em;
+    padding: 2px;
+    height: 15px;
+    line-height: 1em;
+    float: right;
+}
+
+
+.circle {
+    border-radius: 10%;
+}
+
+>>>>>>> master

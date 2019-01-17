@@ -35,8 +35,7 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="map.html">MAP</a></li>
-                <li><a href="connect.html">CONNECT</a></li>
-                <li><a href="workout.html">WOROUT</a></li>
+                <li><a href="workout.html">WORKOUT</a></li>
                 <li><a href="profile.html">EDIT PROFILE</a></li>
                 <!--  This button should only display on screens where someone is logged in.   -->
                 <li><button class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
@@ -47,23 +46,13 @@
     <ul class="sidenav" id="navCollapse">
         <li><a href="index.html">HOME</a></li>
         <li><a href="map.html">MAP</a></li>
-        <li><a href="connect.html">CONNECT</a></li>
-        <li><a href="workout.html">WOROUT</a></li>
+        <li><a href="workout.html">WORKOUT</a></li>
         <li><a href="profile.html">EDIT PROFILE</a></li>
 
         <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
     </ul>
     </nav>
     <!--  END some sort of nav, here is a placehodler -->
-
-    <!-- Hero Image -->
-
-    <div class="row">
-        <div class="">
-            <img class="hero" src="images/editProfile.png" />
-        </div>
-    </div>
-
 
     <!--  some sort of body, here is a placehodler -->
     <div class="container" id="loginContainer" style="display: none;">
@@ -85,91 +74,161 @@
                     <div class="row">
                         <div class="col s8 m8 l8">
                             <label for="profilePicture" class="active">Profile Icon</label>
-                            <select id="profilePictureSelect" class="browser-default" required title="Please select an icon">
-                                <option value="" disabled selected>Select a profile icon</option>
-                                <option value="images/icons/boxing.svg">Boxing</option>
-                                <option value="images/icons/arobics.svg">Arobics</option>
-                                <option value="images/icons/girlGym.svg">Gym Lady</option>
-                                <option value="images/icons/golf.svg">Golfer</option>
-                                <option value="images/icons/shooter.svg">Bialtelon</option>
+                            <select id="profilePictureSelect" class="browser-default" required="" aria-required="true" title="Please select an icon">
+                                <option value="images/icons/judo.svg">judo</option>
+                                <option value="images/icons/volleyball.svg">volleyball</option>
+                                <option value="images/icons/fitness.svg">fitness</option>
+                                <option value="images/icons/basketball.svg">basketball</option>
+                                <option value="images/icons/baseball.svg">baseball</option>
+                                <option value="images/icons/football.svg">football</option>
+                                <option value="images/icons/baseball.svg">baseball</option>
+                                <option value="images/icons/swimmer.svg">swimmer</option>
+                                <option value="images/icons/basketball.svg">basketball</option>
+                                <option value="images/icons/volleyball.svg">volleyball</option>
+                                <option value="images/icons/swimmer.svg">swimmer</option>
+                                <option value="images/icons/cyclist.svg">cyclist</option>
+                                <option value="images/icons/athlete.svg">athlete</option>
+                                <option value="images/icons/fitness.svg">fitness</option>
+                                <option value="images/icons/skier.svg">skier</option>
+                                <option value="images/icons/judo.svg">judo</option>
+                                <option value="images/icons/skier.svg">skier</option>
+                                <option value="images/icons/cyclist.svg">cyclist</option>
+                                <option value="images/icons/tennis.svg">tennis</option>
+                                <option value="images/icons/surfer.svg">surfer</option>
+                                <option value="images/icons/akebono.svg">akebono</option>
+                                <option value="images/icons/scuba.svg">scuba</option>
+                                <option value="images/icons/jockey.svg">jockey</option>
+                                <option value="images/icons/parachuter.svg">parachuter</option>
+                                <option value="images/icons/golfer.svg">golfer</option>
+                                <option value="images/icons/jockey.svg">jockey</option>
+                                <option value="images/icons/boxer.svg">boxer</option>
+                                <option value="images/icons/soccer.svg">soccer</option>
+                                <option value="images/icons/cheerleader.svg">cheerleader</option>
+                                <option value="images/icons/gymnast.svg">gymnast</option>
+                                <option value="images/icons/referee.svg">referee</option>
+                                <option value="images/icons/soccer.svg">soccer</option>
+                                <option value="images/icons/sporty.svg">sporty</option>
+                                <option value="images/icons/referee.svg">referee</option>
+                                <option value="images/icons/climber.svg">climber</option>
+                                <option value="images/icons/sporty.svg">sporty</option>
+                                <option value="images/icons/wrestler.svg">wrestler</option>
                             </select>
                         </div>
                         <div class="col s4 m4 l4">
                             <img src="" id="profilePicture">
                         </div>
                         <div class="input-field col s12 m12 l12">
-                            <input id="username" type="text" required class="validate" pattern="^\S.+" title="Your Name">
+                            <input id="username" type="text" required="" aria-required="true" class="validate" pattern="^\S.+" title="Your Name">
                             <label for="username" class="active">Full Name</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12 m12 l12">
-                            <input id="address" type="text" required class="validate" pattern="^\S.+" title="Please enter a valid address">
+                            <input id="address" type="text" required="" aria-required="true" class="validate" pattern="^\S.+" title="Please enter a valid address">
                             <label for="address" class="active">Address</label>
                         </div>
-                        <div class="col m2"></div>
                     </div>
                     <div class="row">
-                        <div class="col m2"></div>
                         <div class="input-field col m4">
-                            <input id="city" type="text" required class="validate" title="Please enter a valid City/Town"
+                            <input id="city" type="text" required="" aria-required="true" class="validate" title="Please enter a valid City/Town"
                                 pattern="^\S.+">
                             <label for="city" class="active">City/Town</label>
                         </div>
                         <div class="col m4">
                             <label for="state" class="active">State</label>
-                            <select id="state" class="browser-default" required title="Please select a state">
-                                <option value="" disabled selected>Select a state</option>
-                                <option value="ar-us">Arizona</option>
-                                <option value="ny-us">New York</option>
-                                <option value="ca-us">California</option>
-                                <option value="ga-us">Georgia</option>
+                            <select id="state" class="browser-default" required="" aria-required="true" title="Please select a state">
+                                <option value="" selected>Select a state</option>
+                                <option value="AL">Alabama</option>
+                                <option value="AK">Alaska</option>
+                                <option value="AZ">Arizona</option>
+                                <option value="AR">Arkansas</option>
+                                <option value="CA">California</option>
+                                <option value="CO">Colorado</option>
+                                <option value="CT">Connecticut</option>
+                                <option value="DE">Delaware</option>
+                                <option value="DC">District Of Columbia</option>
+                                <option value="FL">Florida</option>
+                                <option value="GA">Georgia</option>
+                                <option value="HI">Hawaii</option>
+                                <option value="ID">Idaho</option>
+                                <option value="IL">Illinois</option>
+                                <option value="IN">Indiana</option>
+                                <option value="IA">Iowa</option>
+                                <option value="KS">Kansas</option>
+                                <option value="KY">Kentucky</option>
+                                <option value="LA">Louisiana</option>
+                                <option value="ME">Maine</option>
+                                <option value="MD">Maryland</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="MI">Michigan</option>
+                                <option value="MN">Minnesota</option>
+                                <option value="MS">Mississippi</option>
+                                <option value="MO">Missouri</option>
+                                <option value="MT">Montana</option>
+                                <option value="NE">Nebraska</option>
+                                <option value="NV">Nevada</option>
+                                <option value="NH">New Hampshire</option>
+                                <option value="NJ">New Jersey</option>
+                                <option value="NM">New Mexico</option>
+                                <option value="NY">New York</option>
+                                <option value="NC">North Carolina</option>
+                                <option value="ND">North Dakota</option>
+                                <option value="OH">Ohio</option>
+                                <option value="OK">Oklahoma</option>
+                                <option value="OR">Oregon</option>
+                                <option value="PA">Pennsylvania</option>
+                                <option value="RI">Rhode Island</option>
+                                <option value="SC">South Carolina</option>
+                                <option value="SD">South Dakota</option>
+                                <option value="TN">Tennessee</option>
+                                <option value="TX">Texas</option>
+                                <option value="UT">Utah</option>
+                                <option value="VT">Vermont</option>
+                                <option value="VA">Virginia</option>
+                                <option value="WA">Washington</option>
+                                <option value="WV">West Virginia</option>
+                                <option value="WI">Wisconsin</option>
+                                <option value="WY">Wyoming</option>
                             </select>
                         </div>
-                        <div class="col m2"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col m2"></div>
                         <div class="input-field col m4">
-                            <input id="zipCode" type="text" required title="Please enter a valid post code(e.g., 12345)"
+                            <input id="zipCode" type="text" required="" aria-required="true" title="Please enter a valid post code(e.g., 12345)"
                                 pattern="^\d{5}(-\d{4})?$" class="validate">
                             <label for="zipCode" class="active">Zip Code</label>
-                        </div>
-                        <div class="col input-field s12 m8 l8" id="workoutPreferences">
-                            <select id="workoutPreferences">
-                                <option value="" disabled selected>Choose your favorite work outs . . .</option>
-                                <option value="swim">Urban river swiming</option>
-                                <option value="darts">Dodge Darts</option>
-                                <option value="walk">Mall Walking</option>
-                                <option value="fight">Street Bowling</option>
-                                <option value="fighting">Yard Checkers</option>
+                        </div>    
+                    </div>
+                    <div class="row">
+                        <div class="col input-field s12 m12 l12">
+                            <select id="workoutPreferences" required="" aria-required="true">
+                                <option value="Urban River Swiming">Urban River Swiming</option>
+                                <option value="Dodge Darts">Dodge Darts</option>
+                                <option value="Mall Walking">Mall Walking</option>
+                                <option value="Street Bowling">Street Bowling</option>
+                                <option value="Yard Checkers">Yard Checkers</option>
+                                <option value="Combat Yoga">Combat Yoga</option>
+                                <option value="Hula Hoop">Hula Hoop</option>
+                                <option value="Rasor Wire Valuting">Rasor Wire Valuting</option>
                             </select>
                             <label>Workout Favorites</label>
                         </div>
-                        <div class="col m2"></div>
                     </div>
                     <div class="row">
-                        <div class="col m2"></div>
-                        <div class="input-field col m8">
-                            <textarea id="aboutMe" class="materialize-textarea" length="120" style="height: 21.2px;"></textarea>
+                        <div class="input-field col s12">
+                            <textarea id="aboutMe" class="materialize-textarea" length="120" style="height: 40px;"></textarea>
                             <label for="aboutMe" class="active">A little about me . . .</label>
                             <span class="character-counter" style="float: right; font-size: 12px; height: 1px;"></span>
                         </div>
-                        <div class="col m2"></div>
                     </div>
                     <div class="row">
-                        <div class="col m2"></div>
-                        <div class="input-field col m8">
+                        <div class="input-field col s12">
                             <button id="profileButton" class="btn cyan waves-effect waves-light right" type="submit"
                                 name="action">Submit
                                 <i class="mdi-content-send right"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="col m2"></div>
+                </form>
             </div>
-
-            </form>
             <!--/ profile-page-wall -->
         </div>
         </div>

@@ -32,8 +32,7 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="map.html">MAP</a></li>
-                <li><a href="connect.html">CONNECT</a></li>
-                <li><a href="workout.html">WOROUT</a></li>
+                <li><a href="workout.html">WORKOUT</a></li>
                 <li><a href="profile.html">EDIT PROFILE</a></li>
                 <!--  This button should only display on screens where someone is logged in.   -->
                 <li><button class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
@@ -44,8 +43,8 @@
     <ul class="sidenav" id="navCollapse">
         <li><a href="index.html">HOME</a></li>
         <li><a href="map.html">MAP</a></li>
-        <li><a href="connect.html">CONNECT</a></li>
         <li><a href="workout.html">WORKOUT</a></li>
+        <li><a href="profile.html">EDIT PROFILE</a></li>
         <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
     </ul>
     </nav>
@@ -73,43 +72,31 @@
                     </div>
                     <!-- Profile About  -->
 
+                    <!-- My Buddy List -->
+                    <h5>My Workout Buddies</h5>
+                    <ul id="myBuddies" class="collection z-depth-1">
+                    </ul>
+                    <!-- My Buddy List -->
+                    
                     <!-- Profile of Connected workouts  -->
+                    <h5>My Joined Workouts</h5>
                     <ul id="myWorkouts" class="collection z-depth-1">
-
                     </ul>
                     <!-- Profile Connected workouts -->
-
-                    <!-- Map Card -->
-                    <div class="map-card">
-                        <div class="card">
-                            <div id="userMap" class="card-image waves-effect waves-block waves-light">
-                            </div>
-                            <div class="card-content">
-                                <a class="btn-floating activator btn-move-up waves-effect waves-light darken-2 right">
-                                <i class="material-icons">pin_drop</i>
-                                </a>
-                                <h4 class="card-title grey-text text-darken-4"><a href="#" class="grey-text text-darken-4">Your Location</a>
-                                </h4>
-                                <p class="blog-post-content">Find workouts nearby.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Map Card -->
-
+                    <hr>
                     <!-- Weather Card -->
-                    <div class="map-card">
-                        <div class="card">
-                            <div id="userWeather" class="card-image waves-effect waves-block waves-light">
-                            </div>
-                            <div class="card-content">
-                                <h4 class="card-title grey-text text-darken-4">Your weather</h4>
-                                <p>Current Conditions</p>
-                                <p class="currentWeather"></p>
-                                <p>Tomorrow's Conditions</p>
-                                <p class="currentForecast0"></p>
-                                <p>More Conditions</p>
-                                <p class="currentForecast1"></p>
-                            </div>
+                    <h5>My Weather</h5>
+                    <div class="card">
+                        <div id="userWeather" class="card-image waves-effect waves-block waves-light">
+                        </div>
+                        <div class="card-content">
+                            <p class="currentWeatherLocation"></p>
+                            <p>Current</p>
+                            <p class="currentWeather"></p>
+                            <p>Tomorrow's</p>
+                            <p class="currentForecast0"></p>
+                            <p>Extended</p>
+                            <p class="currentForecast1"></p>
                         </div>
                     </div>
                     <!-- Weather Card -->
@@ -129,13 +116,10 @@
                     </div>
                 </div>
             </div>
-            <div id="map"></div>
         </div>
     </section>
     <!-- END CONTENT -->
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDvqw37jwc7D4cX38k83m38NJ_SttI-wU&callback=initMap">
-    </script>
     <!-- jQuery JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
