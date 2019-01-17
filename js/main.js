@@ -385,7 +385,6 @@ firebase.auth().onAuthStateChanged( user => {
                 });
 
                 $(workoutList).append(joinButton);
-                $(workoutList).append(buddyIcon);            
                 $(workoutList).append(spanTitle);
                 $(workoutList).append(spanDays);            
                 $(workoutList).append(spanZip);      
