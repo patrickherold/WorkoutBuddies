@@ -11,7 +11,9 @@ var database = firebase.database();
 var user
 
 //  THIS IS NEEDED TO GET THE CURRENT USER. AND BECAUSE WE HAVE TO WAIT FOR A REPLY FROM THE DATABASE
-firebase.auth().onAuthStateChanged(user => {
+firebase.auth().onAuthStateChanged( user => {
+    //Grabbing users address
+    //Having an issue with firebase pulling the users address
     if (user) {
 
         ref.set("hello")
