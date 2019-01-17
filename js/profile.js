@@ -106,7 +106,7 @@ firebase.auth().onAuthStateChanged( user => {
                 profilePicture: profilePicture,
                 workoutPreferences: workoutPreferences
             });
-            // window.location.replace("index.html");
+            window.location.replace("index.html");
         });
     }
     else {
