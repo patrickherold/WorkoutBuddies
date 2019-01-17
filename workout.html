@@ -20,6 +20,9 @@
     <!-- CSS Customization -->
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
+    <!-- JQuery DatePicker -->
+    <link href="dcalendar.picker.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -32,6 +35,10 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="map.html">MAP</a></li>
+<<<<<<< HEAD
+=======
+                <li><a href="connect.html">CONNECT</a></li>
+>>>>>>> feature/createWorkout
                 <li><a href="workout.html">WORKOUT</a></li>
                 <li><a href="profile.html">EDIT PROFILE</a></li>
                 <!--  This button should only display on screens where someone is logged in.   -->
@@ -43,6 +50,10 @@
     <ul class="sidenav" id="navCollapse">
         <li><a href="index.html">HOME</a></li>
         <li><a href="map.html">MAP</a></li>
+<<<<<<< HEAD
+=======
+        <li><a href="connect.html">CONNECT</a></li>
+>>>>>>> feature/createWorkout
         <li><a href="workout.html">WORKOUT</a></li>
         <li><a href="profile.html">EDIT PROFILE</a></li>
         <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
@@ -52,115 +63,160 @@
 
     <div id="createWorkout" class="container">
         <div class="row">
+            <div class="col m6">
+                <h5>Create Workout</h5>
+            </div>
+            <div class="col m6"></div>
+        </div>
+        <div class="row">
             <form class="createWorkout">
                 <div class="input-field col12">
                     <label for="workout-name">Give Your Workout An Interesting Name</label>
                     <input id="workout-name" type="text" class="validate">
                 </div>
+        </div>
+        <div class="row">
+            <div class="input-field col12">
+                <label for="activity-description">Give People A Quick Idea Of What To Expect</label>
+                <input id="activity-description" type="text" class="validate">
             </div>
-            <div class="row">
-                <div class="input-field col12">
-                    <label for="activity-description">Give People A Quick Idea Of What To Expect</label>
-                    <input id="activity-description" type="text" class="validate">
-                </div>
+        </div>
+        <div class="row">
+            <div class="input-field col12">
+                <label for="address">Location Address</label>
+                <input id="address" type="text" class="validate">
             </div>
-            <div class="row">
-                <div class="input-field col12">
-                    <label for="address">Location Address</label>
-                    <input id="address" type="text" class="validate">
-                </div>
+        </div>
+        <div class="row">
+            <div class="col m6">
+                <label>Workout Category</label>
+                <form action="#">
+                    <p>
+                        <label>
+                            <input class="with-gap workoutCategory" value="running" name="group1" type="radio" checked />
+                            <span>Running</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input class="with-gap workoutCategory" value="walking" name="group1" type="radio" />
+                            <span>Walking</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input class="with-gap workoutCategory" value="cycling" name="group1" type="radio" />
+                            <span>Cycling</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input class="with-gap workoutCategory" value="hiking" name="group1" type="radio" />
+                            <span>Hiking</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input class="with-gap workoutCategory" value="swimming" name="group1" type="radio" />
+                            <span>Swimming</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <input class="with-gap workoutCategory" value="cross-training" name="group1" type="radio" />
+                            <span>Cross-Training</span>
+                        </label>
+                    </p>
+                </form>
             </div>
+            <div class="col m6">
+                <label>Recommended Fitness Level</label>
+                <form action="#">
+                    <span>
+                        <label>
+                            <input class="with-gap recommendedFitnessLevel" value="1" name="group1" type="radio"
+                                checked />
+                            <span>1</span>
+                        </label>
+                    </span>
+                    <span class="marginLeft20">
+                        <label>
+                            <input class="with-gap recommendedFitnessLevel" value="2" name="group1" type="radio" />
+                            <span>2</span>
+                        </label>
+                    </span>
+                    <span class="marginLeft20">
+                        <label>
+                            <input class="with-gap recommendedFitnessLevel" value="3" name="group1" type="radio" />
+                            <span>3</span>
+                        </label>
+                    </span>
+                    <span class="marginLeft20">
+                        <label>
+                            <input class="with-gap recommendedFitnessLevel" value="4" name="group1" type="radio" />
+                            <span>4</span>
+                        </label>
+                    </span>
+                    <span class="marginLeft20">
+                        <label>
+                            <input class="with-gap recommendedFitnessLevel" value="5" name="group1" type="radio" />
+                            <span>5</span>
+                        </label>
+                    </span>
+                </form>
+            </div>
+        </div>
+        <div class="row">
             <div class="row">
                 <div class="col m6">
-                    <label>Workout Category</label>
-                    <form action="#">
-                        <p>
-                            <label>
-                                <input class="with-gap workoutCategory" value="running" name="group1" type="radio" checked />
-                                <span>Running</span>
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                                <input class="with-gap workoutCategory" value="walking" name="group1" type="radio" />
-                                <span>Walking</span>
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                                <input class="with-gap workoutCategory" value="cycling" name="group1" type="radio" />
-                                <span>Cycling</span>
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                                <input class="with-gap workoutCategory" value="hiking" name="group1" type="radio" />
-                                <span>Hiking</span>
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                                <input class="with-gap workoutCategory" value="swimming" name="group1" type="radio" />
-                                <span>Swimming</span>
-                            </label>
-                        </p>
-                        <p>
-                            <label>
-                                <input class="with-gap workoutCategory" value="cross-training" name="group1" type="radio" />
-                                <span>Cross-Training</span>
-                            </label>
-                        </p>
-                    </form>
+                    <h5>Schedule Up To Two Days Per Week</h5>
                 </div>
-                <div class="col m6">
-                    <label>Recommended Fitness Level</label>
-                    <form action="#">
-                        <span>
-                            <label>
-                                <input class="with-gap recommendedFitnessLevel" value="1" name="group1" type="radio" checked />
-                                <span>1</span>
-                            </label>
-                        </span>
-                        <span class="marginLeft20">
-                            <label>
-                                <input class="with-gap recommendedFitnessLevel" value="2" name="group1" type="radio" />
-                                <span>2</span>
-                            </label>
-                        </span>
-                        <span class="marginLeft20">
-                            <label>
-                                <input class="with-gap recommendedFitnessLevel" value="3" name="group1" type="radio" />
-                                <span>3</span>
-                            </label>
-                        </span>
-                        <span class="marginLeft20">
-                            <label>
-                                <input class="with-gap recommendedFitnessLevel" value="4" name="group1" type="radio" />
-                                <span>4</span>
-                            </label>
-                        </span>
-                        <span class="marginLeft20">
-                            <label>
-                                <input class="with-gap recommendedFitnessLevel" value="5" name="group1" type="radio" />
-                                <span>5</span>
-                            </label>
-                        </span>
-                    </form>
-                </div>
+                <div class="col m6"></div>
             </div>
-            <div class="row">
-                <div class="col m6">
-                    <button id="submitButton" class="btn cyan waves-effect waves-light right" type="submit" name="action">Submit
-                        <i class="mdi-content-send right"></i>
-                    </button>
-                </div>
+        </div>
+        <div class="row">
+            <div class="input-field col m6">
+                <label for="workout-date-one">Day of Week</label>
+                <input id="workout-date-one" type="text" class="validate">
+            </div>
+            <div class="input-field col m6">
+                <label for="time-one">Time</label>
+                <input id="time-one" type="text" class="validate">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col m6">
+                <label for="workout-date-two">Day of Week</label>
+                <input id="workout-date-two" type="text" class="validate">
+            </div>
+            <div class="input-field col m6">
+                <label for="time-two">Time</label>
+                <input id="time-two" type="text" class="validate">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m6">
+                <span id="redirectMsg"></span>
+            </div>
+            <div class="col m6">
+                <button id="submitButton" class="btn cyan waves-effect waves-light right" onclick="M.toast({html: 'Workout created!  Hang tight for one second while we get you back to your profile.'})" type="submit" name="action">Submit
+                    <i class="mdi-content-send right"></i>
+                </button>
+            </div>
             </form>
+        </div>
+        <div class="row">
+            <div class="col m6"></div>
+            <div class="col m6"></div>
         </div>
     </div>
 
 
     <!-- jQuery JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Date picker JQuery -->
+    <script src="dcalendar.picker.js"></script>
 
     <!-- Firebase App is always required and must be first -->
     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
