@@ -56,6 +56,10 @@
     font-weight: bolder;
 }
 
+textarea#aboutMe {
+    min-height: 8rem;
+}
+
 @media only screen and (min-width: 993px) {
 .container {
     width: 70%;
