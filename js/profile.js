@@ -58,7 +58,7 @@ firebase.auth().onAuthStateChanged( user => {
     
     
             if (currentPersonProfilePicture.includes("http")) {
-                var profilePicture = currentProfile;
+                var profilePicture = currentPersonProfilePicture;
             } 
             else {
                 var profilePicture = $("select#profilePictureSelect").val();

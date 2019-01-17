@@ -22,10 +22,11 @@ var uiConfig = {
             // User successfully signed in.
             // Return type determines whether we continue the redirect automatically
 
-            firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
+            var userSnap = firebase.database().ref('users/' + firebase.auth().currentUser.uid);
+            userSnap.update({
                 username: firebase.auth().currentUser.displayName,
                 email: firebase.auth().currentUser.email,
-                profilePicture: firebase.auth().currentUser.photoURL || 'images/profile_placeholder.png'
+                profilePicture: firebase.auth().currentUser.photoURL
             });
             return true;
         },
@@ -36,7 +37,7 @@ var uiConfig = {
     },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
-    signInSuccessUrl: 'profile.html',
+    signInSuccessUrl: "profile.html",
     signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
