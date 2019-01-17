@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Workout Buddies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS Frame works 
+         https://materializecss.com/getting-started.html
+          -- Materialize Compiled and minified CSS -->
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+    <!-- ICONs -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--   profile page theme   -->
+    <link href="css/profileTheme.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+    <!-- CSS Customization -->
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+</head>
+
+<body>
+    <!--  some sort of nav, here is a placehodler -->
+    <nav>
+        <div class="nav-wrapper container">
+            <a href="#!" class="brand-logo">Logo</a>
+            <!--  the data-target is what calls the sidenav to collapse -->
+            <a href="#" data-target="navCollapse" class="sidenav-trigger"><i class="material-icons">|||</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="map.html">MAP</a></li>
+                <li><a href="workout.html">WORKOUT</a></li>
+                <li><a href="profile.html">EDIT PROFILE</a></li>
+                <!--  This button should only display on screens where someone is logged in.   -->
+                <li><button class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="navCollapse">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="map.html">MAP</a></li>
+        <li><a href="workout.html">WORKOUT</a></li>
+        <li><a href="profile.html">EDIT PROFILE</a></li>
+        <li><button id="mobileLogout" class="waves-effect waves-light btn pull-right" onclick="logMeOut();">logout</button></li>
+    </ul>
+    </nav>
+    <!--  END some sort of nav, here is a placehodler -->
+
+    <!-- START CONTENT -->
+    <section id="content">
+      <div class="container">
+          <div class="col s12 m3 offset-m2">
+              <div id="availableWorkouts"></div>
+          </div>
+          <div id="map"></div>
+      </div>
+    </section>
+    <!-- END CONTENT -->
+
+  <!-- jQuery JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Firebase App is always required and must be first -->
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+
+  <!-- Add additional services that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-messaging.js"></script>
+
+
+  <!-- Materialize Compiled and minified JavaScript  -->
+  <script src="js/materialize.js"></script>
+  <script src="js/moment.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/map.js"></script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDvqw37jwc7D4cX38k83m38NJ_SttI-wU&callback=initMap"></script>
+  
+</body>
+
+</html>

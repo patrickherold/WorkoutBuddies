@@ -14,18 +14,15 @@ var user
 //  THIS IS NEEDED TO GET THE CURRENT USER. AND BECAUSE WE HAVE TO WAIT FOR A REPLY FROM THE DATABASE
 firebase.auth().onAuthStateChanged( user => {
     if (user) { 
-        this.userId = user.uid 
+        userId = user.uid    
 
-        // create or update the user in the database using info from Auth.
-        firebase.database().ref('users/' + this.userId).update({
-            username: user.displayName,
-            email: user.email
-        });
+        var currentPersonProfilePicture;
 
         // get values from database and add them to the form
         var userSnap = firebase.database().ref('users/' + userId);
+        // use the values from the database to populate the form. 
         userSnap.on('value', function(snap) {
-            $("#profilePicture").attr('src', (snap.val().profilePicture));;
+            $("#profilePicture").attr('src', (snap.val().profilePicture));
             $("label[for='username']").addClass("active");
             $("#username").val(snap.val().username);
             $("label[for='username']").addClass("active");
@@ -39,6 +36,52 @@ firebase.auth().onAuthStateChanged( user => {
             $("label[for='zipCode']").addClass("active");
             $("#aboutMe").val(snap.val().aboutMe);
             $("label[for='aboutMe']").addClass("active");
+
+            currentPersonProfilePicture = snap.val().profilePicture;
+        });
+
+        // submit and update values
+        $("#profileButton").on("click", function() {
+            event.preventDefault();
+            console.log("Profile Picture: " + currentPersonProfilePicture);
+
+            var username = $("#username").val();
+            var aboutMe = $("#aboutMe").val();
+            var address = $("#address").val();
+            var city = $("#city").val();
+            var state = $("#state").val();
+            var zipCode = $("#zipCode").val();
+            var dateNow = $.now();
+            var dateNow = moment(dateNow).format('MMMM Do, h:mm:ss a');
+            var workoutPreferences = $("#workoutPreferences").val();
+            var uid = firebase.auth().currentUser.uid;
+    
+    
+            if (currentPersonProfilePicture.includes("http")) {
+                var profilePicture = currentPersonProfilePicture;
+            } 
+            else {
+                var profilePicture = $("select#profilePictureSelect").val();
+            };
+
+
+            console.log("Profile Picture: " + profilePicture);
+
+            console.log("workoutPreferences: " + workoutPreferences);
+
+            // populate form values to the user profile in the database
+            firebase.database().ref('users/' + uid).update({
+                username: username,
+                aboutMe: aboutMe,
+                address: address,
+                city: city,
+                state: state,
+                zipCode: zipCode,
+                aboutMe: aboutMe,
+                profilePicture: profilePicture,
+                workoutPreferences: workoutPreferences
+            });
+            window.location.replace("index.html");
         });
     }
     else {
@@ -47,38 +90,3 @@ firebase.auth().onAuthStateChanged( user => {
 
 });
 
-
-// submit and update values
-// BECAUSE THE ON CLICK IS AFTER THE PAGE HAS LOADED WE DON'T NEED THE ON STATE CHANGE
-$("#profileButton").on("click", function() {
-    event.preventDefault();
-
-    var username = $("#username").val();
-    var aboutMe = $("#aboutMe").val();
-    var address = $("#address").val();
-    var city = $("#city").val();
-    var state = $("#state").val();
-    var zipCode = $("#zipCode").val();
-    var dateNow = $.now();
-    var dateNow = moment(dateNow).format('MMMM Do, h:mm:ss a');
-    var profilePicture = $("#profilePictureSelect").val();
-    var workoutPreferences = $("select#workoutPreferences").val();
-
-    var uid = firebase.auth().currentUser.uid;
-
-    console.log(workoutPreferences);
-
-    // populate form values
-    firebase.database().ref('users/' + uid).update({
-        username: username,
-        aboutMe: aboutMe,
-        address: address,
-        city: city,
-        state: state,
-        zipCode: zipCode,
-        aboutMe: aboutMe,
-        profilePicture: profilePicture,
-        workoutPreferences: workoutPreferences
-    });
-    window.location.replace("index.html");
-});
