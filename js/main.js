@@ -324,7 +324,7 @@ firebase.auth().onAuthStateChanged( user => {
                 var workoutEmail = childData.val().email;
                 var workoutCategory = childData.val().category;
                 var workoutAddress = childData.val().address;
-                var workoutActivityDescription = childData.val().activityDescription;
+                var activityDescription = childData.val().activityDescription;
                 var workoutDays = "Mon, Tue, Wed"
                
                 var workoutList = $('<li/>', {
@@ -346,10 +346,18 @@ firebase.auth().onAuthStateChanged( user => {
                     "class": "zipCode small",
                     text: workoutAddress
                 });
+
                 var spanEmail = $("<div/><a href='mailto:" + workoutEmail + " '", {
                     "class": "zipCode small",
                     text: workoutEmail
                 });
+
+                var spanActivityDescription = $('<div/>', {
+                    "class": "zipCode small",
+                    text: activityDescription
+                });
+
+                
                 
                 var buddyIcon = ("<img src='" + workoutCategory + "' class='profilePicture circle deep-orange accent-2 responsive-img right-align' />");
 
@@ -364,6 +372,7 @@ firebase.auth().onAuthStateChanged( user => {
                     "data-workoutcategory": workoutCategory,
                     "data-workoutemail": workoutEmail,
                     "data-workoutcreator": workoutCreator,
+                    "data-workoutdescription": activityDescription,
                     "data-workoutdays": "Mon, Tue, Wed"
                 });
 
@@ -372,7 +381,8 @@ firebase.auth().onAuthStateChanged( user => {
                 $(workoutList).append(spanTitle);
                 $(workoutList).append(spanDays);            
                 $(workoutList).append(spanZip);      
-                $(workoutList).append(spanEmail);      
+                $(workoutList).append(spanEmail);
+                $(workoutList).append(spanActivityDescription);      
                 $("#availableWorkouts").append(workoutList);
 
             });
