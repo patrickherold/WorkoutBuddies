@@ -25,7 +25,7 @@ var uiConfig = {
             firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
                 username: firebase.auth().currentUser.displayName,
                 email: firebase.auth().currentUser.email,
-                profilePicture: firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png'
+                profilePicture: firebase.auth().currentUser.photoURL || 'images/profile_placeholder.png'
             });
             return true;
         },
