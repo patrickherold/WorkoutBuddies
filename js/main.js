@@ -469,35 +469,60 @@ firebase.auth().onAuthStateChanged(user => {
                     window.location.replace("index.html");
                 });
 
+                // BEGINNING EDIT OR DELETE WORKOUT
                 $(".editWorkoutButton").on("click", function () {
-
                     thisId = $(this).attr('id');
-                    alert("This ID: " + thisId);
-                    window.location.replace("workout.html");
-                    // firebase.database().ref().child('users/' + userId + '/workouts/' + thisId).remove();
+                    alert("Selected workout ID: " + thisId);
 
                     // get values from database and add them to the form
-                    var userSnap = firebase.database().ref('workouts/' + userId);
-                    userSnap.on('value', function (snap) {
+                    var workoutRef = database.ref('workouts/' + thisId);
+                    workoutRef.on('value', function (snapshot) {
+                        console.log(snapshot.val());
 
-                        $("#profilePicture").attr('src', (snap.val().profilePicture));
-                        $("label[for='username']").addClass("active");
-                        $("#username").val(snap.val().username);
-                        $("label[for='username']").addClass("active");
-                        $("#address").val(snap.val().address);
-                        $("label[for='address']").addClass("active");
-                        $("#city").val(snap.val().city);
-                        $("label[for='city']").addClass("active");
-                        $("#state").val(snap.val().state);
-                        $("label[for='state']").addClass("active");
-                        $("#zipCode").val(snap.val().zipCode);
-                        $("label[for='zipCode']").addClass("active");
-                        $("#aboutMe").val(snap.val().aboutMe);
-                        $("label[for='aboutMe']").addClass("active");
+                        var workoutName = snapshot.val().workoutName;
+                        var activityDescription = snapshot.val().activityDescription;
+                        var address = snapshot.val().address;
+                        var scheduledDayOne = snapshot.val().scheduledDayOne;
+                        var dayOneTime = snapshot.val().dayOneTime;
+                        var scheduledDayTwo = snapshot.val().scheduledDayTwo;
+                        var dayTwoTime = snapshot.val().dayTwoTime;
+
+                        // Redirect to Create Workout page
+                        window.location.assign("workout.html");
+
+                        $("#workout-name").attr("placeholder", workoutName);
+                        $("#activityDescription").val(activityDescription);
+                        $("#address").val(address);
+                        $("#workout-date-one").val(scheduledDayOne);
+                        $("#time-one").val(dayOneTime);
+                        $("#workout-date-two").val(scheduledDayTwo);
+                        $("#time-two").val(dayTwoTime);
+                        
+
+
+                        // snapshot.forEach(function (childSnapshot) {
+                        //     var workoutData = childSnapshot.val();
+                        //     console.log(workoutData);
+
 
                     });
                 });
 
+                // $("#workout-name").val(snap.val().username);
+                // $("label[for='workout-name']").addClass("active");
+                // $("#activity-description").val(snap.val().city);
+                // $("label[for='activity-description']").addClass("active");
+                // $("#address").val(snap.val().address);
+                // $("label[for='address']").addClass("active");
+                // $("#state").val(snap.val().state);
+                // $("label[for='state']").addClass("active");
+                // $("#zipCode").val(snap.val().zipCode);
+                // $("label[for='zipCode']").addClass("active");
+                // $("#aboutMe").val(snap.val().aboutMe);
+                // $("label[for='aboutMe']").addClass("active");
+
+
+                // END EDIT OR DELETE WORKOUT
 
             });
 
