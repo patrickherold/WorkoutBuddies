@@ -19,7 +19,6 @@ firebase.auth().onAuthStateChanged(user => {
     if (user) {
         userId = user.uid;
 
-
         // confirm Firebase workout ID in LocalStorage
         // console.log(window.localStorage.WorkoutId);
 
@@ -187,14 +186,13 @@ firebase.auth().onAuthStateChanged(user => {
                 scheduledDayTwo = $("#workout-date-two").val("");
                 dayTwoTime = $("#time-two").val("");
 
-
             });
 
             function redirect() {
                 window.location.replace("index.html");
             }
 
-            setTimeout(redirect, 5000);
+            setTimeout(redirect, 3000);
 
         });
     }
@@ -207,4 +205,10 @@ firebase.auth().onAuthStateChanged(user => {
     else {
         window.location.replace("login.html");
     }
+
+    $(window).unload(function() {
+        localStorage.removeItem('WorkoutId');
+      });
+
+
 });
