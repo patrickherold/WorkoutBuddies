@@ -460,6 +460,7 @@ firebase.auth().onAuthStateChanged(user => {
 
                     // add the buttons to the list of users
                     $("#myWorkouts").append(workoutLi);
+
                 });
 
                 $(".endWorkout").on("click", function () {
@@ -471,42 +472,23 @@ firebase.auth().onAuthStateChanged(user => {
 
                 // BEGINNING EDIT OR DELETE WORKOUT
                 $(".editWorkoutButton").on("click", function () {
+
                     thisId = $(this).attr('id');
-                    alert("Selected workout ID: " + thisId);
+                    alert(thisId);
 
-                    // get values from database and add them to the form
-                    var workoutRef = database.ref('workouts/' + thisId);
-                    workoutRef.on('value', function (snapshot) {
-                        console.log(snapshot.val());
+                    localStorage.setItem("WorkoutId", JSON.stringify(thisId));
 
-                        var workoutName = snapshot.val().workoutName;
-                        var activityDescription = snapshot.val().activityDescription;
-                        var address = snapshot.val().address;
-                        var scheduledDayOne = snapshot.val().scheduledDayOne;
-                        var dayOneTime = snapshot.val().dayOneTime;
-                        var scheduledDayTwo = snapshot.val().scheduledDayTwo;
-                        var dayTwoTime = snapshot.val().dayTwoTime;
+                    localStorage.setItem("workoutEdit", true);
 
-                        // Redirect to Create Workout page
-                        window.location.assign("workout.html");
+                    // Redirect to Create Workout page
+                    window.location.assign('workout.html');
 
-                        $("#workout-name").attr("placeholder", workoutName);
-                        $("#activityDescription").val(activityDescription);
-                        $("#address").val(address);
-                        $("#workout-date-one").val(scheduledDayOne);
-                        $("#time-one").val(dayOneTime);
-                        $("#workout-date-two").val(scheduledDayTwo);
-                        $("#time-two").val(dayTwoTime);
-                        
+                    // snapshot.forEach(function (childSnapshot) {
+                    //     var workoutData = childSnapshot.val();
+                    //     console.log(workoutData);
 
-
-                        // snapshot.forEach(function (childSnapshot) {
-                        //     var workoutData = childSnapshot.val();
-                        //     console.log(workoutData);
-
-
-                    });
                 });
+
 
                 // $("#workout-name").val(snap.val().username);
                 // $("label[for='workout-name']").addClass("active");

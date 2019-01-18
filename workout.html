@@ -58,7 +58,7 @@
     <div id="createWorkout" class="container">
         <div class="row">
             <div class="col m6">
-                <h5>Create Workout</h5>
+                <h5>Create or Edit Workout</h5>
             </div>
             <div class="col m6"></div>
         </div>
@@ -192,8 +192,14 @@
             <div class="col m6">
                 <span id="redirectMsg"></span>
             </div>
+
             <div class="col m6">
-                <button id="submitButton" class="btn cyan waves-effect waves-light right" onclick="M.toast({html: 'Workout created!  Hang tight for one second while we get you back to your profile.'})" type="submit" name="action">Submit
+                <button id="updateButton" class="btn cyan waves-effect waves-light right hidden" onclick="M.toast({html: 'Workout update successsful!'})"
+                    type="submit" name="action">Update
+                    <i class="mdi-content-send right"></i>
+                </button>
+                <button id="submitButton" class="btn cyan waves-effect waves-light right" onclick="M.toast({html: 'Workout created!  Hang tight for one second while we get you back to your profile.'})"
+                    type="submit" name="action">Submit
                     <i class="mdi-content-send right"></i>
                 </button>
             </div>
