@@ -56,6 +56,10 @@
     font-weight: bolder;
 }
 
+.hidden {
+    display:none; 
+}
+
 textarea#aboutMe {
     min-height: 8rem;
 }
@@ -79,6 +83,20 @@ textarea#aboutMe {
     font-weight: 900;
 }
 
+button.endWorkout,
+button.endBuddy,
+button.editWorkoutButton {
+    font-size: .7em;
+    padding: 2px;
+    height: 15px;
+    line-height: 1em;
+    float: right;
+}
+
+
+.circle {
+    border-radius: 10%;
+}
 a {
     color: black;
 }
