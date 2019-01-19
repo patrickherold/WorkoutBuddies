@@ -8,7 +8,7 @@
 }
 
 #currentPersonProfilePicture {
-    max-width: 95%;
+    max-width: 100%;
 }
 
 #mainContainer {
@@ -60,6 +60,10 @@
     display:none; 
 }
 
+textarea#aboutMe {
+    min-height: 8rem;
+}
+
 @media only screen and (min-width: 993px) {
 .container {
     width: 70%;
@@ -92,4 +96,7 @@ button.editWorkoutButton {
 
 .circle {
     border-radius: 10%;
+}
+a {
+    color: black;
 }
